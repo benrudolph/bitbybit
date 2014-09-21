@@ -1,6 +1,8 @@
 {% include doctype.html %}
 <head>
 {% include head.html %}
+<script src="//www.google.com/jsapi"></script>
+<script src="chartkick.js"></script>
 </head>
 
 <body id="post" {% if page.image.feature %}class="feature"{% endif %}>
@@ -76,8 +78,8 @@
   </footer>
 </div><!-- /.footer-wrapper -->
 
-{% include custom/after_footer.html %}	        
-{% include scripts.html %}	        
+{% include custom/after_footer.html %}
+{% include scripts.html %}
 
 </body>
 </html>
