@@ -4,7 +4,7 @@
 
 url: http://benrudolph.com
 title: Bit by bit
-subtitle: Digestable posts about data, software and the web
+subtitle: Life's questions answered through data
 author: Ben Rudolph
 simple_search: https://www.google.com/search
 description:
@@ -12,6 +12,7 @@ description:
 keywords: [one, two]
 avatar: /images/ben.jpg
 author_bio: hellow world
+about: www.benrudolph.com
 
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -69,13 +70,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: benrudolph
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: _benrudolph
 twitter_tweet_button: true
 
 # Google +1
@@ -84,7 +85,7 @@ google_plus_one_size: medium
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
-googleplus_user:
+googleplus_user: +BenRudolphin
 googleplus_hidden: false
 
 # Pinboard
