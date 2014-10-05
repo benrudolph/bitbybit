@@ -8,9 +8,9 @@ $(function() {
 });
 
 // FitVids options
-$(function() {
+/*$(function() {
   $("article").fitVids();
-});
+});*/
 
 $(".close-menu").click(function () {
   $(".menu").toggleClass("disabled");

@@ -1,0 +1,121 @@
+<div id="geo-coverage"></div>
+<div id="geo-area"></div>
+<script>
+  var languageCounts = {
+    mandarin: ['SG', 'TW', 'CN'],
+    spanish: ['MX', 'ES', 'CO', 'AR', 'PE', 'VE', 'CL',
+             'EC', 'GT', 'CU', 'BO', 'DO', 'HN', 'PY',
+             'SV', 'NI', 'CR', 'PR', 'PA', 'UY', 'GQ'],
+    english: ['AG', 'BS', 'BB', 'BZ', 'BW', 'CM', 'CA', 'CK', 'DM', 'ER', 'FJ', 'GM',
+    'GH', 'GD', 'GY', 'IN', 'IE', 'JM', 'KE', 'KI', 'LS', 'LR', 'MW', 'MT',
+    'MH', 'MR', 'FM', 'NA', 'NR', 'NZ', 'NG', 'NU', 'PK', 'PW', 'PG', 'PH',
+    'RW', 'KN', 'WS', 'LC', 'VC', 'SC', 'SL', 'SG', 'SB', 'ZA', 'SS', 'SD',
+    'SZ', 'TZ', 'TO', 'TT', 'TV', 'UG', 'VU', 'ZM', 'ZW', 'US', 'GB', 'AU'],
+    arabic: ['DZ', 'BH', 'EG', 'DJ', 'ER', 'IQ', 'IL',
+             'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'OM',
+             'QA', 'SA', 'SO', 'SS', 'SD', 'SY', 'TN', 'AE', 'YE'],
+    hindi: ['IN'],
+    portuguese: ['AO', 'BR', 'CV', 'TL', 'GQ', 'GW', 'MO', 'MZ', 'PT', 'ST'],
+    bengali: ['BD', 'IN'],
+    russian: ['RU', 'BY', 'KZ', 'KG', 'TJ'],
+    japanese: ['JP'],
+    punjabi: ['IN']
+  }
+
+  $(document).ready(function() {
+
+    $.get('/javascripts/vendor/areas.json').done(function(areas) {
+      var areaOpts = {
+        library: {
+          title: 'Total area of countries in km^2',
+          height: 500
+        },
+      }
+
+      var areaData = []
+      var sum = 0;
+      for (key in languageCounts) {
+        if (languageCounts.hasOwnProperty(key)) {
+          var iso2s = languageCounts[key];
+          var area = _.reduce(iso2s, function(area, iso2) {
+            var c = _.find(areas, function(area) { return area.iso2 === iso2 })
+            if (!c) return area;
+            return area + c.areakm2;
+          }, 0)
+
+          areaData.push([key, area])
+        }
+      }
+      new Chartkick.ColumnChart("geo-area", areaData, areaOpts);
+
+    });
+
+
+    $("#geo-coverage").highcharts('Map', {
+
+      title: {
+          text: null
+      },
+
+      legend: {
+          layout: 'vertical',
+          align: 'left',
+          verticalAlign: 'bottom'
+      },
+
+      plotOptions: {
+        map: {
+          nullColor: 'rgba(0,0,0,0)',
+          joinBy: ['iso-a2', 'code'],
+          mapData: Highcharts.maps['custom/world']
+        }
+      },
+
+      series: [
+        {
+          name: 'Mandarin',
+          data: $.map(languageCounts.mandarin, function(code) { return { code: code }; }),
+          color: '#a6cee3'
+        }, {
+          name: 'Spanish',
+          data: $.map(languageCounts.spanish, function (code) { return { code: code }; }),
+          color: '#1f78b4'
+        }, {
+          name: 'English',
+          data: $.map(languageCounts.english, function (code) { return { code: code }; }),
+          color: '#b2df8a'
+        }, {
+          name: 'Hindi',
+          data: $.map(languageCounts.hindi, function (code) { return { code: code }; }),
+          color: '#33a02c'
+        }, {
+          name: 'Arabic',
+          data: $.map(languageCounts.arabic, function (code) { return { code: code }; }),
+          color: '#fb9a99',
+        }, {
+          name: 'Portuguese',
+          data: $.map(languageCounts.portuguese, function (code) { return { code: code }; }),
+          color: '#e31a1c',
+        }, {
+          name: 'Bengali',
+          data: $.map(languageCounts.bengali, function (code) { return { code: code }; }),
+          color: '#fdbf6f',
+        }, {
+          name: 'Russian',
+          data: $.map(languageCounts.russian, function (code) { return { code: code }; }),
+          color: '#ff7f00',
+        }, {
+          name: 'Japanese',
+          data: $.map(languageCounts.japanese, function (code) { return { code: code }; }),
+          color: '#cab2d6',
+        }, {
+          name: 'Punjabi',
+          data: $.map(languageCounts.punjabi, function (code) { return { code: code }; }),
+          color: '#6a3d9a',
+        }
+      ]
+    });
+  });
+
+</script>
+

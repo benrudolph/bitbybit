@@ -1,2 +1,9 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+td[data-yes="true"] {
+  background-color: #2ecc71;
+}
+td[data-yes="false"] {
+  background-color: #e74c3c;
+}

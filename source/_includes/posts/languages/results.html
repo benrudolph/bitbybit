@@ -1,0 +1,287 @@
+<table class="responsive">
+  <thead>
+    <tr>
+      <td>
+        Criterion
+      </td>
+      <td>
+        Mandarin
+      </td>
+      <td>
+        Spanish
+      </td>
+      <td>
+        Hindi
+      </td>
+      <td>
+        Arabic
+      </td>
+      <td>
+        Portuguese
+      </td>
+      <td>
+        Bengali
+      </td>
+      <td>
+        Russian
+      </td>
+      <td>
+        Japanese
+      </td>
+      <td>
+        Punjabi
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Most Spoken
+      </td>
+      <td>
+        10
+      </td>
+      <td>
+        9
+      </td>
+      <td>
+        7
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        5
+      </td>
+      <td>
+        4
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Area covered
+      </td>
+      <td>
+        5
+      </td>
+      <td>
+        7
+      </td>
+      <td>
+        2
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        4
+      </td>
+      <td>
+        9
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        2
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Number of countries
+      </td>
+      <td>
+        5
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        9
+      </td>
+      <td>
+        7
+      </td>
+      <td>
+        4
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ability to learn
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        3
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Online Presence
+      </td>
+      <td>
+        6
+      </td>
+      <td>
+        7
+      </td>
+      <td>
+        4
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        5
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        9
+      </td>
+      <td>
+        8
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Sum</b>
+      </td>
+      <td>
+        <b>27</b>
+      </td>
+      <td>
+        <b>39</b>
+      </td>
+      <td>
+        <b>17</b>
+      </td>
+      <td>
+        <b>27</b>
+      </td>
+      <td>
+        <b>31</b>
+      </td>
+      <td>
+        <b>16</b>
+      </td>
+      <td>
+        <b>30</b>
+      </td>
+      <td>
+        <b>13</b>
+      </td>
+      <td>
+        <b>8</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Weighted Sum</b>
+      </td>
+      <td>
+        <b>6.2</b>
+      </td>
+      <td>
+        <b>8.85</b>
+      </td>
+      <td>
+        <b>3.8</b>
+      </td>
+      <td>
+        <b>6.2</b>
+      </td>
+      <td>
+        <b>6.95</b>
+      </td>
+      <td>
+        <b>3.55</b>
+      </td>
+      <td>
+        <b>7.5</b>
+      </td>
+      <td>
+        <b>3.45</b>
+      </td>
+      <td>
+        <b>1.7</b>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<div id="model-results"></div>
+<script>
+  var modelOpts = {
+    library: {
+      title: 'Final results',
+      vAxis: { title: "Weighted sum" },
+      height: 300
+    },
+  }
+  var modelData = [
+    ['Spanish', 8.85],
+    ['Russian', 7.5],
+    ['Portuguese', 6.95],
+    ['Arabic', 6.2],
+    ['Mandarin', 6.2],
+    ['Hindi', 3.8],
+    ['Bengali', 3.55],
+    ['Japanese', 3.45],
+    ['Punjabi', 1.7],
+  ]
+
+  new Chartkick.ColumnChart("model-results", modelData, modelOpts);
+</script>

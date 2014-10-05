@@ -1,0 +1,102 @@
+<div id="area-and-languages"></div>
+<script>
+  $(document).ready(function() {
+    var languageCounts = {
+      mandarin: ['SG', 'TW', 'CN'],
+      spanish: ['MX', 'ES', 'CO', 'AR', 'PE', 'VE', 'CL',
+               'EC', 'GT', 'CU', 'BO', 'DO', 'HN', 'PY',
+               'SV', 'NI', 'CR', 'PR', 'PA', 'UY', 'GQ'],
+      english: ['AG', 'BS', 'BB', 'BZ', 'BW', 'CM', 'CA', 'CK', 'DM', 'ER', 'FJ', 'GM',
+      'GH', 'GD', 'GY', 'IN', 'IE', 'JM', 'KE', 'KI', 'LS', 'LR', 'MW', 'MT',
+      'MH', 'MR', 'FM', 'NA', 'NR', 'NZ', 'NG', 'NU', 'PK', 'PW', 'PG', 'PH',
+      'RW', 'KN', 'WS', 'LC', 'VC', 'SC', 'SL', 'SG', 'SB', 'ZA', 'SS', 'SD',
+      'SZ', 'TZ', 'TO', 'TT', 'TV', 'UG', 'VU', 'ZM', 'ZW', 'US', 'GB', 'AU'],
+      arabic: ['DZ', 'BH', 'EG', 'DJ', 'ER', 'IQ', 'IL',
+               'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'OM',
+               'QA', 'SA', 'SO', 'SS', 'SD', 'SY', 'TN', 'AE', 'YE'],
+      hindi: ['IN'],
+      portuguese: ['AO', 'BR', 'CV', 'TL', 'GQ', 'GW', 'MO', 'MZ', 'PT', 'ST'],
+      bengali: ['BD', 'IN'],
+      russian: ['RU', 'BY', 'KZ', 'KG', 'TJ'],
+      japanese: ['JP'],
+      punjabi: ['IN']
+    }
+
+    $.get('/javascripts/vendor/country_properties.json').done(function(resp) {
+      var series = []
+
+      for (key in languageCounts) {
+        if (languageCounts.hasOwnProperty(key)) {
+          series = {
+            name: key
+          }
+        }
+      }
+
+      $('#container').highcharts({
+          chart: {
+              type: 'scatter',
+              zoomType: 'xy'
+          },
+          title: {
+              text: 'Height Versus Weight of 507 Individuals by Gender'
+          },
+          subtitle: {
+              text: 'Source: Heinz  2003'
+          },
+          xAxis: {
+              title: {
+                  enabled: true,
+                  text: 'Height (cm)'
+              },
+              startOnTick: true,
+              endOnTick: true,
+              showLastLabel: true
+          },
+          yAxis: {
+              title: {
+                  text: 'Weight (kg)'
+              }
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'left',
+              verticalAlign: 'top',
+              x: 100,
+              y: 70,
+              floating: true,
+              backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+              borderWidth: 1
+          },
+          plotOptions: {
+              scatter: {
+                  marker: {
+                      radius: 5,
+                      states: {
+                          hover: {
+                              enabled: true,
+                              lineColor: 'rgb(100,100,100)'
+                          }
+                      }
+                  },
+                  states: {
+                      hover: {
+                          marker: {
+                              enabled: false
+                          }
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<b>{series.name}</b><br>',
+                      pointFormat: '{point.x} cm, {point.y} kg'
+                  }
+              }
+          },
+          series: [{
+              name: 'Female',
+              color: 'rgba(223, 83, 83, .5)',
+              data:
+    });
+  });
+
+</script>

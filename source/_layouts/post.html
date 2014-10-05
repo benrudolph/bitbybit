@@ -1,8 +1,8 @@
 {% include doctype.html %}
 <head>
-{% include head.html %}
-<script src="//www.google.com/jsapi"></script>
-<script src="chartkick.js"></script>
+  {% include head.html %}
+  <link href="{{ root_url }}/stylesheets/responsive-tables.css" rel="stylesheet" type="text/css">
+  <script src="{{ root_url }}/javascripts/vendor/responsive-tables.js"></script>
 </head>
 
 <body id="post" {% if page.image.feature %}class="feature"{% endif %}>

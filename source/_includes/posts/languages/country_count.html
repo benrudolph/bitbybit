@@ -1,0 +1,47 @@
+<div id="country-count"></div>
+<script>
+  $(document).ready(function() {
+    var languageCounts = {
+      mandarin: ['SG', 'TW', 'CN'],
+      spanish: ['MX', 'ES', 'CO', 'AR', 'PE', 'VE', 'CL',
+               'EC', 'GT', 'CU', 'BO', 'DO', 'HN', 'PY',
+               'SV', 'NI', 'CR', 'PR', 'PA', 'UY', 'GQ'],
+      english: ['AG', 'BS', 'BB', 'BZ', 'BW', 'CM', 'CA', 'CK', 'DM', 'ER', 'FJ', 'GM',
+      'GH', 'GD', 'GY', 'IN', 'IE', 'JM', 'KE', 'KI', 'LS', 'LR', 'MW', 'MT',
+      'MH', 'MR', 'FM', 'NA', 'NR', 'NZ', 'NG', 'NU', 'PK', 'PW', 'PG', 'PH',
+      'RW', 'KN', 'WS', 'LC', 'VC', 'SC', 'SL', 'SG', 'SB', 'ZA', 'SS', 'SD',
+      'SZ', 'TZ', 'TO', 'TT', 'TV', 'UG', 'VU', 'ZM', 'ZW', 'US', 'GB', 'AU'],
+      arabic: ['DZ', 'BH', 'EG', 'DJ', 'ER', 'IQ', 'IL',
+               'JO', 'KW', 'LB', 'LY', 'MR', 'MA', 'OM',
+               'QA', 'SA', 'SO', 'SS', 'SD', 'SY', 'TN', 'AE', 'YE'],
+      hindi: ['IN'],
+      portuguese: ['AO', 'BR', 'CV', 'TL', 'GQ', 'GW', 'MO', 'MZ', 'PT', 'ST'],
+      bengali: ['BD', 'IN'],
+      russian: ['RU', 'BY', 'KZ', 'KG', 'TJ'],
+      japanese: ['JP'],
+      punjabi: ['IN']
+    }
+
+    var countryCountOpts = {
+      library: {
+        title: 'Number of countries where language is official',
+        vAxis: { title: "Number of countries" },
+        height: 500
+      },
+    }
+    var countryCountData = [
+      ['Mandarin', languageCounts.mandarin.length],
+      ['Spanish', languageCounts.spanish.length],
+      ['English', languageCounts.english.length],
+      ['Hindi', languageCounts.hindi.length],
+      ['Arabic', languageCounts.arabic.length],
+      ['Portuguese', languageCounts.portuguese.length],
+      ['Bengali', languageCounts.bengali.length],
+      ['Russian', languageCounts.russian.length],
+      ['Japanese', languageCounts.japanese.length],
+      ['Punjabi', languageCounts.punjabi.length],
+    ]
+
+    new Chartkick.ColumnChart("country-count", countryCountData, countryCountOpts);
+  });
+</script>
