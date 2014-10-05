@@ -264,24 +264,26 @@
 </table>
 <div id="model-results"></div>
 <script>
-  var modelOpts = {
-    library: {
-      title: 'Final results',
-      vAxis: { title: "Weighted sum" },
-      height: 300
-    },
-  }
-  var modelData = [
-    ['Spanish', 8.85],
-    ['Russian', 7.5],
-    ['Portuguese', 6.95],
-    ['Arabic', 6.2],
-    ['Mandarin', 6.2],
-    ['Hindi', 3.8],
-    ['Bengali', 3.55],
-    ['Japanese', 3.45],
-    ['Punjabi', 1.7],
-  ]
+  $(document).ready(function() {
+    var modelOpts = {
+      library: {
+        title: 'Final results',
+        vAxis: { title: "Weighted sum" },
+        height: 300
+      },
+    }
+    var modelData = [
+      ['Spanish', 8.85],
+      ['Russian', 7.5],
+      ['Portuguese', 6.95],
+      ['Arabic', 6.2],
+      ['Mandarin', 6.2],
+      ['Hindi', 3.8],
+      ['Bengali', 3.55],
+      ['Japanese', 3.45],
+      ['Punjabi', 1.7],
+    ]
 
-  new Chartkick.ColumnChart("model-results", modelData, modelOpts);
+    new Chartkick.ColumnChart("model-results", modelData, modelOpts);
+  });
 </script>

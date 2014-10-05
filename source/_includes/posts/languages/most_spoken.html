@@ -1,26 +1,28 @@
 <div id="spoken-languages"></div>
 <script>
+  $(document).ready(function() {
 
-  var spokenOpts = {
-    library: {
-      title: 'Top 10 languages spoken',
-      vAxis: { title: "Native speakers by millions" },
-      height: 500
-    },
-  }
-  var spokenData = [
-    ['Mandarin', 955],
-    ['Spanish', 405],
-    ['English', 360],
-    ['Hindi', 310],
-    ['Arabic', 295],
-    ['Portuguese', 215],
-    ['Bengali', 205],
-    ['Russian', 155],
-    ['Japanese', 125],
-    ['Punjabi', 105],
-  ]
+    var spokenOpts = {
+      library: {
+        title: 'Top 10 languages spoken',
+        vAxis: { title: "Native speakers by millions" },
+        height: 500
+      },
+    }
+    var spokenData = [
+      ['Mandarin', 955],
+      ['Spanish', 405],
+      ['English', 360],
+      ['Hindi', 310],
+      ['Arabic', 295],
+      ['Portuguese', 215],
+      ['Bengali', 205],
+      ['Russian', 155],
+      ['Japanese', 125],
+      ['Punjabi', 105],
+    ]
 
-  new Chartkick.ColumnChart("spoken-languages", spokenData, spokenOpts);
+    new Chartkick.ColumnChart("spoken-languages", spokenData, spokenOpts);
+  });
 
 </script>
