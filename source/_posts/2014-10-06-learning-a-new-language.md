@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Calculating the best langauge to learn"
-date: 2014-09-21 23:59:36 +0200
+date: 2014-10-06 23:59:36 +0200
 excerpted: true
 comments: true
 categories:
