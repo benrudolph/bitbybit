@@ -32,6 +32,8 @@
   $(document).ready(function() {
 
     $.get('/javascripts/vendor/areas.json').done(function(areas) {
+      if (typeof areas === 'string')
+        areas = JSON.parse(areas);
       var areaOpts = {
         library: {
           title: { text: 'Total area of countries in kilometers squared' },
