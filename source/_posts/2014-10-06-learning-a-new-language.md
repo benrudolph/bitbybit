@@ -14,7 +14,7 @@ Learning a new language is tough. After ping ponging around from French to Germa
 
 <!-- more -->
 
-I've always wondered what the best language was to learn. I've had it in my head that Spanish was *the* language that I should learn, but being somewhat of a contrarian I always refused to go down the dogmatic path. Granted the "best" language is certainly subjective depending on tastes and goals in life, but below is my data-driven and heartfelt process of deciding on a new language to learn. Hopefully the numbers will point me to an undenible choice.
+I've always wondered what the best language was to learn. I've had it in my head that Spanish was *the* language that I should learn, but being somewhat of a contrarian I always refused to go down the dogmatic path. Granted the "best" language is certainly subjective depending on tastes and goals in life, but below is my data-driven and heartfelt process of deciding on a new language to learn. Hopefully the numbers will point to an undenible choice.
 
 ### Most spoken languages
 
