@@ -1,3 +1,4 @@
+<br />
 <table class="responsive">
   <thead>
     <tr>
@@ -125,15 +126,17 @@
     </tr>
   </tbody>
 </table>
+<br />
 <div id="yes-no-indicators"></div>
 <script>
   $(document).ready(function() {
     var yesNoOpts = {
       library: {
-        title: 'Ability to learn indicators',
-        vAxis: { title: "Number of yes indicators" },
+        title: { text: 'Ability to learn' },
+        yAxis: [{ title: { text: "Number of yes indicators" }}],
         height: 300
       },
+      colors: ['#87248e']
     }
     var yesNoData = [
       ['Mandarin', 0],

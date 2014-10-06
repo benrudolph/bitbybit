@@ -57,7 +57,7 @@ $doc-margin: 1.625 !default; // Space after paragraphs in rems
 
 body {
 	margin-top: 0px + $doc-margin * $doc-font-root;
-	font-size: 0px + $doc-font-root;	
+	font-size: 0px + $doc-font-root;
 }
 
 // Colors
@@ -65,7 +65,7 @@ body {
 $base-color				: #222 !default;
 $body-color      	: #e8e8e8 !default;
 $text-color      	: #222 !default;
-$comp-color 	 		: adjust-hue($base-color, 180) !default; 
+$comp-color 	 		: adjust-hue($base-color, 180) !default;
 $border-color    	: lighten($base-color,60) !default;
 $white           	: #fff !default;
 $black           	: #000 !default;

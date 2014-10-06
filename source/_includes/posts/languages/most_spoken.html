@@ -4,14 +4,15 @@
 
     var spokenOpts = {
       library: {
-        title: 'Top 10 languages spoken',
-        vAxis: { title: "Native speakers by millions" },
-        height: 500
+        title: { text: 'Top 10 languages spoken' },
+        yAxis: [{ title: { text: "Native speakers by millions" }}],
       },
+      height: 500,
+      colors: ['#87248e']
     }
     var spokenData = [
       ['Mandarin', 955],
-      ['Spanish', 405],
+      ['Spanish', 470],
       ['English', 360],
       ['Hindi', 310],
       ['Arabic', 295],
@@ -19,7 +20,7 @@
       ['Bengali', 205],
       ['Russian', 155],
       ['Japanese', 125],
-      ['Punjabi', 105],
+      ['Punjabi', 102],
     ]
 
     new Chartkick.ColumnChart("spoken-languages", spokenData, spokenOpts);

@@ -262,15 +262,17 @@
 
   </tbody>
 </table>
+<br />
 <div id="model-results"></div>
 <script>
   $(document).ready(function() {
     var modelOpts = {
       library: {
-        title: 'Final results',
-        vAxis: { title: "Weighted sum" },
+        title: { text: 'Final results' },
+        yAxis: [{ title: { text: "Weighted Sum" }}],
         height: 300
       },
+      colors: ['#87248e']
     }
     var modelData = [
       ['Spanish', 8.85],

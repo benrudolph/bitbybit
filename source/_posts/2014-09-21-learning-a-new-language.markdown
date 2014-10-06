@@ -14,13 +14,15 @@ Learning a new language is tough. After ping ponging around from French to Germa
 
 <!-- more -->
 
-I've always wondered what was the best language to learn. I've had it in my head that Spanish was *the* language that I "should" learn, but being somewhat of a contrarian I always refused to go down the dogmatic path. Granted the "best" language is certainly subjective depending on tastes and goals in life, but below is my data-driven and heartfelt process of deciding on a new language to learn. Hopefully the numbers will point me to an undenible choice.
+I've always wondered what was the best language to learn. I've had it in my head that Spanish was *the* language that I should learn, but being somewhat of a contrarian I always refused to go down the dogmatic path. Granted the "best" language is certainly subjective depending on tastes and goals in life, but below is my data-driven and heartfelt process of deciding on a new language to learn. Hopefully the numbers will point me to an undenible choice.
 
 ### Most spoken languages
 
 As an easy start, I analyzed which languages were spoken most frequently. Being able to communicate with more people is a big factor for me. The ten most frequently spoken langauges will be the ten langauages I consider in the rest of my analysis.
 
 {% include posts/languages/most_spoken.html %}
+
+<small>[Data source](http://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers)</small>
 
 Sadly, the two langauges that I attempted to learn, French and German, do not even make the list. Although I have a feeling french might have made the top ten if we included those who speak french as a second language. The above chart only accounts for native speakers. It is hardly surprising to see Mandarin, Spanish and English topping the charts on this one. However I never would have guessed Japanese to be in the top ten. In addition there are two languages from India that made the list, Hindi and Punjabi. Another surprise language for me is Bengali. After a quick google, it makes sense given the extreme density of Bangladesh.
 
@@ -59,11 +61,9 @@ The big kicker for a language is its online presence. As a computer scientist an
 
 {% include posts/languages/online_presence.html %}
 
-English is stunningly the language for approximately 55% of all webpages created. This dwarfes any other language. To get a better view of the trends of the other langauges, I removed English from the chart. Here you see Russia as a surprising number two, by quite a large margin. Spanish has remained mainly stagnant for the past three years letting, Japanese squeeze out the number two spot.The most shocking are Arabic and Chinese. Arabic has taken a nose dive in the most recent year for causes unknown to me. The Internet has approximately 4.7 billion webpages so to drop from 3% to 0.8% in one year is quite significant. I expected Chinese to be way higher. With a government that strictly controls which websites are available to its citizens, you would think that Chinese clones of many English sites would pop up. While I think this definitely does happen, it must not play a huge factor in the total number of Chinese websites.
+<small>[Data source](http://en.wikipedia.org/wiki/Languages_used_on_the_Internet)</small>
 
-http://www.worldwidewebsize.com/
-http://www.internetworldstats.com/stats7.htm
-http://en.wikipedia.org/wiki/Languages_used_on_the_Internet
+English is stunningly the language for approximately 55% of all webpages created. This dwarfes any other language. To get a better view of the trends of the other langauges, I removed English from the chart. Here you see Russia as a surprising number two, by quite a large margin. Spanish has remained mainly stagnant for the past three years letting, Japanese squeeze out the number two spot.The most shocking are Arabic and Chinese. Arabic has taken a nose dive in the most recent year for causes unknown to me. The Internet has approximately 4.7 billion webpages so to drop from 3% to 0.8% in one year is quite significant. I expected Chinese to be way higher. With a government that strictly controls which websites are available to its citizens, you would think that Chinese clones of many English sites would pop up. While I think this definitely does happen, it must not play a huge factor in the total number of Chinese websites.
 
 ### Final calculation
 
@@ -82,9 +82,6 @@ To calculate the score for each criterion, each language will receive 10 points 
 
 {% include posts/languages/results.html %}
 
-Well, it looks like conventional wisdom holds true and I should learn Spanish next. What surprised me more was second and third place. A close second was Russian which wasn't even on my radar before this exercise. Then Portuguese as third is equally as surprising for me. One of my first questions to people learning Portuguese is why would you learn *that* language? Turns out Portuguese is a better pick than many other hot languages like Arabic and Mandarin.
+Well, it looks like conventional wisdom holds true and I should learn Spanish next. What surprised me more was second and third place. A close second was Russian which wasn't even on my radar before this exercise. Then Portuguese as third is equally as surprising for me. Turns out Portuguese is a better pick than many other hot languages like Arabic and Mandarin.
 
 As an extension it'd be interesting to come up with a few more criteria on which to pick my next language. This is by no means complete and after the results came in, I'm still not convinced that my third language should be Russian. It'll also be interesting to find a better way to determine the final weighting. I used a point based comparison system, but this could be improved by incorporating the amount in which a language comes in first by. For example Mandarin is by far the most spoken language, but this is only a one point difference from second place. A model that took into account the margin of victory could make for a more accurate model.
-
-
-http://www.ethnologue.com/

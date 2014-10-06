@@ -67,7 +67,7 @@ body {
 		padding: 10px 15px;
 		background-color: $white;
 		box-shadow: 0 0 0 0, 0 6px 12px rgba($black,0.10);
-		@include border-radius(3px);
+		// @include border-radius(3px);
 		@media #{$medium} {
 			margin-left: 10px;
 			margin-right: 10px;
@@ -129,7 +129,7 @@ body {
 }
 
 
-// Post Index 
+// Post Index
 // --------------------------------------------------
 #post-index {
 	#main {
@@ -178,7 +178,7 @@ body {
 .socialcount {
 	@include font-rem($socialcount_fs);
 	font-weight: 700;
-	li { 
+	li {
 		padding-left: 10px;
 		padding-right: 10px;
 	}

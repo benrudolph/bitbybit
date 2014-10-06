@@ -1,4 +1,5 @@
 <div id="country-count"></div>
+<small><a href="http://en.wikipedia.org/wiki/List_of_official_languages">Data source official languages</a></small>
 <script>
   $(document).ready(function() {
     var languageCounts = {
@@ -24,10 +25,11 @@
 
     var countryCountOpts = {
       library: {
-        title: 'Number of countries where language is official',
-        vAxis: { title: "Number of countries" },
+        title: { text: 'Number of countries where language is official'},
+        yAxis: [{ title: { text: "Number of countries" }}],
         height: 500
       },
+      colors: ['#87248e']
     }
     var countryCountData = [
       ['Mandarin', languageCounts.mandarin.length],

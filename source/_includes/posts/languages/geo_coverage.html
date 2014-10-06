@@ -1,5 +1,12 @@
 <div id="geo-coverage"></div>
+<br />
 <div id="geo-area"></div>
+<div>
+  <small><a href="http://en.wikipedia.org/wiki/List_of_official_languages">Data source official languages</a></small>
+  <div></div>
+  <small><a href="http://data.worldbank.org/indicator/AG.LND.TOTL.K2">Data source land area</a></small>
+</div>
+<br />
 <script>
   var languageCounts = {
     mandarin: ['SG', 'TW', 'CN'],
@@ -27,9 +34,11 @@
     $.get('/javascripts/vendor/areas.json').done(function(areas) {
       var areaOpts = {
         library: {
-          title: 'Total area of countries in km^2',
+          title: { text: 'Total area of countries in kilometers squared' },
+          yAxis: [{ title: { text: "Area (kilometers squared)" }}],
           height: 500
         },
+        colors: ['#87248e']
       }
 
       var areaData = []
@@ -54,7 +63,7 @@
     $("#geo-coverage").highcharts('Map', {
 
       title: {
-          text: null
+          text: 'Official languages around the world'
       },
 
       legend: {
@@ -75,43 +84,43 @@
         {
           name: 'Mandarin',
           data: $.map(languageCounts.mandarin, function(code) { return { code: code }; }),
-          color: '#a6cee3'
+          color: '#3366cc'
         }, {
           name: 'Spanish',
           data: $.map(languageCounts.spanish, function (code) { return { code: code }; }),
-          color: '#1f78b4'
+          color: '#dc3912'
         }, {
           name: 'English',
           data: $.map(languageCounts.english, function (code) { return { code: code }; }),
-          color: '#b2df8a'
+          color: '#ff9900'
         }, {
           name: 'Hindi',
           data: $.map(languageCounts.hindi, function (code) { return { code: code }; }),
-          color: '#33a02c'
+          color: '#990099'
         }, {
           name: 'Arabic',
           data: $.map(languageCounts.arabic, function (code) { return { code: code }; }),
-          color: '#fb9a99',
+          color: '#109618',
         }, {
           name: 'Portuguese',
           data: $.map(languageCounts.portuguese, function (code) { return { code: code }; }),
-          color: '#e31a1c',
+          color: '#0099c6',
         }, {
           name: 'Bengali',
           data: $.map(languageCounts.bengali, function (code) { return { code: code }; }),
-          color: '#fdbf6f',
+          color: '#dd4477',
         }, {
           name: 'Russian',
           data: $.map(languageCounts.russian, function (code) { return { code: code }; }),
-          color: '#ff7f00',
+          color: '#66aa00',
         }, {
           name: 'Japanese',
           data: $.map(languageCounts.japanese, function (code) { return { code: code }; }),
-          color: '#cab2d6',
+          color: '#b82e2e',
         }, {
           name: 'Punjabi',
           data: $.map(languageCounts.punjabi, function (code) { return { code: code }; }),
-          color: '#6a3d9a',
+          color: '#316395',
         }
       ]
     });

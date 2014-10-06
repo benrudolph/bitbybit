@@ -85,11 +85,24 @@
         }
       },
     ];
-    new Chartkick.LineChart("online-presence", onlineData, { adapter: 'google', min: 0, max: 100 });
+    new Chartkick.LineChart("online-presence", onlineData, {
+      adapter: 'google', min: 0, max: 100,
+      library: {
+        title: 'Online presence of languages',
+        vAxis: { title: '% of webpages' }
+      }
+
+    });
 
     // Without english
     onlineData2 = onlineData.slice(0, 2).concat(onlineData.slice(3));
-    new Chartkick.LineChart("online-presence-without", onlineData2, {adapter: 'google',  min: 0});
+    new Chartkick.LineChart("online-presence-without", onlineData2, {adapter: 'google',  min: 0,
+      library: {
+        title: 'Online presence of languages (excluding English)',
+        vAxis: { title: '% of webpages' }
+      }
+
+    });
   });
 
 </script>
