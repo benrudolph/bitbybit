@@ -29,7 +29,6 @@ body {
 // --------------------------------------------------
 .entry-meta {
 	@include font-rem($footer_fs);
-	text-transform: uppercase;
 	color: lighten($base-color,60%);
 	a {
 		color: lighten($base-color,60%);
@@ -62,11 +61,11 @@ body {
 }
 #post,
 #page {
-	.entry-content {
+	.entry-content, .header-title {
 		margin: 40px 2px 20px 2px;
 		padding: 10px 15px;
 		background-color: $white;
-		box-shadow: 0 0 0 0, 0 6px 12px rgba($black,0.10);
+		// box-shadow: 0 0 0 0, 0 6px 12px rgba($black,0.10);
 		// @include border-radius(3px);
 		@media #{$medium} {
 			margin-left: 10px;
@@ -75,13 +74,8 @@ body {
 		}
 		@media #{$large} {
 			max-width: 800px;
-			margin: 50px auto 30px auto;
-			padding: 50px 80px;
-			> p:first-child {
-				@include font-rem($p1_fs);
-				@include line-height($p1_lh);
-        @include margin-after
-			}
+			margin: 0px auto;
+			padding: 0px 80px;
 		}
 	}
 	#disqus_thread {
@@ -102,10 +96,9 @@ body {
 		}
 	}
 	.entry-meta {
-		margin: 50px 30px 30px;
-		text-align: center;
 	}
 }
+
 .entry-tags {
 	display: block;
 	margin-bottom: 6px;
@@ -132,6 +125,14 @@ body {
 // Post Index
 // --------------------------------------------------
 #post-index {
+  .entry-title {
+    margin-bottom: 0;
+  }
+
+  .entry-content {
+    margin-top: 28px;
+  }
+
 	#main {
 		margin: 40px 2px 20px 2px;
 		@media #{$medium} {
@@ -147,7 +148,7 @@ body {
 	}
 	article {
 		background-color: $white;
-		box-shadow: 0 0 0 0, 0 6px 12px rgba($base-color,0.10);
+		// box-shadow: 0 0 0 0, 0 6px 12px rgba($base-color,0.10);
 		@include border-radius(3px);
 		margin-bottom: 20px;
 		padding: 25px 15px;

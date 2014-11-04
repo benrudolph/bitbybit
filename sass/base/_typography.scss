@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
 	@include font-rem($h1_fs);
+  font-weight: normal;
 }
 
 // Links

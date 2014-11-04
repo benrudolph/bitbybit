@@ -2,12 +2,22 @@
 For use in environments where the data for the particular article has been
 assigned to the `post` variable, as in when looping over `paginator.posts`
 or when the line `{% assign post = page %}`. This makes this usable in both
-the index page or a normal post page. 
+the index page or a normal post page.
 {% endcomment%}
 
 {% capture titlecased %}{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}{% endcapture %}
 
 <header>
+  {% if post.external_url %}
+    <h1 class="entry-title">
+      <a href="{{ post.external_url }}" rel="bookmark" title="{{ titlecased }}"><i class="fa fa-external-link"></i></a>
+      <a href="{{ root_url }}{{ post.url }}">{{ titlecased }}</a>
+    </h1>
+  {% else %}
+    <h1 class="entry-title">
+      <a href="{{ root_url }}{{ post.url }}" rel="bookmark" title="{{ titlecased }}" itemprop="url">{{ titlecased }}</a>
+    </h1>
+  {% endif %}
   <div class="entry-meta">
     <span class="entry-date date published updated">
       <time datetime="{{ post.date | date_to_xmlschema }}">
@@ -25,16 +35,6 @@ the index page or a normal post page.
       </span>
     {% endif %}
   </div><!-- /.entry-meta -->
-  {% if post.external_url %}
-    <h1 class="entry-title">
-      <a href="{{ post.external_url }}" rel="bookmark" title="{{ titlecased }}"><i class="fa fa-external-link"></i></a> 
-      <a href="{{ root_url }}{{ post.url }}">{{ titlecased }}</a>
-    </h1>
-  {% else %}
-    <h1 class="entry-title">
-      <a href="{{ root_url }}{{ post.url }}" rel="bookmark" title="{{ titlecased }}" itemprop="url">{{ titlecased }}</a>
-    </h1>
-  {% endif %}
 </header>
 
 <div class="entry-content">

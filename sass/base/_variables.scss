@@ -1,10 +1,11 @@
 // Typography
 // ----------------------------------------------------------------------------
-@import url("http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic");
+@import url("http://fonts.googleapis.com/css?family=Vollkorn:400italic,400,700");
+
 
 // Typefaces
 // ------------------------------
-$base-font:         'Lato', Calibri, Arial, sans-serif !default;
+$base-font:         'Vollkorn', serif !default;
 $heading-font:      $base-font !default;
 $caption-font:      $base-font !default;
 $code-font:         Menlo, Monaco, Courier New, monospace !default;
@@ -63,7 +64,7 @@ body {
 // Colors
 // ----------------------------------------------------------------------------
 $base-color				: #222 !default;
-$body-color      	: #e8e8e8 !default;
+$body-color      	: #fff !default;
 $text-color      	: #222 !default;
 $comp-color 	 		: adjust-hue($base-color, 180) !default;
 $border-color    	: lighten($base-color,60) !default;

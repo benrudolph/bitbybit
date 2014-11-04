@@ -29,7 +29,11 @@
         {% else %}
           <h1 class="entry-title"><a href="{{ root_url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
         {% endif %}
-        <h2>{{ page.date | date: "%B %d, %Y" }}</h2>
+        <div class="entry-meta">
+          <span class="entry-date date">
+            {{ page.date | date: "%B %d, %Y" }}
+          </span>
+        </div>
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
