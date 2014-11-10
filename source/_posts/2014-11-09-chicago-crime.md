@@ -8,5 +8,5 @@ categories:
 ---
 
 
-{% include posts/chicago/wards.html %}
+{% include posts/chicago/ca.html %}
 

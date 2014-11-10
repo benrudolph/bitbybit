@@ -1,0 +1,142 @@
+<div id="ca"></div>
+<div id="ca-assaults"></div>
+<div id="ca-assaults-norm"></div>
+<div id="ca-assaults-ratio"></div>
+<div id="ca-income"></div>
+<script>
+  $(document).ready(function() {
+
+    var width = 800,
+        height = 500;
+
+    var svg = d3.select("#ca").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var assaultSvg = d3.select("#ca-assaults").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var assaultNormSvg = d3.select("#ca-assaults-norm").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var assaultRatioSvg = d3.select("#ca-assaults-ratio").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var assaultIncomeSvg = d3.select("#ca-income").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var start = d3.rgb('#fff')
+    var end = d3.rgb('#000')
+    var color = d3.interpolate(start, end)
+
+
+    d3.json('/data/topo_ca.json', function(err, ca) {
+      if (err) return console.error(err);
+      console.log(ca);
+
+      var features = topojson.feature(ca, ca.objects.ca).features;
+
+      var projection = d3.geo.mercator()
+        .scale(25000)
+        .center([-87.4, 41.8])
+        .translate([width / 2, height / 2]);
+
+      var path = d3.geo.path()
+        .projection(projection);
+
+      var caSelection = svg.selectAll('.ca-blank').data(features);
+      caSelection.enter().append("path");
+      caSelection.attr('class', function(d) { return 'ca ca-blank' })
+        .attr("d", path)
+
+
+      // By ca map
+      d3.csv('/data/assault_byca.csv', function(err, data) {
+        if (err) return console.error(err);
+        console.log(data);
+
+        var i = d3.scale.linear()
+          .domain([0, d3.max(data, function(d) { return +d.count })])
+          .range([0, 1])
+        var normalized = d3.scale.linear()
+          .domain([0, d3.max(data, function(d) { return +d.count / +d.total })])
+          .range([0, 1])
+        var ratio = d3.scale.linear()
+          .domain([0, d3.max(data, function(d) { return +d.arrestRatio })])
+          .range([0, 1])
+        var income = d3.scale.log()
+          .domain(d3.extent(data, function(d) { return +d.perCapitaIncome }))
+          .range([0, 1])
+
+
+        var caSelection = assaultSvg.selectAll('.ca-assaults').data(features);
+        caSelection.enter().append("path");
+        caSelection.attr('class', function(d) { return 'ca ca-assaults' })
+          .attr("d", path)
+          .style('fill', function(ca) {
+            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+
+            if (!d)
+              return
+
+            return color(i(+d.count));
+          })
+
+        caSelection = assaultNormSvg.selectAll('.ca-assaults-norm').data(features);
+        caSelection.enter().append("path");
+        caSelection.attr('class', function(d) { return 'ca ca-assaults-norm' })
+          .attr("d", path)
+          .style('fill', function(ca) {
+            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+
+            if (!d)
+              return
+
+            return color(normalized(+d.count / +d.total));
+          })
+
+        caSelection = assaultRatioSvg.selectAll('.ca-assaults-ratio').data(features);
+        caSelection.enter().append("path");
+        caSelection.attr('class', function(d) { return 'ca ca-assaults-ratio' })
+          .attr("d", path)
+          .style('fill', function(ca) {
+            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+
+            if (!d)
+              return
+
+            return color(ratio(+d.arrestRatio));
+          })
+
+
+        caSelection = assaultIncomeSvg.selectAll('.ca-income').data(features);
+        caSelection.enter().append("path");
+        caSelection.attr('class', function(d) { return 'ca ca-income' })
+          .attr("d", path)
+          .style('fill', function(ca) {
+            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+
+            if (!d)
+              return
+
+            console.log(income(+d.perCapitaIncome))
+            return color(income(+d.perCapitaIncome));
+          })
+
+
+
+
+
+      });
+
+    });
+
+
+  });
+
+</script>
+

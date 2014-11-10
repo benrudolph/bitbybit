@@ -1,4 +1,7 @@
 <div id="wards"></div>
+<div id="wards-assaults"></div>
+<div id="wards-assaults-norm"></div>
+<div id="wards-assaults-ratio"></div>
 <script>
   $(document).ready(function() {
 
@@ -8,6 +11,23 @@
     var svg = d3.select("#wards").append("svg")
       .attr("width", width)
       .attr("height", height);
+
+    var assaultSvg = d3.select("#wards-assaults").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var assaultNormSvg = d3.select("#wards-assaults-norm").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var assaultRatioSvg = d3.select("#wards-assaults-ratio").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var start = d3.rgb('#fff')
+    var end = d3.rgb('#000')
+    var color = d3.interpolate(start, end)
+
 
     d3.json('/data/topo_wards.json', function(err, wards) {
       if (err) return console.error(err);
@@ -23,13 +43,75 @@
       var path = d3.geo.path()
         .projection(projection);
 
-      var wardSelection = svg.selectAll('.ward').data(features);
+      var wardSelection = svg.selectAll('.ward-blank').data(features);
       wardSelection.enter().append("path");
-      wardSelection.attr('class', function(d) { return 'ward' })
+      wardSelection.attr('class', function(d) { return 'ward ward-blank' })
         .attr("d", path)
 
 
+      // By ward map
+      d3.csv('/data/assault_byward.csv', function(err, data) {
+        if (err) return console.error(err);
+        console.log(data);
+
+        var i = d3.scale.linear()
+          .domain([0, d3.max(data, function(d) { return +d.count })])
+          .range([0, 1])
+        var normalized = d3.scale.linear()
+          .domain([0, d3.max(data, function(d) { return +d.count / +d.pop10 })])
+          .range([0, 1])
+        var ratio = d3.scale.linear()
+          .domain([0, d3.max(data, function(d) { return +d.arrestRatio })])
+          .range([0, 1])
+
+
+        var wardSelection = assaultSvg.selectAll('.ward-assaults').data(features);
+        wardSelection.enter().append("path");
+        wardSelection.attr('class', function(d) { return 'ward ward-assaults' })
+          .attr("d", path)
+          .style('fill', function(ward) {
+            d = _.find(data, function(d) { return d.ward === ward.properties.WARD })
+
+            if (!d)
+              return
+
+            return color(i(+d.count));
+          })
+
+        wardSelection = assaultNormSvg.selectAll('.ward-assaults-norm').data(features);
+        wardSelection.enter().append("path");
+        wardSelection.attr('class', function(d) { return 'ward ward-assaults-norm' })
+          .attr("d", path)
+          .style('fill', function(ward) {
+            d = _.find(data, function(d) { return d.ward === ward.properties.WARD })
+
+            if (!d)
+              return
+
+            return color(normalized(+d.count / +d.pop10));
+          })
+
+        wardSelection = assaultRatioSvg.selectAll('.ward-assaults-ratio').data(features);
+        wardSelection.enter().append("path");
+        wardSelection.attr('class', function(d) { return 'ward ward-assaults-ratio' })
+          .attr("d", path)
+          .style('fill', function(ward) {
+            d = _.find(data, function(d) { return d.ward === ward.properties.WARD })
+
+            if (!d)
+              return
+
+            return color(ratio(+d.arrestRatio));
+          })
+
+
+
+
+
+      });
+
     });
+
 
   });
 </script>
