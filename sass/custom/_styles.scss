@@ -11,3 +11,15 @@ td[data-yes="false"] {
 small {
   font-size: small;
 }
+
+.highcharts-container {
+  path {
+    stroke-width: .5px;
+  }
+}
+
+.ward, .ca {
+  fill: white;
+  stroke: black;
+  stroke-width: .5px;
+}
