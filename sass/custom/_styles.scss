@@ -23,3 +23,50 @@ small {
   stroke: black;
   stroke-width: .5px;
 }
+
+svg {
+  font: 10px sans-serif;
+  padding: 10px;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis line {
+  stroke: #ddd;
+}
+
+.axis path {
+  fill: none;
+  stroke: #ddd;
+}
+.R {
+  fill: red;
+}
+
+.D {
+  fill: blue;
+}
+
+rect {
+  fill: blue;
+  opacity: .3;
+  stroke: black;
+
+}
+
+path {
+  stroke: black;
+  fill: none;
+}
+
+path.R {
+  stroke: red;
+  fill: none;
+}
+path.D {
+  stroke: blue;
+  fill: none;
+}
+

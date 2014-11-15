@@ -1,0 +1,299 @@
+<div id="members"></div>
+<div id="members-votes-missed"></div>
+<script>
+  $(document).ready(function() {
+    var width = 800,
+        height = 1800;
+
+    var margin = {
+      left: 50,
+      right: 50,
+      top: 50,
+      bottom: 50
+    }
+
+    var duration = 500;
+
+    var g = d3.select("#members").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append('g')
+        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+
+    // VM = Votes Missing
+    var gVM = d3.select("#members-votes-missed").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append('g')
+        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+
+    width -= (margin.left + margin.right);
+    height -= (margin.top + margin.bottom);
+
+    d3.csv('/data/us_sen_members.csv', function(err, members) {
+      //members = _.filter(members, function(d) { return d.state === 'WV' });
+      var y = d3.scale.ordinal()
+        .domain(_.chain(members).pluck('state').uniq().value().sort())
+        .rangeBands([0, height])
+
+      var x = d3.scale.ordinal()
+        .domain(_.chain(members).pluck('congress').uniq().value())
+        .rangePoints([0, width])
+
+      var xVM = d3.scale.ordinal()
+        .domain(_.times(13, function(d) { return d + 101 }))
+        .rangePoints([0, width])
+
+      var yVM = d3.scale.linear()
+        .domain([0, 100])
+        .range([500, 0]);
+
+      var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient('left')
+
+      var yVMAxis = d3.svg.axis()
+        .scale(yVM)
+        .orient('left')
+
+      var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient('top')
+
+      var xVMAxis = d3.svg.axis()
+        .scale(xVM)
+        .orient('bottom')
+
+      var path = d3.svg.line()
+        .x(function(d) { return xVM(d.congress); })
+        .y(function(d) {
+          return yVM(d.value);
+        });
+
+      // Streaks axis
+      g.append('g')
+        .attr('class', 'y axis')
+        .attr('transform', 'translate(0,0)')
+
+      g.select('.y.axis')
+        .transition()
+        .duration(duration)
+        .call(yAxis);
+
+      g.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,0)')
+
+      g.select('.x.axis')
+        .transition()
+        .duration(duration)
+        .call(xAxis);
+
+      // VM axis
+      gVM.append('g')
+        .attr('class', 'y axis')
+        .attr('transform', 'translate(0,0)')
+
+      gVM.select('.y.axis')
+        .transition()
+        .duration(duration)
+        .call(yVMAxis);
+
+      gVM.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + 500 + ')')
+
+      gVM.select('.x.axis')
+        .transition()
+        .duration(duration)
+        .call(xVMAxis);
+
+
+      var data = flattenStreaks(members);
+      var missVotesData =  computeMissedVotesData(members);
+
+      console.log(members);
+      console.log(missVotesData);
+
+      var streaks = g.selectAll('.streak').data(data);
+      streaks.enter().append('path');
+      streaks.attr('class', function(d) { return 'streak ' + d.party })
+        .attr('x', function(d) { return x(d.start); })
+        .attr('y', function(d) {
+          if (d.isTop) {
+            return y(d.state);
+          } else {
+            return y(d.state) + 10;
+          }
+        })
+        .attr('height', 5)
+        .attr('width', function(d) { return x(d.end) - x(d.start); })
+
+      var lines = gVM.selectAll('.member-line').data(missVotesData);
+      lines.enter().append('path');
+      lines.attr('class', function(d) { return 'member-line ' + d.party })
+        .attr('d', function(d) {
+          return path(d.values)
+        })
+
+
+    })
+
+    function renderComet(path, width) {
+      path.attr("d", function() {
+        var w = Math.max(1, (typeof width === "function" ? width.apply(this, arguments) : width) - .5),
+            m = w / 10,
+            ab = w - Math.sqrt(w) * .6,
+            ae = w,
+            offset = cometHeight / 2,
+            t = Math.max(offset, Math.sqrt(w / 26) * 3);
+        return  "M0," + -offset +
+                "L0," + offset +
+                "Q" + ae + "," + offset + "," + ab + "," + t +
+                "L" + ae + "," + 0 +
+                "L" + ab + "," + -t +
+                "Q" + ab + "," + -offset + "," + m + "," + -offset +
+                "z";
+      });
+    }
+
+    function computeMissedVotesData(members) {
+      var congresses,
+          parties,
+          partyMembers,
+          congressMembers;
+
+      var data = {
+        R: { party: 'R', values: [] },
+        D: { party: 'D', values: [] }
+      }
+
+      congresses = _.groupBy(members, 'congress');
+
+      for (var c in congresses) {
+        if (c < 101) {
+          continue
+        }
+        congressMembers = congresses[c];
+
+        parties = _.groupBy(congressMembers, 'party');
+
+        for (var p in parties) {
+          if (data[p]) {
+            median = d3.median(parties[p], function(d) { return d.votes_with_party_pct; });
+            data[p].values.push({
+              value: median,
+              party: p,
+              congress: c
+            });
+
+          }
+        }
+      }
+
+      return _.values(data);
+
+    }
+
+    function flattenStreaks(members) {
+      var streaksByState = _.groupBy(members, 'state');
+      var streaks = [];
+      var stateMembers,
+          group,
+          streak,
+          sorted,
+          prevStreak,
+          stateStreaks = [],
+          statememberGroups;
+
+      for (var state in streaksByState) {
+        stateMembers = streaksByState[state]
+
+        stateMemberGroups = _.groupBy(stateMembers, 'id');
+
+        stateStreaks = [];
+        for (var id in stateMemberGroups) {
+          group = stateMemberGroups[id];
+          sorted = _.sortBy(group, function(d) { return +d.congress })
+
+          _.each(sorted, function(d, i, list) {
+            prevStreak = stateStreaks[stateStreaks.length - 1]
+            continueStreak = prevStreak && +prevStreak.end === +d.congress - 1 && prevStreak.id === d.id
+
+            // Previous streak is finished, check for conflict or we're on the last one
+            if (prevStreak && (!continueStreak || i === list.length - 1)) {
+              if (streakConflict(stateStreaks, prevStreak)) {
+                prevStreak.isTop = !prevStreak.isTop
+              }
+            }
+
+            if (continueStreak) {
+              prevStreak.end = +d.congress;
+              prevStreak.values.push({
+                congress: +d.congress,
+                missed_votes_pct: +d.missed_votes_pct,
+                votes_with_party_pct: +d.votes_with_party_pct,
+              });
+            } else {
+
+
+              streak = {
+                isTop: true,
+                congress: +d.congress,
+                start: +d.congress,
+                end: +d.congress,
+                values: [
+                  {
+                    congress: +d.congress,
+                    missed_votes_pct: +d.missed_votes_pct,
+                    votes_with_party_pct: +d.votes_with_party_pct,
+                  }
+                ],
+                first_name: d.first_name,
+                id: d.id,
+                last_name: d.last_name,
+                party: d.party,
+                state: d.state
+              }
+
+              stateStreaks.push(streak);
+            }
+
+
+          });
+          //console.log(streak);
+
+        }
+        console.log(stateStreaks);
+        streaks = streaks.concat(stateStreaks);
+
+      }
+
+      return streaks;
+
+    }
+
+    function streakConflict(streaks, streak) {
+      if (streak.id === "R000167")
+        console.log('here');
+
+      return !_.every(streaks, function(other) {
+
+
+        if (other.id !== streak.id && other.isTop === streak.isTop) {
+          if (streak.start < other.end && streak.start >= other.start) {
+            return false;
+          } else if (streak.end <= other.end && streak.end > other.start) {
+            return false;
+
+          }
+        }
+
+        return true
+
+      })
+
+    }
+
+  })
+</script>
