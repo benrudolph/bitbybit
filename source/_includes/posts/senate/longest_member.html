@@ -1,9 +1,10 @@
-<div id="members"></div>
+<input type="text" class="query" placeholder="Search for a Senator"/>
+<div id="members" class="full-screen"></div>
 <div id="members-votes-missed"></div>
 <script>
   $(document).ready(function() {
-    var width = 800,
-        height = 1800;
+    var width = $('#members').width(),
+        bandHeight = 40;
 
     var margin = {
       left: 50,
@@ -14,27 +15,28 @@
 
     var duration = 500;
 
+    var cometHeight = 2;
+
     var g = d3.select("#members").append("svg")
       .attr("width", width)
-      .attr("height", height)
+      .attr("height", bandHeight * 50)
       .append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
     // VM = Votes Missing
     var gVM = d3.select("#members-votes-missed").append("svg")
       .attr("width", width)
-      .attr("height", height)
+      .attr("height", bandHeight * 50)
       .append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
     width -= (margin.left + margin.right);
-    height -= (margin.top + margin.bottom);
+
+    var compCongress = 112;
 
     d3.csv('/data/us_sen_members.csv', function(err, members) {
       //members = _.filter(members, function(d) { return d.state === 'WV' });
       var y = d3.scale.ordinal()
-        .domain(_.chain(members).pluck('state').uniq().value().sort())
-        .rangeBands([0, height])
 
       var x = d3.scale.ordinal()
         .domain(_.chain(members).pluck('congress').uniq().value())
@@ -69,16 +71,23 @@
         .y(function(d) {
           return yVM(d.value);
         });
+      var query = '';
+
+
+      $.subscribe('change.compCongress', function(e, congress) {
+        compCongress = congress;
+        renderStreaks();
+      });
+      $.subscribe('change.query', function(e, _query) {
+        query = _query;
+        renderStreaks();
+      });
 
       // Streaks axis
       g.append('g')
         .attr('class', 'y axis')
         .attr('transform', 'translate(0,0)')
 
-      g.select('.y.axis')
-        .transition()
-        .duration(duration)
-        .call(yAxis);
 
       g.append('g')
         .attr('class', 'x axis')
@@ -108,26 +117,143 @@
         .duration(duration)
         .call(xVMAxis);
 
-
       var data = flattenStreaks(members);
       var missVotesData =  computeMissedVotesData(members);
+      var nTop = 15;
 
-      console.log(members);
-      console.log(missVotesData);
+      var queryFilter = function(state) {
+        var streaks = _.where(data, { state: state });
+        if (!query) return true;
 
-      var streaks = g.selectAll('.streak').data(data);
-      streaks.enter().append('path');
-      streaks.attr('class', function(d) { return 'streak ' + d.party })
-        .attr('x', function(d) { return x(d.start); })
-        .attr('y', function(d) {
-          if (d.isTop) {
-            return y(d.state);
-          } else {
-            return y(d.state) + 10;
-          }
-        })
-        .attr('height', 5)
-        .attr('width', function(d) { return x(d.end) - x(d.start); })
+        return _.any(streaks, function(s) {
+          var name = s.first_name.toLowerCase() + ' ' + s.last_name.toLowerCase()
+          return name.indexOf(query.toLowerCase()) !== -1;
+        });
+
+      }
+
+
+      function renderStreaks() {
+
+        y.domain(_.chain(members).pluck('state').uniq().filter(queryFilter).value().sort())
+        y.rangeBands([0, bandHeight * y.domain().length])
+
+        var cmp = function(a, b) {
+          var aStreaks = _.where(data, { state: a });
+          var bStreaks = _.where(data, { state: b });
+
+          var aStreaksFiltered = findStreaks(aStreaks, compCongress) || [];
+          var bStreaksFiltered = findStreaks(bStreaks, compCongress) || [];
+
+          var maxA = d3.max(aStreaksFiltered, function(d) { return streakLength(d, compCongress) })
+
+          var maxB =  d3.max(bStreaksFiltered, function(d) { return streakLength(d, compCongress) })
+
+          return maxB - maxA
+
+        }
+
+        g.select('.y.axis')
+          .transition()
+          .duration(duration)
+          .call(yAxis);
+
+        //g.selectAll('.x.axis text').on('click', function(d) {
+        //  $.publish('change.compCongress', [d])
+        //});
+
+        var filtered = _.filter(data, function(d) {
+            return _.indexOf(y.domain(), d.state) !== -1
+          });
+
+
+        var streaks = g.selectAll('.streak').data(filtered);
+        streaks.enter().append('path');
+        streaks.attr('class', function(d) {
+            var classList = 'streak ' + d.party
+            var name = d.first_name.toLowerCase() + ' ' + d.last_name.toLowerCase()
+            if (query && name.indexOf(query.toLowerCase()) !== -1)
+              classList += ' queried'
+            return classList;
+          })
+          .attr('original-title', function(d) {
+            var html = '<h1>' + d.first_name + ' ' + d.last_name + ' (' + d.party + ')' + '</h1>' +
+            '<h2>Streak length: ' + (d.end - d.start) + ' sessions </h2>';
+
+            return html;
+
+          })
+          .transition()
+          .duration(500)
+          .attr("transform", function(d) {
+              var yTranslate = y(d.state) + y.rangeBand() / 2;
+              var decimal = .25
+              if (d.isTop) {
+                yTranslate -= (decimal * y.rangeBand())
+              } else {
+                yTranslate += (decimal * y.rangeBand())
+              }
+
+              return "translate(" + x(d.start) + ", " + yTranslate + ")"
+            })
+          .call(renderComet, function(d) { return x(d.end) - x(d.start); })
+        streaks.on('click', function(d) { console.log(d) });
+        streaks.exit().remove()
+
+        var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
+
+        var labels = g.selectAll('.label').data(_.filter(sorted, function(d) {
+            return _.indexOf(y.domain(), d.state) !== -1
+          }));
+        labels.enter().append('text');
+        labels.attr('class', 'label')
+          .transition()
+          .duration(duration)
+          .attr('dy', '1em')
+          .attr('x', function(d) { return x(d.start) })
+          .attr('y', function(d) {
+              var yTranslate = y(d.state);
+              if (!d.isTop) {
+                yTranslate += (1 * y.rangeBand() / 2)
+              }
+              return yTranslate;
+            })
+          .text(function(d) {
+            return d.first_name + ' ' + d.last_name;
+          })
+
+        labels.exit().remove()
+
+        var separators = g.selectAll('.separator').data(y.domain())
+        separators.enter().append('line');
+        separators.attr('class', 'separator')
+          .transition()
+          .duration(500)
+          .attr('x1', function(d) { return 0 })
+          .attr('x2', function(d) { return width })
+          .attr('y1', function(d) { return y(d) + y.rangeBand() })
+          .attr('y2', function(d) { return y(d) + y.rangeBand() });
+
+        separators.exit().remove()
+
+        $('.streak').tipsy({
+          gravity: 's',
+          html: true
+        });
+
+        //var line = g.selectAll('.line').data([compCongress])
+        //line.enter().append('line')
+        //line.attr('class', function(d) { return 'line '})
+        //  .transition()
+        //  .duration(500)
+        //  .attr('x1', function(d) { return x(d) })
+        //  .attr('x2', function(d) { return x(d) })
+        //  .attr('y1', function(d) { return 0 })
+        //  .attr('y2', function(d) { return height });
+
+      }
+
+      renderStreaks();
 
       var lines = gVM.selectAll('.member-line').data(missVotesData);
       lines.enter().append('path');
@@ -264,13 +390,28 @@
           //console.log(streak);
 
         }
-        console.log(stateStreaks);
         streaks = streaks.concat(stateStreaks);
 
       }
 
       return streaks;
 
+    }
+
+    function findStreaks(streaks, congress) {
+      return _.filter(streaks, function(streak) {
+        return congress >= streak.start && congress <= streak.end
+      });
+    }
+
+    function streakLength(streak, congress) {
+      if (congress >= streak.start && congress <= streak.end)
+        return congress - streak.start;
+      else if (!congress) {
+        return streak.end - streak.start;
+      }
+
+      return 0
     }
 
     function streakConflict(streaks, streak) {
@@ -295,5 +436,10 @@
 
     }
 
+    $('.query').on('keyup', function(e) {
+      var val = $(e.currentTarget).val()
+      $.publish('change.query', [val]);
+
+    });
   })
 </script>
