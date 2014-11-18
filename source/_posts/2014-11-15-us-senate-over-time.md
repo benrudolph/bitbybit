@@ -10,6 +10,8 @@ categories:
 
 Brett Favre, the man who started in [275 games straight](http://www.nytimes.com/newsgraphics/2013/09/28/eli-manning-milestone/), shaped and influenced the way people reflect on football. Even Bears fans like me acknowledge the superhuman strength and endurance Favre displayed in his years with the NFL. Furthermore, Favre will have a lasting impact on youths who aspire to be quarterbacks. But what about the Senators who have served the United States of America for years on end. Sponsoring bill after bill and pushing for the rights and liberties of the American people. Who were the senators that served the most amount of time, leaving an impact on American politics for years to come?
 
+<!-- more -->
+
 {% include posts/senate/longest_member.html %}
 
 Who were the men who characterized the Senate for such a long time. Below is a dive into the five senators who continuously held their seat in Congress for the most amount of congressional sessions.
