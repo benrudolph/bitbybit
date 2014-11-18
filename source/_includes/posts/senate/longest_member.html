@@ -1,6 +1,5 @@
 <input type="text" class="query" placeholder="Search for a Senator"/>
 <div id="members" class="full-screen"></div>
-<div id="members-votes-missed"></div>
 <script>
   $(document).ready(function() {
     var width = $('#members').width(),
@@ -10,7 +9,7 @@
       left: 50,
       right: 50,
       top: 50,
-      bottom: 50
+      bottom: 150
     }
 
     var duration = 500;
@@ -19,16 +18,16 @@
 
     var g = d3.select("#members").append("svg")
       .attr("width", width)
-      .attr("height", bandHeight * 50)
+      .attr("height", (bandHeight * 50) + margin.top + margin.bottom)
       .append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
     // VM = Votes Missing
-    var gVM = d3.select("#members-votes-missed").append("svg")
-      .attr("width", width)
-      .attr("height", bandHeight * 50)
-      .append('g')
-        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+    //var gVM = d3.select("#members-votes-missed").append("svg")
+    //  .attr("width", width)
+    //  .attr("height", bandHeight * 50)
+    //  .append('g')
+    //    .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
     width -= (margin.left + margin.right);
 
@@ -41,6 +40,12 @@
       var x = d3.scale.ordinal()
         .domain(_.chain(members).pluck('congress').uniq().value())
         .rangePoints([0, width])
+
+      var fixedX = d3.scale.linear()
+        .domain(d3.extent(_.chain(members).pluck('congress').uniq().value(), function(d) {
+          return +d;
+        }))
+        .range([0, $('.entry-content p ').innerWidth()])
 
       var xVM = d3.scale.ordinal()
         .domain(_.times(13, function(d) { return d + 101 }))
@@ -98,28 +103,24 @@
         .duration(duration)
         .call(xAxis);
 
-      // VM axis
-      gVM.append('g')
-        .attr('class', 'y axis')
-        .attr('transform', 'translate(0,0)')
-
-      gVM.select('.y.axis')
-        .transition()
-        .duration(duration)
-        .call(yVMAxis);
-
-      gVM.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', 'translate(0,' + 500 + ')')
-
-      gVM.select('.x.axis')
-        .transition()
-        .duration(duration)
-        .call(xVMAxis);
-
       var data = flattenStreaks(members);
       var missVotesData =  computeMissedVotesData(members);
       var nTop = 15;
+
+      $('.i-streak').each(function(i, ele) {
+        var name = $(ele).data().name
+        var d = _.find(data, function(d) {
+          return name === (d.first_name + ' ' + d.last_name).toLowerCase()
+        })
+
+        var svg = d3.select(ele);
+        svg.append('path')
+          .attr('class', 'streak ' + d.party)
+          .attr('transform', 'translate(0, 10)')
+          .call(renderComet, fixedX(d.end) - fixedX(d.start));
+
+      });
+
 
       var queryFilter = function(state) {
         var streaks = _.where(data, { state: state });
@@ -201,6 +202,7 @@
         streaks.exit().remove()
 
         var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
+        console.log(sorted);
 
         var labels = g.selectAll('.label').data(_.filter(sorted, function(d) {
             return _.indexOf(y.domain(), d.state) !== -1
@@ -241,26 +243,16 @@
           html: true
         });
 
-        //var line = g.selectAll('.line').data([compCongress])
-        //line.enter().append('line')
-        //line.attr('class', function(d) { return 'line '})
-        //  .transition()
-        //  .duration(500)
-        //  .attr('x1', function(d) { return x(d) })
-        //  .attr('x2', function(d) { return x(d) })
-        //  .attr('y1', function(d) { return 0 })
-        //  .attr('y2', function(d) { return height });
-
       }
 
       renderStreaks();
 
-      var lines = gVM.selectAll('.member-line').data(missVotesData);
-      lines.enter().append('path');
-      lines.attr('class', function(d) { return 'member-line ' + d.party })
-        .attr('d', function(d) {
-          return path(d.values)
-        })
+      //var lines = gVM.selectAll('.member-line').data(missVotesData);
+      //lines.enter().append('path');
+      //lines.attr('class', function(d) { return 'member-line ' + d.party })
+      //  .attr('d', function(d) {
+      //    return path(d.values)
+      //  })
 
 
     })

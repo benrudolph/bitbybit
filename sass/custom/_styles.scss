@@ -67,42 +67,41 @@ input:focus {
   background-color: white;
 }
 
-#members, #members-votes-missed {
-  .R.streak {
-    fill: red;
-  }
+.R.streak {
+  fill: red;
+}
 
-  .D.streak {
-    fill: blue;
-  }
+.D.streak {
+  fill: blue;
+}
 
-  .separator {
-    stroke: #ddd;
-    stroke-dasharray: 1;
-  }
+.separator {
+  stroke: #ddd;
+  stroke-dasharray: 1;
+}
 
-  path.R {
-    stroke: red;
-    fill: none;
-  }
-  path.D {
-    stroke: blue;
-    fill: none;
-  }
+path.R {
+  stroke: red;
+  fill: none;
+}
+path.D {
+  stroke: blue;
+  fill: none;
+}
 
-
+#members {
   .streak {
-    fill: green;
     opacity: .3;
-    stroke: black;
   }
-  .streak.queried {
-    opacity: .8;
-  }
+}
+.streak {
+  fill: green;
+  stroke: black;
+}
+.streak.queried {
+  opacity: .8;
+}
 
-  .streak:hover {
-    opacity: .8;
-  }
-
-
+.streak:hover {
+  opacity: .8;
 }
