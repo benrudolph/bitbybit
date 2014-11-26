@@ -1,0 +1,105 @@
+<div class="full-screen" id="bills-passed" style="height: 300px;"></div>
+<div class="full-screen" id="bills-passed-noise-reduction" style="height: 300px;"></div>
+<script>
+  $(document).ready(function() {
+    d3.csv('/data/bills.csv', function(err, raw) {
+      var data = []
+      var datum;
+      var pooleid;
+
+      pooleid = 4812
+      datum = { name: 'Inouye' };
+      datum.data = getBillData(raw, pooleid);
+      data.push(datum);
+
+      pooleid = 10808
+      datum = { name: 'Kennedy' };
+      datum.data = getBillData(raw, pooleid);
+      data.push(datum);
+
+      pooleid = 1366
+      datum = { name: 'Byrd' };
+      datum.data = getBillData(raw, pooleid);
+      data.push(datum);
+
+      pooleid = 'average'
+      datum = { name: 'Average Member' };
+      datum.data = getBillData(raw, pooleid);
+      data.push(datum);
+
+      var opts = {
+        adapter: 'google',
+        library: {
+          title: 'Bills passed into law per year',
+          colors: ['#e67e22', '#8e44ad', '#1abc9c', '#aaa'],
+          pointSize: 1,
+          fontName: 'Lato',
+          lineWidth: 1.5,
+          legend: {
+            position: 'bottom'
+
+          }
+        },
+      }
+
+      new Chartkick.LineChart("bills-passed", data, opts);
+
+      data = [];
+
+      pooleid = 4812
+      datum = { name: 'Inouye' };
+      datum.data = getBillData(raw, pooleid, true);
+      data.push(datum);
+
+      pooleid = 10808
+      datum = { name: 'Kennedy' };
+      datum.data = getBillData(raw, pooleid, true);
+      data.push(datum);
+
+      pooleid = 1366
+      datum = { name: 'Byrd' };
+      datum.data = getBillData(raw, pooleid, true);
+      data.push(datum);
+
+      pooleid = 'average'
+      datum = { name: 'Average Member' };
+      datum.data = getBillData(raw, pooleid, true);
+      data.push(datum);
+
+      opts.library.title = 'Average number of bills sponsored per 2 years'
+
+      new Chartkick.LineChart("bills-passed-noise-reduction", data, opts);
+
+    })
+
+
+    function normalize(memo, d) {
+      var previous = memo[memo.length - 1]
+      var value = d[1];
+      var year = d[0];
+
+      if (+year % 2 === 0 && previous) {
+        previous[1] = (previous[1] + value) / 2
+      } else {
+        memo.push([year, value]);
+      }
+      return memo;
+    }
+
+    function getBillData(raw, pooleid, reduce) {
+      var v = _.chain(raw)
+        .filter(function(d) { return d.pooleid == pooleid; })
+        .map(function(d) { return [d.year, +(+d.passed).toFixed()]  })
+        .sortBy(function(d) { return +d[0] })
+        .value()
+
+      if (reduce) {
+        v = _.reduce(v, normalize, [])
+      }
+
+      return v;
+    }
+
+  });
+</script>
+

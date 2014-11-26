@@ -10,16 +10,42 @@ categories:
 
 Brett Favre, the man who started in [275 games straight](http://www.nytimes.com/newsgraphics/2013/09/28/eli-manning-milestone/), shaped and influenced the way people reflect on football. Even Bears fans like me acknowledge the superhuman strength and endurance Favre displayed in his years with the NFL. Furthermore, Favre will have a lasting impact on youths who aspire to be quarterbacks. But what about the Senators who have served the United States of America for years on end. Sponsoring bill after bill and pushing for the rights and liberties of the American people. Who were the senators that served the most amount of time, leaving an impact on American politics for years to come?
 
+Below maps out the senators who have served the longest consecutive terms starting with the 80th Congress which was in session from 1947 to 1949. The longer the streak, the longer the time that senator was a senator.
+
 <!-- more -->
 
 {% include posts/senate/longest_member.html %}
 
-Who were the men who characterized the Senate for such a long time. Below is a dive into the five senators who continuously held their seat in Congress for the most amount of congressional sessions.
+It's immediately evident that incumbents do quite well in the senate; if you've won a few a elections, you'll probably win a few more. Some senators have held their seat for an impressive number of years. Are those that served in congress for the longest number of years truly incredible senators? It's hard to say, but one measure could be to look at the lives they lived and the bills they sponsored.
+
+The first graph below displays the number of bills sponsored per year by each of the top three longest serving senators: Robert Byrd, Edward Kennedy, Daniel Inouye. Also included is the average number of bills sponsored by a senator. The trends are difficult to see due to the noise cauesed by the election cycle. This is what causes the up and down nature of the graph.
+
+The second graph below averages the number of bills passed over a congressional session or a two year time period. This helps reduce the undulation.
+
+{% include posts/senate/bills.html %}
+
+Inouye sponsors an impressive number of legislation while Byrd barely ever breaks the average. Kennedy also pushes along a fair number of bills. To note, bills vary drastically in their size and scope -- some bills simply elect a person to a position while others overhaul immigration. 
+
+It's one thing to sponsor a bill; it's quite another thing to get a bill passed. Below inspects how successful each congressman was at passing bills. Again the second graph averages the number of bills passed over two years to stymie the undulation.
+
+{% include posts/senate/bills_passed.html %}
+
+These graphs elucidate exactly why Kennedy earned his nickname "The Lion of the Senate." Kennedy, by comparison, pushes heaps of bills through Congress. Inouye is nothing to scoff at either. Again, Byrd lags behind the other two and passes enough bills to be about par for the average senator. 
+
 
 ## Robert Byrd (D)
 #### 25 sessions - 50 years
 
 <svg height="60" width="600" class="i-streak" data-name="robert byrd"></svg>
+
+
+ Bills   		| Amount
+---------------|-------
+Sponsored 		|	453
+Passed Senate	| 47
+Passed into law			| 20
+
+
 
 Robert Byrd was born November 17th, 1917. He has held the longest streak as Senator for West Virginia. Byrd's political affiliations and views are nefarious at best; incredibly he was elected 6 times. Byrd, as a youth, is quoted saying:
 
@@ -35,19 +61,31 @@ Growing up, Byrd was a member of the Ku Klux Klan. Byrd was also a participant i
 
 ## Edward Kennedy
 #### 24 sessions - 48 years
+
 <svg height="60" width="600" class="i-streak" data-name="edward kennedy"></svg>
+
+Bills   		| Amount
+---------------|-------
+Sponsored 		|	1221
+Passed Senate	| 162
+Passed 			| 90
+
 
 http://en.wikipedia.org/wiki/Ted_Kennedy
 
 -  Chappaquiddick incident
 
 ## Daniel Inouye
+#### 24 sessions - 48 years
+
 <svg height="60" width="600" class="i-streak" data-name="daniel inouye"></svg>
+
+Bills   		| Amount
+---------------|-------
+Sponsored 		| 2327
+Passed Senate	| 123
+Passed 			| 54
+
+
 http://en.wikipedia.org/wiki/Daniel_Inouye
 - great man
-
-## John Stennis
-<svg height="60" width="600" class="i-streak" data-name="john stennis"></svg>
-http://en.wikipedia.org/wiki/John_C._Stennis
-## Ted Stevens
-<svg height="60" width="600" class="i-streak" data-name="ted stevens"></svg>

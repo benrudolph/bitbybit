@@ -202,7 +202,6 @@
         streaks.exit().remove()
 
         var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
-        console.log(sorted);
 
         var labels = g.selectAll('.label').data(_.filter(sorted, function(d) {
             return _.indexOf(y.domain(), d.state) !== -1
