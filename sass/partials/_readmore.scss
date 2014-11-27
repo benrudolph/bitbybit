@@ -61,11 +61,4 @@
 		@include font-rem($rm-pubdate_fs);
 		color: lighten($base-color,50%);
 	}
-	@media #{$medium} {
-		width: 49%;
-		float: left;
-		&:nth-child(2) {
-			text-align: right;
-		}
-	}
 }
