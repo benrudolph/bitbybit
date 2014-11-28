@@ -1,5 +1,5 @@
-<div class="full-screen" id="bills" style="height: 300px;"></div>
-<div class="full-screen" id="bills-noise-reduction" style="height: 300px;"></div>
+<figure class="full-screen" id="bills" style="height: 300px;"></figure>
+<figure class="full-screen" id="bills-noise-reduction" style="height: 300px;"></figure>
 <script>
   $(document).ready(function() {
     d3.csv('/data/bills.csv', function(err, raw) {
@@ -31,7 +31,7 @@
         adapter: 'google',
         library: {
           title: 'Bills sponsored per year',
-          colors: ['#e67e22', '#8e44ad', '#1abc9c', '#aaa'],
+          colors: ['#e67e22', '#8e44ad', '#1abc9c', '#888'],
           pointSize: 1,
           fontName: 'Lato',
           lineWidth: 1.5,
@@ -42,7 +42,7 @@
         },
       }
 
-      new Chartkick.LineChart("bills", data, opts);
+      new Chartkick.LineChart("bills", data, $.extend(true, {}, opts));
 
       data = [];
 
@@ -68,7 +68,7 @@
 
       opts.library.title = 'Average number of bills sponsored per 2 years'
 
-      new Chartkick.LineChart("bills-noise-reduction", data, opts);
+      new Chartkick.LineChart("bills-noise-reduction", data, $.extend(true, {}, opts));
 
     })
 

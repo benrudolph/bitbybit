@@ -67,6 +67,11 @@ input:focus {
   background-color: white;
 }
 
+figure {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
 .R.streak {
   fill: red;
 }
@@ -80,25 +85,30 @@ input:focus {
   stroke-dasharray: 1;
 }
 
-path.R {
-  stroke: red;
-  fill: none;
-}
-path.D {
-  stroke: blue;
-  fill: none;
+.streak {
+  fill: #444;
+  stroke: #444;
+  opacity: .3;
 }
 
-#members {
-  .streak {
-    opacity: .3;
-  }
-}
-.streak {
-  fill: green;
-  stroke: black;
+.legend-streak {
   opacity: .8;
 }
+
+.i-streak path {
+  opacity: .8;
+}
+
+.streak.R {
+  fill: red;
+}
+.streak.D {
+  fill: blue;
+}
+.streak.I {
+  fill: green;
+}
+
 .streak.queried {
   opacity: .8;
 }

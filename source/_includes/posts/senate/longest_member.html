@@ -6,7 +6,7 @@
         bandHeight = 40;
 
     var margin = {
-      left: 50,
+      left: 100,
       right: 50,
       top: 50,
       bottom: 150
@@ -94,9 +94,25 @@
         .attr('transform', 'translate(0,0)')
 
 
-      g.append('g')
+      var xAxisEl = g.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,0)')
+      xAxisEl.append('text')
+          .attr('y', 0)
+          .attr('transform', 'translate(0,-38)')
+          .attr('text-anchor', 'start')
+          .text(function(d) {
+            return 'Congressional Sessions (1947 - 2013)';
+          })
+      xAxisEl.append('text')
+          .attr('y', 0)
+          .attr('transform', 'translate(' + width + ',-38)')
+          .attr('text-anchor', 'end')
+          .text(function(d) {
+            return '*Overlaps are due to special elections';
+          })
+
+
 
       g.select('.x.axis')
         .transition()
@@ -120,6 +136,11 @@
           .call(renderComet, fixedX(d.end) - fixedX(d.start));
 
       });
+      var legend = d3.select('.legend-streak')
+      legend.append('path')
+        .attr('class', 'streak')
+        .attr('transform', 'translate(0, 5)')
+        .call(renderComet, 40)
 
 
       var queryFilter = function(state) {
@@ -157,7 +178,9 @@
         g.select('.y.axis')
           .transition()
           .duration(duration)
-          .call(yAxis);
+          .call(yAxis)
+          .selectAll('text')
+            .text(function(d) { return states[d]; });
 
         //g.selectAll('.x.axis text').on('click', function(d) {
         //  $.publish('change.compCongress', [d])
@@ -179,7 +202,8 @@
           })
           .attr('original-title', function(d) {
             var html = '<h1>' + d.first_name + ' ' + d.last_name + ' (' + d.party + ')' + '</h1>' +
-            '<h2>Streak length: ' + (d.end - d.start) + ' sessions </h2>';
+              '<h2>Streak length: ' + ((d.end - d.start) + 1) + ' sessions </h2>' +
+              '<p>Sessions: ' + d.start + ' - ' + d.end + '</p>';
 
             return html;
 
@@ -202,6 +226,23 @@
         streaks.exit().remove()
 
         var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
+
+        var specialLabels = g.selectAll('.special-label').data(y.domain())
+        specialLabels.enter().append('text');
+        specialLabels.attr('class', 'special-label')
+          .transition()
+          .duration(duration)
+          .filter(function(d) { return d == 'HI' || d == 'AK' })
+          .attr('dy', '0em')
+          .attr('x', 20)
+          .attr('y', function(d) {
+            return y(d) + y.rangeBand() - 2;
+          })
+          .text(function(d) {
+            return states[d] + ' joins the United States';
+          })
+        specialLabels.exit().remove()
+
 
         var labels = g.selectAll('.label').data(_.filter(sorted, function(d) {
             return _.indexOf(y.domain(), d.state) !== -1
@@ -433,4 +474,57 @@
 
     });
   })
+
+  var states = {
+    'AL': 'Alabama',
+    'AK': 'Alaska',
+    'AZ': 'Arizona',
+    'AR': 'Arkansas',
+    'CA': 'California',
+    'CO': 'Colorado',
+    'CT': 'Connecticut',
+    'DE': 'Delaware',
+    'FL': 'Florida',
+    'GA': 'Georgia',
+    'HI': 'Hawaii',
+    'ID': 'Idaho',
+    'IL': 'Illinois',
+    'IN': 'Indiana',
+    'IA': 'Iowa',
+    'KS': 'Kansas',
+    'KY': 'Kentucky',
+    'LA': 'Louisiana',
+    'ME': 'Maine',
+    'MD': 'Maryland',
+    'MA': 'Massachusetts',
+    'MI': 'Michigan',
+    'MN': 'Minnesota',
+    'MS': 'Mississippi',
+    'MO': 'Missouri',
+    'MT': 'Montana',
+    'NE': 'Nebraska',
+    'NV': 'Nevada',
+    'NH': 'New Hampshire',
+    'NJ': 'New Jersey',
+    'NM': 'New Mexico',
+    'NY': 'New York',
+    'NC': 'North Carolina',
+    'ND': 'North Dakota',
+    'OH': 'Ohio',
+    'OK': 'Oklahoma',
+    'OR': 'Oregon',
+    'PA': 'Pennsylvania',
+    'RI': 'Rhode Island',
+    'SC': 'South Carolina',
+    'SD': 'South Dakota',
+    'TN': 'Tennessee',
+    'TX': 'Texas',
+    'UT': 'Utah',
+    'VT': 'Vermont',
+    'VA': 'Virginia',
+    'WA': 'Washington',
+    'WV': 'West Virginia',
+    'WI': 'Wisconsin',
+    'WY': 'Wyoming',
+  };
 </script>

@@ -1,5 +1,5 @@
-<div class="full-screen" id="bills-passed" style="height: 300px;"></div>
-<div class="full-screen" id="bills-passed-noise-reduction" style="height: 300px;"></div>
+<figure class="full-screen" id="bills-passed" style="height: 300px;"></figure>
+<figure class="full-screen" id="bills-passed-noise-reduction" style="height: 300px;"></figure>
 <script>
   $(document).ready(function() {
     d3.csv('/data/bills.csv', function(err, raw) {
@@ -31,7 +31,7 @@
         adapter: 'google',
         library: {
           title: 'Bills passed into law per year',
-          colors: ['#e67e22', '#8e44ad', '#1abc9c', '#aaa'],
+          colors: ['#e67e22', '#8e44ad', '#1abc9c', '#888'],
           pointSize: 1,
           fontName: 'Lato',
           lineWidth: 1.5,
@@ -42,7 +42,7 @@
         },
       }
 
-      new Chartkick.LineChart("bills-passed", data, opts);
+      new Chartkick.LineChart("bills-passed", data, $.extend(true, {}, opts));
 
       data = [];
 
@@ -66,9 +66,9 @@
       datum.data = getBillData(raw, pooleid, true);
       data.push(datum);
 
-      opts.library.title = 'Average number of bills sponsored per 2 years'
+      opts.library.title = 'Average number of bills passed into law per 2 years'
 
-      new Chartkick.LineChart("bills-passed-noise-reduction", data, opts);
+      new Chartkick.LineChart("bills-passed-noise-reduction", data, $.extend(true, {}, opts));
 
     })
 
@@ -89,7 +89,7 @@
     function getBillData(raw, pooleid, reduce) {
       var v = _.chain(raw)
         .filter(function(d) { return d.pooleid == pooleid; })
-        .map(function(d) { return [d.year, +(+d.passed).toFixed()]  })
+        .map(function(d) { return [d.year, +(+d.passed * 100).toFixed() / 100]  })
         .sortBy(function(d) { return +d[0] })
         .value()
 
