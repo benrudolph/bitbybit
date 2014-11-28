@@ -77,13 +77,39 @@ English dwarfs all others by accounting for approximately 55% of all webpages cr
 
 Creating a model that accurately weights all the above indicators proved to be quite tricky and subjective. For lack of a better method, [multi-criteria decision analysis](http://en.wikipedia.org/wiki/Multiple-criteria_decision_analysis), a fancy name for applying weights to each criterion, is used to compute the highest ranked language. Here are the weights based on a 0 to 1 scale where 0 is least important and 1 is most important. All weights should add up to 1.
 
-Indicator | Weight
-----------|-------
-Most spoken | 0.3
-Area covered | 0.15
-Number of countries | 0.1
-Ability to learn | 0.15
-Online presence | 0.3
+<div class="center">
+<table>
+  <thead>
+    <tr>
+      <th>Indicator</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Most spoken</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <td>Area covered</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <td>Number of countries</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <td>Ability to learn</td>
+      <td>0.15</td>
+    </tr>
+    <tr>
+      <td>Online presence</td>
+      <td>0.3</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
 
 To calculate the score for each criterion, each language will receive 10 points for a first ranking, 9 points for second, and so on. In the event of a tie, the language will receive the lower number of points. For example, if there is a five way tie for first, each language would receive five points rather than ten. English has been excluded from the calculation.
 
