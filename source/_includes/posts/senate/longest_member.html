@@ -222,7 +222,6 @@
               return "translate(" + x(d.start) + ", " + yTranslate + ")"
             })
           .call(renderComet, function(d) { return x(d.end) - x(d.start); })
-        streaks.on('click', function(d) { console.log(d) });
         streaks.exit().remove()
 
         var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
@@ -419,7 +418,6 @@
 
 
           });
-          //console.log(streak);
 
         }
         streaks = streaks.concat(stateStreaks);
@@ -447,8 +445,6 @@
     }
 
     function streakConflict(streaks, streak) {
-      if (streak.id === "R000167")
-        console.log('here');
 
       return !_.every(streaks, function(other) {
 
