@@ -5,6 +5,8 @@ date: 2014-12-02 23:59:36 +0200
 excerpted: true
 comments: true
 published: true
+image:
+  thumb: /images/thumbs/veterans.png
 categories:
 ---
 
