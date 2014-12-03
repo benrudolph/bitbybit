@@ -168,7 +168,7 @@ Beyond that Kennedy got in a few more scuffles with the media about his personal
 
 ---
 
-For the most part, Inouye and Kennedy have earned their spot in the Senate. They've succeeded in passing more bills than your average Senator and have built lives characterizing American values. Americans have appreciated this fact and have continually reelected them. Byrd is a slightly more perplexing case. On the surface, Byrd is an unlikely candidate to be the longest serving Senator for the United States, which brings into question the degree of meritocracy within the Senate.
+For the most part, Inouye and Kennedy have earned their spot in the Senate. They've succeeded in passing more bills than your average Senator and have built lives characterizing American values. Americans have appreciated this fact and have continually reelected them. Byrd is a slightly more perplexing case. Byrd is an unlikely candidate to be the longest serving Senator for the United States, which brings into question the degree of meritocracy within the Senate. As more and more money pours into campaigns, one can only hope that merit and ideas are the core reasons that Senators and other candidates get elected into public offices. It's a reminder to look deeper at the candidates that are running for office and not just the red or blue next to their name.
 
 
 &nbsp;
