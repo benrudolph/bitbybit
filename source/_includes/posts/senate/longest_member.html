@@ -5,11 +5,19 @@
     var width = $('#members').width(),
         bandHeight = 40;
 
+    var isMobile = width > 768 ? false : true;
+
     var margin = {
       left: 100,
       right: 50,
       top: 50,
       bottom: 100
+    }
+
+    if (isMobile) {
+      margin.left = 15;
+      margin.right = 20;
+      margin.top = 80;
     }
 
     var duration = 500;
@@ -67,6 +75,10 @@
         .scale(x)
         .orient('top')
 
+      if (isMobile) {
+        xAxis.tickValues(d3.extent(x.domain(), function(d) { return +d }))
+      }
+
       var xVMAxis = d3.svg.axis()
         .scale(xVM)
         .orient('bottom')
@@ -98,7 +110,7 @@
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,0)')
       xAxisEl.append('text')
-          .attr('y', 0)
+          .attr('y', isMobile ? -15 : 0 )
           .attr('transform', 'translate(0,-38)')
           .attr('text-anchor', 'start')
           .text(function(d) {
@@ -106,8 +118,8 @@
           })
       xAxisEl.append('text')
           .attr('y', 0)
-          .attr('transform', 'translate(' + width + ',-38)')
-          .attr('text-anchor', 'end')
+          .attr('transform', 'translate(' + (isMobile ? 0 : width)+ ',-38)')
+          .attr('text-anchor', isMobile ? 'start' : 'end')
           .text(function(d) {
             return '*Overlaps are due to special elections';
           })
@@ -180,7 +192,13 @@
           .duration(duration)
           .call(yAxis)
           .selectAll('text')
-            .text(function(d) { return states[d]; });
+          .text(function(d) {
+            if (isMobile) {
+              return d
+            } else {
+              return states[d];
+            }
+          });
 
         //g.selectAll('.x.axis text').on('click', function(d) {
         //  $.publish('change.compCongress', [d])
@@ -226,21 +244,23 @@
 
         var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
 
-        var specialLabels = g.selectAll('.special-label').data(y.domain())
-        specialLabels.enter().append('text');
-        specialLabels.attr('class', 'special-label')
-          .transition()
-          .duration(duration)
-          .filter(function(d) { return d == 'HI' || d == 'AK' })
-          .attr('dy', '0em')
-          .attr('x', 20)
-          .attr('y', function(d) {
-            return y(d) + y.rangeBand() - 2;
-          })
-          .text(function(d) {
-            return states[d] + ' joins the United States';
-          })
-        specialLabels.exit().remove()
+        if (!isMobile) {
+          var specialLabels = g.selectAll('.special-label').data(y.domain())
+          specialLabels.enter().append('text');
+          specialLabels.attr('class', 'special-label')
+            .transition()
+            .duration(duration)
+            .filter(function(d) { return d == 'HI' || d == 'AK' })
+            .attr('dy', '0em')
+            .attr('x', 20)
+            .attr('y', function(d) {
+              return y(d) + y.rangeBand() - 2;
+            })
+            .text(function(d) {
+              return states[d] + ' joins the USA';
+            })
+          specialLabels.exit().remove()
+        }
 
 
         var labels = g.selectAll('.label').data(_.filter(sorted, function(d) {

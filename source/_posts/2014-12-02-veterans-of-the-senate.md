@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "US Senate over the years"
-date: 2014-11-15 23:59:36 +0200
+title: "Veterans of the Senate"
+date: 2014-12-02 23:59:36 +0200
 excerpted: true
 comments: true
 published: true
@@ -168,7 +168,7 @@ Beyond that Kennedy got in a few more scuffles with the media about his personal
 
 ---
 
-For the most part, Inouye and Kennedy have earned their spot in the Senate. They've succeeded in passing more bills than your average Senator and have built lives characterizing American values. Americans have appreciated this fact and have continually reelected them. Byrd is a slightly more perplexing case. On the surface, Byrd is an unlikely candidate to be the longest serving Senator for the United States. What really caused Byrd to win repeat elections is still a question for me.
+For the most part, Inouye and Kennedy have earned their spot in the Senate. They've succeeded in passing more bills than your average Senator and have built lives characterizing American values. Americans have appreciated this fact and have continually reelected them. Byrd is a slightly more perplexing case. On the surface, Byrd is an unlikely candidate to be the longest serving Senator for the United States, which brings into question the degree of meritocracy within the Senate.
 
 
 &nbsp;
