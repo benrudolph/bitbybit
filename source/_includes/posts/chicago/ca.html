@@ -1,17 +1,16 @@
-<div id="ca"></div>
-<p>Sexual Assualts not normalized</p>
-<div id="ca-assaults"></div>
+
 <p>Sexual Assualts normalized</p>
-<div id="ca-assaults-norm"></div>
 <p>Sexual Arrest Ratio (darker is higher arrest ratio)</p>
-<div id="ca-assaults-ratio"></div>
 <p>Income distribution (log scale)</p>
-<div id="ca-income"></div>
+
+<div class="ca-map" id="ca-assaults-norm"></div>
+<div class="ca-map" id="ca-assaults-ratio"></div>
+<div class="ca-map" id="ca-income"></div>
 <script>
   $(document).ready(function() {
 
-    var width = 800,
-        height = 500;
+    var width = 400,
+        height = 400;
 
     var svg = d3.select("#ca").append("svg")
       .attr("width", width)
