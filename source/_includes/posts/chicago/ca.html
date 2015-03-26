@@ -60,6 +60,7 @@
       d3.csv('/data/chicago/assault_byca.csv', function(err, data) {
         if (err) return console.error(err);
 
+        var comma = d3.format(',')
         var i = d3.scale.linear()
           .domain([0, d3.max(data, function(d) { return +d.count })])
           .range([0, 1])
@@ -91,6 +92,16 @@
         caSelection.enter().append("path");
         caSelection.attr('class', function(d) { return 'ca ca-assaults-norm' })
           .attr("d", path)
+          .attr("original-title", function(ca) {
+            var d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+            if (!d)
+              return
+
+            var value = (100 * (+d.count / +d.total))
+            var html = '<h1>' + value.toFixed(1) + ' sexual assault reports per 100 residents</h1>';
+            return html;
+
+          })
           .style('fill', function(ca) {
             d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
 
@@ -104,9 +115,19 @@
         caSelection.enter().append("path");
         caSelection.attr('class', function(d) { return 'ca ca-assaults-ratio' })
           .attr("d", path)
+          .attr("original-title", function(ca) {
+            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+            if (!d)
+              return
+
+            var value = (100 * (+d.arrested / +d.count))
+            var html = '<h1>' + value.toFixed(1) + ' arrests per 100 sexual assault reports</h1>';
+
+            return html;
+
+          })
           .style('fill', function(ca) {
             d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
-
             if (!d)
               return
 
@@ -118,17 +139,27 @@
         caSelection.enter().append("path");
         caSelection.attr('class', function(d) { return 'ca ca-income' })
           .attr("d", path)
+          .attr("original-title", function(ca) {
+            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
+            if (!d)
+              return
+
+
+              var html = '<h1><b>$' + comma(+d.perCapitaIncome) + '</b> per capita income</h1>';
+            return html;
+          })
           .style('fill', function(ca) {
             d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
-
             if (!d)
               return
 
             return color(income(+d.perCapitaIncome));
           })
 
-
-
+          $('.ca').tipsy({
+              html: true,
+              gravity: 's'
+          });
 
 
       });
