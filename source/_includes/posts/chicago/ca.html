@@ -37,9 +37,8 @@
     var color = d3.interpolate(start, end)
 
 
-    d3.json('/data/topo_ca.json', function(err, ca) {
+    d3.json('/data/chicago/topo_ca.json', function(err, ca) {
       if (err) return console.error(err);
-      console.log(ca);
 
       var features = topojson.feature(ca, ca.objects.ca).features;
 
@@ -58,9 +57,8 @@
 
 
       // By ca map
-      d3.csv('/data/assault_byca.csv', function(err, data) {
+      d3.csv('/data/chicago/assault_byca.csv', function(err, data) {
         if (err) return console.error(err);
-        console.log(data);
 
         var i = d3.scale.linear()
           .domain([0, d3.max(data, function(d) { return +d.count })])
@@ -126,7 +124,6 @@
             if (!d)
               return
 
-            console.log(income(+d.perCapitaIncome))
             return color(income(+d.perCapitaIncome));
           })
 

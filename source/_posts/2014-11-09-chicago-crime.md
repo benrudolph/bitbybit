@@ -26,7 +26,34 @@ Digging a bit deaper into the over 20,000 criminal sexual assault cases reported
 
 {% include posts/chicago/arrest_ratio_by_location.html %}
 
-Out of 167 reported incidents of criminal sexual assault that occurred in hospital buildings, a mere 3 led to arrests. Combine that with the reports in nursing homes, 128, in which 8 led to arrests. So, theoritically, you have a __3.7%__ of being arrested if you commit criminal sexual assualt in a nursing home or hospital! (Assuming that all reported incidents are truthful). I was shocked when I saw these numbers; unfortunately it only gets worse. Later you will see why 3.7% is a gross overestimate and the actual number is most likely much lower.
+Out of 167 reported incidents of criminal sexual assault that occurred in hospital buildings, a mere 3 led to arrests. Combine that with the reports in nursing homes, 128, in which 8 led to arrests. So, theoritically, you have a __3.7%__ of being arrested if you commit criminal sexual assualt in a nursing home or hospital! (Assuming that all reported incidents are truthful, which most are). []I was shocked when I saw these numbers; unfortunately it only gets worse. Later you will see why 3.7% is a gross overestimate and the actual number is most likely much lower.] reword
+
+It is a bit perplexing that 99.6% of the 64,547 incidents of prositution lead to arrest where criminal sexual assault has an arrest rate of 17%. To investigate further, below is a few maps that could potentially point to causation or correlation to low arrest ratios.
+
+{% include posts/chicago/ca.html %}
+
+There are some immediate correlations that stand out. Unsurprisingly, the areas with the highest income are areas where the arrest rate is the lowest for criminal sexual assault. Areas where sexual assault is more common per person the arrest ratio is also later. One theory that explains this could be that since the crime is more widespread it has become more of the norm rather than an egregrious crime and thus is not taken as seriously (pure speculation).
+
+
+Perhaps this is a slightly unfair assessment of Chicago. I have grouped all the data from 2001 to 2014 disregarding the trends that take place over time. Shown over time, it only gets bleaker. 
+
+{% include posts/chicago/assaults_overtime.html %}
+
+Above is the total number of arrests and total number of reports. Two things immediately draw attention. One, Criminal Sexual Assault reports have descreased over the past 10 years, and two, it's unclear if the arrest ratio has improved. To make this more salient, here is the ratio of reports to arrests:
+
+[ graph over time of ratio ]
+
+Increduously, the ratio actually _drops_, signficantly. Starting at 23% in 2001 and then ending at mere 11% in 2015. So, you are actually _less_ likely to get arrested in 2014 than you are in 2001 for committing criminal sexual assault. More alarming still, the number of reports has decreased. Superficially, this might be a good sign, but more likely than not, women just are not reporting the crime. In fact, in this report, one city claims a victory after seeing a rise in reports.
+
+Keeping in mind that the trends are only getting more exaggerated.
+
+
+
+
+
+
+
+
 
 ### It gets worse
 
@@ -48,12 +75,6 @@ Data at all these stages is sparse and often does not mesh well together. Howeve
 
 ### Why
 
-It is a bit perplexing that 99.6% of the 64,547 incidents of prositution lead to arrest where criminal sexual assault has an arrest rate of 17%. To investigate further, below is a few maps that could potentially point to causation or correlation to low arrest ratios.
-
-{% include posts/chicago/ca.html %}
-
-There is some immediate correlations that stand out. Unsurprisingly, the areas with the highest income are areas where the arrest rate is the lowest for criminal sexual assault. Areas where sexual assault is more common per person the arrest ratio is also later. One theory that explains this could be that since the crime is more widespread it has become more of the norm rather than an egregrious crime and thus is not taken as seriously.
-
 Besides socio-economic and race factors, there are a number of other theories as to why so few assaults lead to arrest.
 
 #### He-Said She-Said
@@ -72,6 +93,9 @@ There are many other compounding factors that contribute to this mess. Instead o
 
 ### How can we fix this?
 
+I interviewed two different experts for this article and both were pressed for answers when I asked if there were any good examples of cities that have been making significant ground on combatting sexual assault. There were however many theories and strategies for how the situation could be improved.
+
+One [report](http://www.hrw.org/sites/default/files/reports/improvingSAInvest_0.pdf), done by the [Human Rights Watch](http://www.hrw.org/), was one of the few resources I could dig up that focuses on fixing the issue using hard evidence rather than documenting how bad the issue is. 
 Improving the 
 CAASE
 http://www.chicagojustice.org/research/long-form-reports/felony-sex-crime-case-processing-report-analysis-recommendations/CJP_Felony_Sex_Crime_Case_Processing_Report_Analys.pdf
@@ -82,3 +106,5 @@ http://gis.chicagopolice.org/clearmap_crime_sums/crime_types.html#N02 (definitio
 http://www.ndaa.org/pdf/the_voice_vol_3_no_1_2009.pdf (false reports)
 
 http://cops.usdoj.gov/html/dispatch/07-2013/women_in_law_enforcement.asp (percent women)
+
+http://www.hrw.org/sites/default/files/reports/improvingSAInvest_0.pdf

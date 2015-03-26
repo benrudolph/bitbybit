@@ -1,0 +1,41 @@
+<figure class="full-screen" id="ca-assault-overtime" style="height: 300px"></figure>
+<figure class="full-screen" id="ca-assault-overtime-ratio" style="height: 300px"></figure>
+<script>
+  $(document).ready(function() {
+    d3.csv('/data/chicago/assault_overtime.csv', function(err, raw) {
+      var reports = _.map(raw, function(d) { return [d.year, +d.reports] });
+      var arrests = _.map(raw, function(d) { return [d.year, +d.arrests] });
+      var ratio = _.map(raw, function(d) { return [d.year, +d.arrests / +d.reports] });
+      var data = [
+          { name: 'Reports', data: reports },
+          { name: 'Arrests', data: arrests }
+      ];
+
+
+      var opts = {
+        adapter: 'google',
+        library: {
+          title: 'Criminal sexual assault over time',
+          fontName: 'Lato',
+        },
+      }
+
+      new Chartkick.LineChart(
+          "ca-assault-overtime",
+          data,
+          $.extend(true, {}, opts)
+      );
+
+      opts.library.title = 'Criminal sexual assault arrest ratio over time';
+
+      new Chartkick.LineChart(
+          "ca-assault-overtime-ratio",
+          ratio,
+          $.extend(true, {}, opts)
+      );
+    });
+  });
+
+</script>
+
+

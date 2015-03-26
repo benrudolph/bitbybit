@@ -2,7 +2,7 @@
 
 <script>
   $(document).ready(function() {
-    d3.csv('/data/arrest_ratio_all_years.csv', function(err, raw) {
+    d3.csv('/data/chicago/arrest_ratio_all_years.csv', function(err, raw) {
       var highlight = ['CRIM SEXUAL ASSAULT'];
 
       var data = _.chain(raw)
