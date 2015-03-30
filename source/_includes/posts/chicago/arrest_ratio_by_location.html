@@ -1,4 +1,5 @@
 <figure class="full-screen" id="ca-arrest-ratio-by-location-bar" style="height: 300px"></figure>
+<figure class="full-screen" id="ca-arrest-ratio-by-location-bar-ratio" style="height: 300px"></figure>
 
 <script>
   $(document).ready(function() {
@@ -7,20 +8,36 @@
         .map(function(d) { return [d['Location Description'], +d.ratio] })
         .value();
 
+      var totals = _.chain(raw)
+        .map(function(d) { return [d['Location Description'], +d.total] })
+        .value();
+
+      var arrested = _.chain(raw)
+        .map(function(d) { return [d['Location Description'], +d.arrested] })
+        .value();
+
+
       var opts = {
         adapter: 'google',
         library: {
           lineWidth: 2,
           legend: { position: "none" },
           bar: {groupWidth: "30%"},
-          title: 'Criminal sexual assault arrest ratio by location (2001 - present)',
+          title: 'Criminal sexual assault arrest ratio by location (2001 - 2014)',
           fontName: 'Lato',
         },
       }
 
       new Chartkick.ColumnChart(
-          "ca-arrest-ratio-by-location-bar",
+          "ca-arrest-ratio-by-location-bar-ratio",
           data,
+          $.extend(true, {}, opts)
+      );
+
+      opts.library.title = "Criminal sexual assault reports and arrests (2001 - 2014)";
+      new Chartkick.ColumnChart(
+          "ca-arrest-ratio-by-location-bar",
+          [{ name: 'Total reports', data: totals }, { name: 'Number arrested', data: arrested }],
           $.extend(true, {}, opts)
       );
     });

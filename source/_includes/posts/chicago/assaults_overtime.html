@@ -5,10 +5,13 @@
     d3.csv('/data/chicago/assault_overtime.csv', function(err, raw) {
       var reports = _.map(raw, function(d) { return [d.year, +d.reports] });
       var arrests = _.map(raw, function(d) { return [d.year, +d.arrests] });
-      var ratio = _.map(raw, function(d) { return [d.year, +d.arrests / +d.reports] });
+      var ratio = _.map(raw, function(d) { return [d.year, +((100 * (+d.arrests / +d.reports)).toFixed(2))] });
       var data = [
           { name: 'Reports', data: reports },
           { name: 'Arrests', data: arrests }
+      ];
+      var data2 = [
+          { name: 'Arrest Ratio', data: ratio }
       ];
 
 
@@ -30,7 +33,7 @@
 
       new Chartkick.LineChart(
           "ca-assault-overtime-ratio",
-          ratio,
+          data2,
           $.extend(true, {}, opts)
       );
     });

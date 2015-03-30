@@ -5,12 +5,17 @@
     d3.csv('/data/chicago/arrest_ratio_all_years.csv', function(err, raw) {
       var highlight = ['CRIM SEXUAL ASSAULT'];
 
-      var data = _.chain(raw)
-        .map(function(d) { return [d['Primary Type'], +d.ratio] })
-        .filter(function(d) { return !_.include(highlight, d[0]) }).value();
       var highlightData = _.chain(raw)
         .map(function(d) { return [d['Primary Type'], +d.ratio] })
         .filter(function(d) { return _.include(highlight, d[0]) }).value();
+      var highlightDatum = highlightData[0];
+
+      var beforeData = _.chain(raw)
+        .map(function(d) { return [d['Primary Type'], +d.ratio] })
+        .filter(function(d) { return !_.include(highlight, d[0]) && highlightDatum[1] < d[1] }).value();
+      var afterData = _.chain(raw)
+        .map(function(d) { return [d['Primary Type'], +d.ratio] })
+        .filter(function(d) { return !_.include(highlight, d[0]) && highlightDatum[1] > d[1] }).value();
 
       var opts = {
         adapter: 'google',
@@ -21,16 +26,20 @@
           title: 'Arrest Ratio by Crime (2001 - present)',
           fontName: 'Lato',
         },
+        colors: ['blue', 'red', 'blue']
       }
 
       var series = [{
-        name: 'Regular',
-        data: data
+        name: 'Before',
+        data: beforeData
 
         }, {
         name: 'Highlight',
         data: highlightData
 
+        }, {
+        name: 'After',
+        data: afterData,
         }
       ]
 

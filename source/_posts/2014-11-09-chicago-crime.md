@@ -8,11 +8,67 @@ published: true
 categories:
 ---
 
+The term "rape culture" has long been part of the American vocabulary, dating back to [1970](http://en.wikipedia.org/wiki/Rape_culture#cite_note-Smith2004-11). However, in recent years, it has blown up on the web:
+
+<div style="text-align:center">
+<script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=rape+culture&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
+</div>
+
+It's proved to be an extremely devisive issue with people vehemently arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Most of the articles do not delve into the data behind the issue, partially because of the lack of data, and rely more on anecdotal events. I decided to take a dive into what data we do have to discover if it is possible to empircally  come to some conclusions about rape culture. I'll be using the following definition from the World Heritage Encyclopedia of "rape culture" 
+
+> Rape culture is a concept which links rape and sexual violence to the culture of a society, and in which prevalent attitudes and practices normalize, excuse, tolerate, and even condone rape
+
+To narrow the scope of this article, I focus on the city of Chicago. Chicago recently released 6 GB of crime data – every crime reported from 2001 until today. Each report comes with a type: theft, prostitution, stalking, to name a few. The report also notes whether that reported crime led to an arrest. There's also other interesting meta data, including location, date, etc. I used this data to judge to what degree of tolerance the city of Chicago has towards rape. Specifically I analyzed Criminal Sexual Assault (CSA), which the Chicago police department (CPD) define as:
+
+> Any sexual act directed against another person, forcibly and/or against that person's will or not forcibly or against the person's will in instances where the victim is incapable of giving consent
+
+This isn't a perfect proxy for rape culture, but I hold that it is an important indicator and reveals concretely how American society deals with rape. Firstly, how does CSA hold up in terms of arrest rate, that is, what percentage of reports lead to arrest.
+
+{% include posts/chicago/arrest_ratio.html %}
+
+The graphs above shows the arrest ratio over the past 15 years for each type of crime. CSA hovers around 17%, next to stalking and intimidation. Contrast that with crimes related to prostitution, liquor law violation and narcotics, a 99% arrest ratio. That's a pretty extraordinary number if you think about it. Nearly all reports lead to an arrest. How can it be that the CPD shows such vigor to arrest pot dealers (yes, marijuana is a [schedule 1 narcotic](http://www.drugs.com/article/csa-schedule-1.html)), yet barely arrests 15% of CSA reports?
+
+The way CSA manifests itself in the city is also noteworthy. Each report comes with a location descriptor. Did the crime happen in a house, or on a street? Below shows where CSA is happening.
+
+{% include posts/chicago/arrest_ratio_by_location.html %}
+
+CSA often occurs by people known to the victim (need citation). It's no surprise to see many of the cases in a home or apartment. It still seems inexcusable though that only 20% percent of CSA reports in a residence or apartment lead to an arrest.
+
+At the very right of the graph, you'll notice that 1.8% of CSA reports occurring in a hospital lead to arrest. Over the 15 years there have been 168 reports; 3 led to an arrest. First, wow. Second, that's a nontrivial amount of reports. How does that happen in a place that is supposed to be safe, a refuge?
+
+Trying to wrestle with this, I talked with Margaret from u of Austin. Margaret researches this stuff, while she focuses more rape kits, she has a fountain of knowledge regarding CSA. I posed to her this very question. How is it that hospitals are experiencing so many reports of CSA? She seemed UN-phased by the question. Apparently this came as no surprise to her since predators often target those that are vulnerable making hospitals ripe for CSA. Still doesn't explain how only 3 people were arrested.
+
+Right. So we've established that the arrest ratio for CSA reports is at the very least odd, if not downright mind boggling. The question of "why" has weighed heavily on me throughout this entire exercise. Is it solely rape culture? Maybe this isn't terribly shocking to you. These numbers don't seem too bad and you're not that curious as to why this is occurring. Let me then back up a step and give a more complete picture of this.
+
+Thus far, this article has focused on arrest ratio because the city of Chicago has solid data about it. But this is only a small piece of the much larger picture to hold an assailant responsible for his/her crime. Tracy Siska works at an organization called The Chicago Justice project and has become all too familiar with the criminal justice system. He knows the weaknesses in the system and has written up an excellent report about it here. In the most basic terms, the process looks something like this:
+
+Flow chart
+
+In each one of these steps the assailant has a very high chance of getting released. Unfortunately the numbers on these other parts of the system are a bit harder to grapple with. How do you count the number of unreported CSA? And the Chicago justice system doesn't release information about trials, so it's impossible to know how many arrested actually were convicted. That said, there are some numbers/estimates out there. Using these numbers I came up with the probability of getting sentenced to jail after committing CSA. There are a lot is assumptions and hand waving in this calculation so it can be nothing more than a rough estimate.
+
+Siska and I had an interesting conversation revolving around what causes this sort of systemic issue. Like most complex problems, there are a lot of reasons. It's out of scope to talk about them all, but I again encourage that you read the report as it details all the points in the system where the outcome of the assailant being held accountable is in the hands of one person.
+
+Does this make analysis of just the arrest ratio misleading? Yes, slightly. However it is still an integral part of the machine and an important indicator for attitudes towards CSA. I wanted to lead my own data driven analysis for causes of such low arrest ratios. I tried to link this anomalous issue with demographic trends.
+
+{% include posts/chicago/ca.html %}
+
+
+When comparing these, there aren't too many signs that income or race significantly affect blah blah blah
+
+Perhaps, through this analysis, we've been unfair to Chicago. I've been aggregating the data from 2001 to 2014. 2001 was a long time ago. The backstreet boys were popular and I was listening to sum 41. Maybe through the course 15 years Chicago had begun to change, reverse its old ways. So, I broke the data down by year.
+
+{% include posts/chicago/assaults_overtime.html %}
+
+From 2001 to 2014, reports of CSA have actually decreased. (Ref hrs report). Superficially, this seems positive. A sign that CSA is decreasing. I argue the opposite for a few reasons. First note how the arrest ratio has actually declined over the past decade. That means less reports actually lead to arrest. This could potentially have a toll on the city. Women begin to lose faith In the justice system, so they simply stop reporting. A decrease in reports only shows that Chicago is actually getting worse at promoting reporting of CSA. This is why it is so critical that everyone has faith in the police and judicial system.
+
+Then, is rape culture real? Abso-fucking-lutley. Rape culture has sunk it's teeth so deep into the city of Chicago that it permeates the entire justice system. To shrug these numbers off is purposeful denial. Researching for this article made me want to scream. This is simply intolerable yet it is firmly rooted as status quo. I wanted to point my finger and blame the cpd, the justice system, men. Truth is, that didn't help me come any closer to a solution to the problem. Rape culture is systemic and shows its ugly face in issues like these, the arrest ratio of CSA. Changing rape culture is no small task. I searched for cities that made progress and had solid data as evidence. This turned out to be exceedingly difficult. I did find a report put out by the humans rights watch that documents the practices of police departments of four different cities and what good practices they've done to help hold assailants accountable for CSA. We need better trainings for cops, and investigators. We need better legislation that gives the advantage to the victim, rather than the culprit. We need more transparency in government data. We need
+
+
+----
 In a movement to open up its data, Chicago has released all of its crime data from 2001 until present. This dataset, over 6 gigabytes, certainly shows some fascinating, if not downright scary, trends in crime in the city of Chicago.
 
 In this dataset, one field is particularly curious. Each row in the database is a crime that has been reported to Chicago. It defines then whether that report has led to an arrest.
 
-{% include posts/chicago/arrest_ratio.html %}
 
 Taking a close look into this, immediately there are some alarming facts. Of all the criminal sexual crimes reported, a mere 17% led to arrests. Contrast that with prostitution -- 99% of all reports on prostitution lead to arrest. Arrest rates for criminal sexual assault are on par with crimes such as intimidation and stalking.
 
@@ -24,20 +80,17 @@ In addition many of the incidents have been subdivided further. [Cases that use 
 
 Digging a bit deaper into the over 20,000 criminal sexual assault cases reported since 2001, I looked into where these cases were happening, and how likely an arrest was to occur.
 
-{% include posts/chicago/arrest_ratio_by_location.html %}
 
 Out of 167 reported incidents of criminal sexual assault that occurred in hospital buildings, a mere 3 led to arrests. Combine that with the reports in nursing homes, 128, in which 8 led to arrests. So, theoritically, you have a __3.7%__ of being arrested if you commit criminal sexual assualt in a nursing home or hospital! (Assuming that all reported incidents are truthful, which most are). []I was shocked when I saw these numbers; unfortunately it only gets worse. Later you will see why 3.7% is a gross overestimate and the actual number is most likely much lower.] reword
 
 It is a bit perplexing that 99.6% of the 64,547 incidents of prositution lead to arrest where criminal sexual assault has an arrest rate of 17%. To investigate further, below is a few maps that could potentially point to causation or correlation to low arrest ratios.
 
-{% include posts/chicago/ca.html %}
 
 There are some immediate correlations that stand out. Unsurprisingly, the areas with the highest income are areas where the arrest rate is the lowest for criminal sexual assault. Areas where sexual assault is more common per person the arrest ratio is also later. One theory that explains this could be that since the crime is more widespread it has become more of the norm rather than an egregrious crime and thus is not taken as seriously (pure speculation).
 
 
 Perhaps this is a slightly unfair assessment of Chicago. I have grouped all the data from 2001 to 2014 disregarding the trends that take place over time. Shown over time, it only gets bleaker. 
 
-{% include posts/chicago/assaults_overtime.html %}
 
 Above is the total number of arrests and total number of reports. Two things immediately draw attention. One, Criminal Sexual Assault reports have descreased over the past 10 years, and two, it's unclear if the arrest ratio has improved. To make this more salient, here is the ratio of reports to arrests:
 
@@ -50,7 +103,7 @@ Keeping in mind that the trends are only getting more exaggerated.
 
 
 
-
+---------------
 
 
 
