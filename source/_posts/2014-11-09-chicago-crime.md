@@ -14,7 +14,7 @@ The term "rape culture" has long been part of the American vocabulary, dating ba
 <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=rape+culture&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
 </div>
 
-It's proved to be an extremely devisive issue with people arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Most of the articles do not delve into the data behind the issue, partially because of the lack of data, and rely more on anecdotal events. I decided to take a dive into what data we do have to discover if it is possible to empircally  come to some conclusions about rape culture. I'll be using the following definition from the World Heritage Encyclopedia of "rape culture" 
+It's proved to be an extremely devisive issue with people arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Both articles actually make very valid points. However they do not delve into the data behind the issue (partially due to the lack of data) and rely more on anecdotal events. I decided to take a dive into what data we do have to discover if it is possible to empircally  come to some conclusions about rape culture. I'll be using the following definition from the World Heritage Encyclopedia of "rape culture" 
 
 > Rape culture is a concept which links rape and sexual violence to the culture of a society, and in which prevalent attitudes and practices normalize, excuse, tolerate, and even condone rape
 
@@ -24,7 +24,9 @@ Instead of fixating on the entire United States, I shifted focus to the city of 
 
 [Source](http://gis.chicagopolice.org/clearmap/crime_types.html)
 
-This isn't a perfect proxy for rape culture, but I hold that it is an important indicator and reveals concretely how American society and the judicial system deals with rape. Initially, I view CSA in context to other crimes. How does CSA hold up in terms of arrest rate, that is, what percentage of reports lead to arrest.
+This isn't a perfect proxy for rape culture per se, but I hold that **it represents how the acceptance of rape has subtly seaped into our judicial system**. Rape is an act committed by a minority of people and affects a minority of the population (estimates show that approximately 0.3% of women in Chicago experience rape each year). Rape culture purports that rape is something that has become accepted by all of society; that is not something I can even come close to proving. 
+
+To begin this analysis on how CSA cases manifest themselves in the judicial system, I viewed CSA in context to other crimes. How does CSA hold up in terms of arrest rate, that is, what percentage of reports lead to arrest.
 
 {% include posts/chicago/arrest_ratio.html %}
 
@@ -42,7 +44,7 @@ Trying to wrestle with this, I talked with Margaret Bassett from the University 
 
 ---
 
-Right. So we've established that the arrest ratio for CSA reports is at the very least odd, if not mind boggling. The question of "why" has weighed heavily on me throughout this entire exercise. Is it solely rape culture? Maybe this isn't terribly shocking to you. These numbers don't seem too bad, and you're not that curious as to why this is occurring. Before writing this off, let's look at a more complete picture of this.
+Right. So we've established that the arrest ratio for CSA reports is at the very least odd, if not mind boggling. The question of "why" has weighed heavily on me throughout this entire exercise, but maybe these numbers aren't terribly shocking to you. Let's look at a more complete picture of this.
 
 Thus far, this article has focused on arrest ratio because the city of Chicago has solid data about it. But this is only a small piece of the much larger picture to hold an assailant responsible for his/her crime. Tracy Siska, who works at an organization called The Chicago Justice project, has become very familiar with the Chicago criminal justice system. He knows the weaknesses in the system and has written up an excellent report about it [here](http://www.chicagojustice.org/research/long-form-reports/felony-sex-crime-case-processing-report-analysis-recommendations/CJP_Felony_Sex_Crime_Case_Processing_Report_Analys.pdf). In the most basic terms, the process looks something like this:
 
@@ -57,7 +59,7 @@ In each one of these steps the assailant has a very high chance of getting relea
 {% include posts/chicago/process_table.html %}
 
 
-We've only estimated for three of the steps and already 95% of assailants walk freely. RAINN has an [infographic](https://rainn.org/get-information/statistics/reporting-rates) depicting this very concept. Unfortunately, the computations and methodology to get to those numbers leaves something to be desired.
+We've only estimated for three of the steps and already 95% of assailants walk freely. RAINN has an [infographic](https://rainn.org/get-information/statistics/reporting-rates) depicting this very concept. Unfortunately, the computations and methodology that RAINN used to get to those numbers leaves something to be desired.
 
 Siska and I had an interesting conversation revolving around what causes this sort of systemic issue. Like most complex problems, there are a lot of reasons. It's out of scope to talk about them all, but I again encourage that you read the report as it details all the points in the system where the outcome of the assailant being held accountable is in the hands of one person.
 
@@ -71,7 +73,7 @@ One correlation that can be seen on these maps is that high income signals low a
 
 ![High incomes equals low arrest ratio](/images/chicago/high_income_low_arrests.png)
 
-More interesting is the correlation between the number of reports and arrest ratio. In the map depicting the number reports per 100 residents, it's clear that the southside of Chicago has far more reports of CSA than anywhere else. Yet, the arrest ratio in that same area is average or below average in each of those community areas. The number of reports per person could make it more difficult to make arrests, resulting in a lower arrest ratio.
+More interesting is the correlation between the number of reports and arrest ratio. In the map depicting the number reports per 100 residents, it's clear that the southside of Chicago has far more reports of CSA than the rest of the city. Yet, the arrest ratio in that same area is average or below average in each of those community areas. The number of reports per person could make it more difficult to make arrests, resulting in a lower arrest ratio.
 
 ![High reports equals low arrest ratio](/images/chicago/high_reports_low_arrests.png)
 
@@ -87,9 +89,10 @@ From 2001 to 2014, reports of CSA have actually decreased. (Ref hrs report). Sup
 
 ---
 
-Then, is rape culture real? Abso-fucking-lutley. Rape culture has sunk it's teeth so deep into the city of Chicago that it permeates the entire justice system. To shrug these numbers off is purposeful denial. Researching for this article made me want to scream. This is simply intolerable yet it is firmly rooted as status quo. I wanted to point my finger and blame the cpd, the justice system, men. Truth is, that didn't help me come any closer to a solution to the problem. Rape culture is systemic and shows its ugly face in issues like these, the arrest ratio of CSA. Changing rape culture is no small task. I searched for cities that made progress and had solid data as evidence. This turned out to be exceedingly difficult. I did find a report put out by the humans rights watch that documents the practices of police departments of four different cities and what good practices they've done to help hold assailants accountable for CSA. We need better trainings for cops, and investigators. We need better legislation that gives the advantage to the victim, rather than the culprit. We need more transparency in government data. We need
+Looking at this data, it's hard to convince anyone that the judicial system is working in favor of CSA victims. Indeed, rape, while most likely non-intentionally, has found a way to avoid the grips of justice. [more on this]
 
 
+sources:
 CAASE
 http://www.chicagojustice.org/research/long-form-reports/felony-sex-crime-case-processing-report-analysis-recommendations/CJP_Felony_Sex_Crime_Case_Processing_Report_Analys.pdf
 
