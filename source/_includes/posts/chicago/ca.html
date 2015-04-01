@@ -1,8 +1,3 @@
-
-<p>Sexual Assualts normalized</p>
-<p>Sexual Arrest Ratio (darker is higher arrest ratio)</p>
-<p>Income distribution (log scale)</p>
-
 <div class="ca-map" id="ca-assaults-norm"></div>
 <div class="ca-map" id="ca-assaults-ratio"></div>
 <div class="ca-map" id="ca-income"></div>
@@ -10,7 +5,9 @@
   $(document).ready(function() {
 
     var width = 400,
-        height = 400;
+        height = 450,
+        fontSize = "16px",
+        scale = 29000;
 
     var svg = d3.select("#ca").append("svg")
       .attr("width", width)
@@ -20,17 +17,41 @@
       .attr("width", width)
       .attr("height", height);
 
+
     var assaultNormSvg = d3.select("#ca-assaults-norm").append("svg")
       .attr("width", width)
       .attr("height", height);
 
+    assaultNormSvg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", 30)
+        .attr("dy", "1em")
+        .style("font-size", fontSize)
+        .text("CSA per 100 residents")
+
     var assaultRatioSvg = d3.select("#ca-assaults-ratio").append("svg")
       .attr("width", width)
       .attr("height", height);
+    assaultRatioSvg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", 30)
+        .attr("dy", fontSize)
+        .style("font-size", "16px")
+        .text("CSA arrest ratio")
 
     var assaultIncomeSvg = d3.select("#ca-income").append("svg")
       .attr("width", width)
       .attr("height", height);
+    assaultIncomeSvg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", 30)
+        .attr("dy", "1em")
+        .style("font-size", fontSize)
+        .text("Chicago income distribution (log scale)")
+
 
     var start = d3.rgb('#fff')
     var end = d3.rgb('#000')
@@ -43,8 +64,8 @@
       var features = topojson.feature(ca, ca.objects.ca).features;
 
       var projection = d3.geo.mercator()
-        .scale(25000)
-        .center([-87.4, 41.8])
+        .scale(scale)
+        .center([-87.8, 41.8])
         .translate([width / 2, height / 2]);
 
       var path = d3.geo.path()
@@ -73,20 +94,16 @@
         var income = d3.scale.log()
           .domain(d3.extent(data, function(d) { return +d.perCapitaIncome }))
           .range([0, 1])
+        var greens = d3.scale.quantize()
+            .domain([0, 1])
+            .range(colorbrewer.Greens[9])
+        var grays = d3.scale.quantize()
+            .domain([0, 1])
+            .range(colorbrewer.Greys[9])
+        var blues = d3.scale.quantize()
+            .domain([0, 1])
+            .range(colorbrewer.BuPu[9])
 
-
-        var caSelection = assaultSvg.selectAll('.ca-assaults').data(features);
-        caSelection.enter().append("path");
-        caSelection.attr('class', function(d) { return 'ca ca-assaults' })
-          .attr("d", path)
-          .style('fill', function(ca) {
-            d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
-
-            if (!d)
-              return
-
-            return color(i(+d.count));
-          })
 
         caSelection = assaultNormSvg.selectAll('.ca-assaults-norm').data(features);
         caSelection.enter().append("path");
@@ -108,7 +125,7 @@
             if (!d)
               return
 
-            return color(normalized(+d.count / +d.total));
+            return blues(normalized(+d.count / +d.total));
           })
 
         caSelection = assaultRatioSvg.selectAll('.ca-assaults-ratio').data(features);
@@ -131,7 +148,7 @@
             if (!d)
               return
 
-            return color(ratio(+d.arrestRatio));
+            return grays(ratio(+d.arrestRatio));
           })
 
 
@@ -153,7 +170,7 @@
             if (!d)
               return
 
-            return color(income(+d.perCapitaIncome));
+            return greens(income(+d.perCapitaIncome));
           })
 
           $('.ca').tipsy({

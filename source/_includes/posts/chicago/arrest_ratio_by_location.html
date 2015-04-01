@@ -21,20 +21,21 @@
         adapter: 'google',
         library: {
           lineWidth: 2,
-          legend: { position: "none" },
           bar: {groupWidth: "30%"},
           title: 'Criminal sexual assault arrest ratio by location (2001 - 2014)',
           fontName: 'Lato',
         },
+        colors: ['#0a0a0a']
       }
 
       new Chartkick.ColumnChart(
           "ca-arrest-ratio-by-location-bar-ratio",
-          data,
+          [{ name: 'Arrest ratio', data: data }],
           $.extend(true, {}, opts)
       );
 
       opts.library.title = "Criminal sexual assault reports and arrests (2001 - 2014)";
+      opts.colors = ['#377eb8', '#e41a1c'];
       new Chartkick.ColumnChart(
           "ca-arrest-ratio-by-location-bar",
           [{ name: 'Total reports', data: totals }, { name: 'Number arrested', data: arrested }],

@@ -11,7 +11,7 @@
           { name: 'Arrests', data: arrests }
       ];
       var data2 = [
-          { name: 'Arrest Ratio', data: ratio }
+          { name: 'Arrest ratio', data: ratio }
       ];
 
 
@@ -21,6 +21,7 @@
           title: 'Criminal sexual assault over time',
           fontName: 'Lato',
         },
+        colors: ['#377eb8', '#e41a1c']
       }
 
       new Chartkick.LineChart(
@@ -30,6 +31,7 @@
       );
 
       opts.library.title = 'Criminal sexual assault arrest ratio over time';
+      opts.colors = ['#0a0a0a']
 
       new Chartkick.LineChart(
           "ca-assault-overtime-ratio",
