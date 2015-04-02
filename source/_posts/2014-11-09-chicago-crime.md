@@ -83,11 +83,11 @@ These correlations could give us insight into which areas need more attention fr
 
 ---
 
-Perhaps, through this analysis, we've been unfair to Chicago. I've been aggregating the data from 2001 to 2014. 2001 was a long time ago. The backstreet boys were popular, and I had no armpit hair. Maybe through the course of 14 years Chicago had begun to change, reverse its old ways. Here is the data broken down by year.
+Perhaps, through this analysis, we've been unfair to Chicago. I've been aggregating the data from 2001 to 2014. 2001 was a long time ago. The backstreet boys were popular, and I had no armpit hair. Maybe through the course of 14 years Chicago has begun to change, reverse its old ways. Here is the data broken down by year.
 
 {% include posts/chicago/assaults_overtime.html %}
 
-From 2001 to 2014, reports of CSA have actually decreased. (Ref hrs report). Superficially, this seems positive. A sign that CSA is decreasing. I argue the opposite for a few reasons. First note how the arrest ratio has actually declined over the past decade. That means less reports actually lead to arrest. This could potentially have a toll on the city. Victims begin to lose faith in the justice system, so they simply stop reporting. A decrease in reports shows that Chicago is actually getting worse at reporting of CSA. 
+From 2001 to 2014, reports of CSA have actually decreased. (Ref HRW report). Superficially, this seems positive. A sign that CSA is decreasing. I argue the opposite for a few reasons. First note how the arrest ratio has actually declined over the past decade. That means less reports actually lead to arrest. This could potentially have a toll on the city. Victims begin to lose faith in the justice system, so they simply stop reporting. A decrease in reports shows that Chicago is actually getting worse at reporting of CSA. 
 
 ---
 
