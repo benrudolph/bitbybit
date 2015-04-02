@@ -14,6 +14,8 @@ The term "rape culture" has long been part of the American vocabulary, dating ba
 <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=rape+culture&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330"></script>
 </div>
 
+<!-- more -->
+
 It's proved to be an extremely devisive issue with people arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Both articles actually make very valid points. However they do not delve into the data behind the issue (partially due to the lack of data) and rely more on anecdotal events. I decided to take a dive into what data we do have to discover if it is possible to empircally  come to some conclusions about rape culture. I'll be using the following definition from the World Heritage Encyclopedia of "rape culture" 
 
 > Rape culture is a concept which links rape and sexual violence to the culture of a society, and in which prevalent attitudes and practices normalize, excuse, tolerate, and even condone rape
