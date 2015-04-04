@@ -1,5 +1,5 @@
 var Colors = {
-    BLACK: '2D3833',
+    BLACK: '#2d3833',
     RED: '#e41a1c',
     BLUE: '#377eb8'
 };
