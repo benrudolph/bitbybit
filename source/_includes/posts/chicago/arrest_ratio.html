@@ -1,44 +1,45 @@
-<figure class="full-screen" id="ca-arrest-ratio-bar" style="height: 300px"></figure>
+<figure class="full-screen" id="ca-arrest-ratio-bar" style="height: 350px"></figure>
 
 <script>
   $(document).ready(function() {
     d3.csv('/data/chicago/arrest_ratio_all_years.csv', function(err, raw) {
-      var highlight = ['CRIM SEXUAL ASSAULT'];
+      var highlight = ['CRIM SEXUAL ASSAULT'.toTitleCase()];
 
       var highlightData = _.chain(raw)
-        .map(function(d) { return [d['Primary Type'], +d.ratio] })
+        .map(function(d) { return [d['Primary Type'].toTitleCase(), +(+d.ratio * 100).toFixed(2)] })
         .filter(function(d) { return _.include(highlight, d[0]) }).value();
       var highlightDatum = highlightData[0];
 
       var beforeData = _.chain(raw)
-        .map(function(d) { return [d['Primary Type'], +d.ratio] })
+        .map(function(d) { return [d['Primary Type'].toTitleCase(), +(+d.ratio * 100).toFixed(2)] })
         .filter(function(d) { return !_.include(highlight, d[0]) && highlightDatum[1] < d[1] }).value();
       var afterData = _.chain(raw)
-        .map(function(d) { return [d['Primary Type'], +d.ratio] })
+        .map(function(d) { return [d['Primary Type'].toTitleCase(), +(+d.ratio * 100).toFixed(2)] })
         .filter(function(d) { return !_.include(highlight, d[0]) && highlightDatum[1] > d[1] }).value();
 
       var opts = {
         adapter: 'google',
         library: {
-          lineWidth: 2,
           legend: { position: "none" },
-          bar: {groupWidth: "30%"},
-          title: 'Arrest Ratio by Crime (2001 - present)',
+          bar: {groupWidth: "25"},
+          title: 'Arrest Ratio by Crime (2001 - 2014)',
           fontName: 'Lato',
+          vAxis: { title: 'Arrest Ratio (%)' },
+          hAxis: { title: 'Crime' },
         },
-        colors: ['#0a0a0a', '#e41a1c', '#0a0a0a']
+        colors: [Colors.BLACK, Colors.RED, Colors.BLACK]
       }
 
       var series = [{
-        name: 'Before',
+        name: 'Arrest Ratio',
         data: beforeData
 
         }, {
-        name: 'Highlight',
+        name: 'Arrest Ratio',
         data: highlightData
 
         }, {
-        name: 'After',
+        name: 'Arrest Ratio',
         data: afterData,
         }
       ]

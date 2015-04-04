@@ -21,7 +21,7 @@
           title: 'Criminal sexual assault over time',
           fontName: 'Lato',
         },
-        colors: ['#377eb8', '#e41a1c']
+        colors: [Colors.BLUE, Colors.RED]
       }
 
       new Chartkick.LineChart(
@@ -31,7 +31,8 @@
       );
 
       opts.library.title = 'Criminal sexual assault arrest ratio over time';
-      opts.colors = ['#0a0a0a']
+      opts.library.vAxis = { title: 'Arrest Ratio (%)' };
+      opts.colors = [Colors.BLACK]
 
       new Chartkick.LineChart(
           "ca-assault-overtime-ratio",

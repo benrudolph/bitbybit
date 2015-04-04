@@ -1,41 +1,45 @@
-<figure class="full-screen" id="ca-arrest-ratio-by-location-bar" style="height: 300px"></figure>
-<figure class="full-screen" id="ca-arrest-ratio-by-location-bar-ratio" style="height: 300px"></figure>
+<figure class="full-screen" id="ca-arrest-ratio-by-location-bar" style="height: 350px"></figure>
+<figure class="full-screen" id="ca-arrest-ratio-by-location-bar-ratio" style="height: 350px"></figure>
 
 <script>
   $(document).ready(function() {
     d3.csv('/data/chicago/arrest_ratio_all_years_location.csv', function(err, raw) {
       var data = _.chain(raw)
-        .map(function(d) { return [d['Location Description'], +d.ratio] })
+        .map(function(d) { return [d['Location Description'].toTitleCase(), +(+d.ratio * 100).toFixed(2)] })
         .value();
 
       var totals = _.chain(raw)
-        .map(function(d) { return [d['Location Description'], +d.total] })
+        .map(function(d) { return [d['Location Description'].toTitleCase(), +d.total] })
         .value();
 
       var arrested = _.chain(raw)
-        .map(function(d) { return [d['Location Description'], +d.arrested] })
+        .map(function(d) { return [d['Location Description'].toTitleCase(), +d.arrested] })
         .value();
 
 
       var opts = {
         adapter: 'google',
         library: {
-          lineWidth: 2,
           bar: {groupWidth: "30%"},
           title: 'Criminal sexual assault arrest ratio by location (2001 - 2014)',
           fontName: 'Lato',
+          hAxis: { title: 'Location' },
         },
-        colors: ['#0a0a0a']
+        colors: [Colors.BLACK]
       }
+      ratioOpts = $.extend(true, {}, opts)
+      ratioOpts.min = 0;
+      ratioOpts.max = 30;
+      ratioOpts.library.vAxis = { title: 'Arrest Ratio (%)' };
 
       new Chartkick.ColumnChart(
           "ca-arrest-ratio-by-location-bar-ratio",
           [{ name: 'Arrest ratio', data: data }],
-          $.extend(true, {}, opts)
+          ratioOpts
       );
 
       opts.library.title = "Criminal sexual assault reports and arrests (2001 - 2014)";
-      opts.colors = ['#377eb8', '#e41a1c'];
+      opts.colors = [Colors.BLUE, Colors.RED];
       new Chartkick.ColumnChart(
           "ca-arrest-ratio-by-location-bar",
           [{ name: 'Total reports', data: totals }, { name: 'Number arrested', data: arrested }],

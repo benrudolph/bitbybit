@@ -4,10 +4,20 @@
 <script>
   $(document).ready(function() {
 
-    var width = 400,
-        height = 450,
+    var width = ($(window).width() / 3) - 100,
+        height = 350,
         fontSize = "16px",
         scale = 29000;
+
+    var greens = d3.scale.quantize()
+        .domain([0, 1])
+        .range(colorbrewer.Greens[9])
+    var grays = d3.scale.quantize()
+        .domain([0, 1])
+        .range(colorbrewer.Greys[9])
+    var blues = d3.scale.quantize()
+        .domain([0, 1])
+        .range(colorbrewer.BuPu[9])
 
     var svg = d3.select("#ca").append("svg")
       .attr("width", width)
@@ -18,9 +28,29 @@
       .attr("height", height);
 
 
-    var assaultNormSvg = d3.select("#ca-assaults-norm").append("svg")
+    var assaultNormDiv = d3.select("#ca-assaults-norm")
+
+    var assaultNormSvg = assaultNormDiv.append("svg")
       .attr("width", width)
       .attr("height", height);
+
+    // Legend
+    var legend = assaultNormDiv.append('ul')
+        .attr('class', 'legend')
+
+    var keys = legend.selectAll('li.key')
+        .data(blues.range());
+
+    keys.enter().append('li')
+        .attr('class', 'key')
+        .style('width', (100 * (1 / blues.range().length)) + '%')
+        .style('border-top-color', String)
+        .html(function(d, i) {
+            if (i === 0) { return 'Less&nbsp;reports'; }
+            else if (i === blues.range().length - 2) { return  'More&nbsp;reports'; }
+            return '&nbsp;';
+        });
+    // End Legend
 
     assaultNormSvg.append("text")
         .attr("text-anchor", "middle")
@@ -30,7 +60,8 @@
         .style("font-size", fontSize)
         .text("CSA per 100 residents")
 
-    var assaultRatioSvg = d3.select("#ca-assaults-ratio").append("svg")
+    var assaultRatioDiv = d3.select("#ca-assaults-ratio")
+    var assaultRatioSvg = assaultRatioDiv.append("svg")
       .attr("width", width)
       .attr("height", height);
     assaultRatioSvg.append("text")
@@ -39,9 +70,28 @@
         .attr("y", 30)
         .attr("dy", fontSize)
         .style("font-size", "16px")
-        .text("CSA arrest ratio")
+        .text("CSA arrests per 100 reports")
 
-    var assaultIncomeSvg = d3.select("#ca-income").append("svg")
+    // Legend
+    var legend = assaultRatioDiv.append('ul')
+        .attr('class', 'legend')
+
+    var keys = legend.selectAll('li.key')
+        .data(grays.range());
+
+    keys.enter().append('li')
+        .attr('class', 'key')
+        .style('width', (100 * (1 / grays.range().length)) + '%')
+        .style('border-top-color', String)
+        .html(function(d, i) {
+            if (i === 0) { return 'Less&nbsp;arrests'; }
+            else if (i === grays.range().length - 2) { return  'More&nbsp;arrests'; }
+            return '&nbsp;';
+        });
+    // End Legend
+
+    var assaultIncomeDiv = d3.select("#ca-income")
+    var assaultIncomeSvg = assaultIncomeDiv.append("svg")
       .attr("width", width)
       .attr("height", height);
     assaultIncomeSvg.append("text")
@@ -52,6 +102,23 @@
         .style("font-size", fontSize)
         .text("Chicago income distribution (log scale)")
 
+    // Legend
+    var legend = assaultIncomeDiv.append('ul')
+        .attr('class', 'legend')
+
+    var keys = legend.selectAll('li.key')
+        .data(greens.range());
+
+    keys.enter().append('li')
+        .attr('class', 'key')
+        .style('width', (100 * (1 / greens.range().length)) + '%')
+        .style('border-top-color', String)
+        .html(function(d, i) {
+            if (i === 0) { return 'Less&nbsp;income'; }
+            else if (i === greens.range().length - 2) { return  'More&nbsp;income'; }
+            return '&nbsp;';
+        });
+    // End Legend
 
     var start = d3.rgb('#fff')
     var end = d3.rgb('#000')
@@ -65,7 +132,7 @@
 
       var projection = d3.geo.mercator()
         .scale(scale)
-        .center([-87.8, 41.8])
+        .center([-87.8, 41.9])
         .translate([width / 2, height / 2]);
 
       var path = d3.geo.path()
@@ -81,7 +148,6 @@
       d3.csv('/data/chicago/assault_byca.csv', function(err, data) {
         if (err) return console.error(err);
 
-        var comma = d3.format(',')
         var i = d3.scale.linear()
           .domain([0, d3.max(data, function(d) { return +d.count })])
           .range([0, 1])
@@ -94,16 +160,6 @@
         var income = d3.scale.log()
           .domain(d3.extent(data, function(d) { return +d.perCapitaIncome }))
           .range([0, 1])
-        var greens = d3.scale.quantize()
-            .domain([0, 1])
-            .range(colorbrewer.Greens[9])
-        var grays = d3.scale.quantize()
-            .domain([0, 1])
-            .range(colorbrewer.Greys[9])
-        var blues = d3.scale.quantize()
-            .domain([0, 1])
-            .range(colorbrewer.BuPu[9])
-
 
         caSelection = assaultNormSvg.selectAll('.ca-assaults-norm').data(features);
         caSelection.enter().append("path");
@@ -162,7 +218,7 @@
               return
 
 
-              var html = '<h1><b>$' + comma(+d.perCapitaIncome) + '</b> per capita income</h1>';
+              var html = '<h1><b>$' + Formats.COMMA(+d.perCapitaIncome) + '</b> per capita income</h1>';
             return html;
           })
           .style('fill', function(ca) {

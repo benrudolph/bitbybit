@@ -95,6 +95,22 @@ figure {
   margin-bottom: 60px;
 }
 
+ul.legend {
+    font-family: 'Lato';
+    list-style-type: none;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+li.key {
+    border-top-width: 15px;
+    border-top-style: solid;
+    font-size: .75em;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .R.streak {
   fill: red;
 }
