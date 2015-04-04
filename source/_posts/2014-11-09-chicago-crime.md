@@ -16,7 +16,7 @@ The term "rape culture" has long been part of the American vocabulary, dating ba
 
 <!-- more -->
 
-It's proved to be an extremely devisive issue with people arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Both articles actually make very valid points. However they do not delve into the data behind the issue (partially due to the lack of data) and rely more on anecdotal events. I decided to take a dive into what data we do have to discover if it is possible to empircally  come to some conclusions about rape culture. I'll be using the following definition from the World Heritage Encyclopedia of "rape culture" 
+It's proved to be an extremely divisive issue with people arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Both articles actually make very valid points. However they do not delve into the data behind the issue (partially due to the lack of data) and rely more on anecdotal events. I decided to take a dive into what data we do have to discover if it is possible to empirically  come to some conclusions about rape culture. I'll be using the following definition from the World Heritage Encyclopedia of "rape culture" 
 
 > Rape culture is a concept which links rape and sexual violence to the culture of a society, and in which prevalent attitudes and practices normalize, excuse, tolerate, and even condone rape
 
@@ -26,13 +26,13 @@ Instead of fixating on the entire United States, I shifted focus to the city of 
 
 [Source](http://gis.chicagopolice.org/clearmap/crime_types.html)
 
-This isn't a perfect proxy for rape culture per se, but I hold that **it represents how the acceptance of rape has subtly seaped into our judicial system**. Rape is an act committed by a minority of people and affects a minority of the population (estimates show that approximately 0.3% of women in Chicago experience rape each year). Rape culture purports that rape is something that has become accepted by all of society; that is not something I can even come close to proving. 
+This isn't a perfect proxy for rape culture per se, but I hold that **it represents how the acceptance of rape has subtly seeped into our judicial system**. Rape is an act committed by a minority of people and affects a minority of the population (estimates show that approximately 0.3% of women in Chicago experience rape each year). Rape culture purports that rape is something that has become accepted by all of society; that is not something I can even come close to proving.
 
 To begin this analysis on how CSA cases manifest themselves in the judicial system, I viewed CSA in context to other crimes. How does CSA hold up in terms of arrest rate, that is, what percentage of reports lead to arrest.
 
 {% include posts/chicago/arrest_ratio.html %}
 
-The graphs above shows the arrest ratio over the past 15 years for each type of crime. CSA hovers around 17%, next to stalking and intimidation. Contrast that with crimes related to prostitution, liquor law violation and narcotics, a 99% arrest ratio. That's a pretty extraordinary number if you think about it. Nearly all reports lead to an arrest. How can it be that the CPD shows such vigor to arrest pot dealers (yes, marijuana is a [schedule 1 narcotic](http://www.drugs.com/article/csa-schedule-1.html)), yet barely arrests 15% of CSA reports?
+The graph above shows the arrest ratio over the past 14 years for each type of crime. CSA hovers around 17%, next to stalking and intimidation. Contrast that with crimes related to prostitution, liquor law violation and narcotics, a 99% arrest ratio. That's a pretty extraordinary number if you think about it. Nearly all reports lead to an arrest. How can it be that the CPD shows such vigor to arrest pot dealers (yes, marijuana is a [schedule 1 narcotic](http://www.drugs.com/article/csa-schedule-1.html)), yet barely arrests 15% of CSA reports?
 
 The way CSA manifests itself in the city is also noteworthy. Each report comes with a location descriptor. Did the crime happen in a house, or on a street? Below shows where CSA is happening.
 
@@ -40,7 +40,7 @@ The way CSA manifests itself in the city is also noteworthy. Each report comes w
 
 CSA often occurs by people known to the victim (need citation). It's no surprise to see many of the cases in a home or apartment. It still seems inexcusable though that only 20% percent of CSA reports in a residence or apartment lead to an arrest.
 
-At the very right of the graph, notice that 1.8% of CSA reports occurring in a hospital lead to arrest. Over the 15 years there have been 168 reports; 3 led to an arrest. First, wow. Second, that's a nontrivial amount of reports. How does that happen in a place that is supposed to be safe, a refuge?
+At the very right of the graph, notice that 1.8% of CSA reports occurring in a hospital lead to arrest. Over the past 14 years there have been 168 reports; 3 led to an arrest. First, wow. Second, that's a nontrivial amount of reports. How does that happen in a place that is supposed to be safe, a refuge?
 
 Trying to wrestle with this, I talked with Margaret Bassett from the University of Texas at Austin. [what does Bassett do?]. I posed to her this very question. How is it that hospitals are experiencing so many reports of CSA? The answer is logical; predators often target those that are vulnerable making hospitals ripe for CSA. Still, it doesn't explain why only 3 people were arrested.
 
@@ -53,8 +53,8 @@ Thus far, this article has focused on arrest ratio because the city of Chicago h
 1. Victim is assaulted
 2. Victim decides wether to report the crime
 3. Report leads to an arrest
-4. Assailent is prosecuted and a trial is conducted
-5. Assailent is sentenced to jail
+4. Assailant is prosecuted and a trial is conducted
+5. Assailant is sentenced to jail
 
 In each one of these steps the assailant has a very high chance of getting released. Siska meticulously documents each step of process, noting where the process is reliant on a single person to push the case forward. Unfortunately the numbers on these other parts of the system are a bit harder to grapple with. How do you count the number of unreported CSA? And the Chicago justice system doesn't release information about CSA trials, so it's impossible to know how many arrested actually were convicted. Siska's report attempted to unearth the data behind number of CSAs happening versus the number of CSAs reporting. To be clear, that's the number that determines step 1 to step 2 above. Siska uses numbers from the 2006 Kilpatrick study that finds that .74% of all women experienced a complete rape. That translates to approximately 8,141 women (18 or older) raped in Chicago, based on the 2000 population of Chicago. In 2001, there were 1,792 reports of CSA. Of those, 414 led to an arrest. In sum:
 
