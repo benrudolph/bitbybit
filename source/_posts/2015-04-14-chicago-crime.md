@@ -93,8 +93,7 @@ A decrease in reports shows that Chicago is actually getting worse at reporting 
 
 Looking at this data, it's hard to convince anyone that the judicial system is working in favor of CSA victims. Indeed, rape, while most likely non-intentionally, has found a way to avoid the grips of justice. The way the city handles criminal sexual assault is fundamentally broken. While no city has stood out as the leader in handling sex crimes, there are few examples that Chicago should consider. Baltimore, under a policy implemented a few years ago, now requires all reports of sexual assault be referred to detectives to follow up on the case. The policy in Baltimore caused reported rapes to rise 30% [^5]. In Chicago, a CPD officer interviews the victim and makes the decision on whether or not the report should be taken to a detective or simply dropped[^6]. Austin has made steps to promote a more victim centered approach towards sexual assault. One thing they've done is to give victims 48 hours before questioning due to the impacts of trauma on short term memory[^7]. Cities like San Diego, Kansas City and Grand Rapids have all made efforts to improve the interview process so that the victim feels more comfortable [^8]. There are other small adjustments that cities have been doing to improve this situation. 
 
-Whether you're a denizen of Chicago or elsewhere, the onus is on us to demand more sensible policies coming from our government, better education and trainings for our police, and greater transparency over sexual assault. This isn't an issue that will fix itself or go away over time. 
-
+Whether you're a denizen of Chicago or elsewhere, the onus is on us to demand more sensible policies coming from our government, better education and trainings for our police, and greater transparency over sexual assault.
 
 [^1]: http://gis.chicagopolice.org/clearmap/crime_types.html
 [^2]: https://rainn.org/get-information/statistics/sexual-assault-offenders
@@ -104,6 +103,3 @@ Whether you're a denizen of Chicago or elsewhere, the onus is on us to demand mo
 [^6]: http://www.chicagojustice.org/research/long-form-reports/felony-sex-crime-case-processing-report-analysis-recommendations/CJP_Felony_Sex_Crime_Case_Processing_Report_Analys.pdf
 [^7]: http://www.hrw.org/sites/default/files/reports/improvingSAInvest_0.pdf
 [^8]: http://www.hrw.org/sites/default/files/reports/improvingSAInvest_0.pdf
-
-
-http://www.ndaa.org/pdf/the_voice_vol_3_no_1_2009.pdf (false reports)
