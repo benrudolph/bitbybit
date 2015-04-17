@@ -24,7 +24,7 @@ Instead of wrestling with an analysis of the entire United States, I shifted foc
 
 > Any sexual act directed against another person, forcibly and/or against that person's will or not forcibly or against the person's will in instances where the victim is incapable of giving consent [^1].
 
-This isn't a perfect proxy for rape culture per se, but I hold that **over the past 15 years, acceptance of criminal sexual assault is not only prevalent in our judicial system, but also is becoming increasingly tolerated as time goes on**.
+This isn't a perfect proxy for rape culture per se, but I hold that **over the past 15 years, acceptance of criminal sexual assault is not only prevalent in the Chicago judicial system, but also is becoming increasingly tolerated as time goes on**.
 
 To begin this analysis on how CSA cases manifest themselves in the judicial system, I viewed CSA in context to other crimes. How does CSA hold up in terms of arrest rate (what percentage of reports lead to arrest)?
 
@@ -79,7 +79,7 @@ These correlations could give us insight into which areas need more attention fr
 
 ---
 
-Perhaps, through this analysis, we've been unfair to Chicago. I've been aggregating the data from 2001 to 2014. 2001 was a long time ago. The backstreet boys were popular, and I had no armpit hair. Maybe through the course of 14 years Chicago has begun to change, reverse its old ways. Here is the data broken down by year.
+It's clear that, inadvertently or not, criminal sexual assault is tolerated in the Chicago justice system. Up to this point, this has been an analysis of data aggregated from 2001 to 2014. In order to prove that the situation is actually worsening, I've disaggregated the data over time. Maybe through the course of 14 years Chicago has begun to change, reverse its old ways. Here is the data broken down by year.
 
 {% include posts/chicago/assaults_overtime.html %}
 
