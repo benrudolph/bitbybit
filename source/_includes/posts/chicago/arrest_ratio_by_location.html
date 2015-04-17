@@ -21,7 +21,7 @@
         adapter: 'google',
         library: {
           bar: {groupWidth: "30%"},
-          title: 'Criminal sexual assault arrest ratio by location (2001 - 2014)',
+          title: 'Criminal sexual assault arrest rate by location (2001 - 2014)',
           fontName: 'Lato',
           hAxis: { title: 'Location' },
         },
@@ -30,11 +30,11 @@
       ratioOpts = $.extend(true, {}, opts)
       ratioOpts.min = 0;
       ratioOpts.max = 30;
-      ratioOpts.library.vAxis = { title: 'Arrest Ratio (%)' };
+      ratioOpts.library.vAxis = { title: 'Arrest Rate (%)' };
 
       new Chartkick.ColumnChart(
           "ca-arrest-ratio-by-location-bar-ratio",
-          [{ name: 'Arrest ratio', data: data }],
+          [{ name: 'Arrest Rate', data: data }],
           ratioOpts
       );
 

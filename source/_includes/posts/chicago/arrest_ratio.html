@@ -22,24 +22,24 @@
         library: {
           legend: { position: "none" },
           bar: {groupWidth: "25"},
-          title: 'Arrest Ratio by Crime (2001 - 2014)',
+          title: 'Arrest Rate by Crime (2001 - 2014)',
           fontName: 'Lato',
-          vAxis: { title: 'Arrest Ratio (%)' },
+          vAxis: { title: 'Arrest Rate (%)' },
           hAxis: { title: 'Crime' },
         },
         colors: [Colors.BLACK, Colors.RED, Colors.BLACK]
       }
 
       var series = [{
-        name: 'Arrest Ratio',
+        name: 'Arrest Rate',
         data: beforeData
 
         }, {
-        name: 'Arrest Ratio',
+        name: 'Arrest Rate',
         data: highlightData
 
         }, {
-        name: 'Arrest Ratio',
+        name: 'Arrest Rate',
         data: afterData,
         }
       ]

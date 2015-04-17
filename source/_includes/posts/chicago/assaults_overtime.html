@@ -11,7 +11,7 @@
           { name: 'Arrests', data: arrests }
       ];
       var data2 = [
-          { name: 'Arrest ratio', data: ratio }
+          { name: 'Arrest rate', data: ratio }
       ];
 
 
@@ -30,8 +30,8 @@
           $.extend(true, {}, opts)
       );
 
-      opts.library.title = 'Criminal sexual assault arrest ratio over time';
-      opts.library.vAxis = { title: 'Arrest Ratio (%)' };
+      opts.library.title = 'Criminal sexual assault arrest rate over time';
+      opts.library.vAxis = { title: 'Arrest Rate (%)' };
       opts.colors = [Colors.BLACK]
 
       new Chartkick.LineChart(
