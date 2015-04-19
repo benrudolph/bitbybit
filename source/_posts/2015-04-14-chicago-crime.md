@@ -40,7 +40,7 @@ CSA often occurs by people known to the victim[^2]. It's no surprise to see many
 
 At the very right of the graph, notice that 1.8% of CSA reports occurring in a hospital lead to arrest. Over the past 14 years, there have been 168 reports; 3 led to an arrest. First, wow. Second, that's a substantial number of reports. How does that happen in a place that is supposed to be safe, a refuge?
 
-Trying to understand this phenomenon, I talked with Margaret Bassett from the University of Texas at Austin. [Bassett bio]. I posed to her this very question. How is it that hospitals are experiencing so many reports of CSA? The answer is logical; predators often target those that are vulnerable making hospitals ripe for CSA. Still, it doesn't explain why only 3 people were arrested.
+Trying to understand this phenomenon, I talked with Professor Margaret Bassett from the University of Texas at Austin. I posed to her this very question. How is it that hospitals are experiencing so many reports of CSA? The answer is logical; predators often target those that are vulnerable making hospitals ripe for CSA. Still, it doesn't explain why only 3 people were arrested.
 
 ---
 
