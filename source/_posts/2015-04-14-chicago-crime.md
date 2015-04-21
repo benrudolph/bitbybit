@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Chicago's losing battle with sexual assault"
+title: "Chicago's the losing battle with sexual assault"
 date: 2015-04-14 23:59:36 +0200
 excerpted: true
 comments: true
