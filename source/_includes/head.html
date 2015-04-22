@@ -58,7 +58,7 @@
 {% if page.image.feature %}
   <meta property="og:image" content="{{ page.image.feature }}">
 {% elsif page.image.thumb %}
-  <meta property="og:image" content="{{ page.image.thumb }}">
+  <meta property="og:image" content="{{ root_url }}{{ page.image.thumb }}">
 {% else %}
   <meta property="og:image" content="{{ site.logo }}">
 {% endif %}
