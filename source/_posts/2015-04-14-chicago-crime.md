@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Chicago's losing the battle with sexual assault"
+title: "Chicago is losing the battle with sexual assault"
 date: 2015-04-14 23:59:36 +0200
 excerpted: true
 comments: true
@@ -20,7 +20,7 @@ The term "rape culture" has long been part of the American vocabulary, dating ba
 
 It's proved to be an extremely divisive issue with people arguing that it permeates [every aspect of American culture](http://www.thenation.com/blog/172024/americas-rape-problem-we-refuse-admit-there-one) and those who claim it's a bunch of [overblown hype](http://time.com/30545/its-time-to-end-rape-culture-hysteria/). Both view points make valid points. However, I find that they do not delve into the data behind the issue (partially due to the lack of data) and rely more on anecdotal events. I decided to take a dive into what data we do have to discover more about how the United States handles/does not handle rape cases.
 
-Instead of wrestling with an analysis of the entire United States, I shifted focus to something more tractable, the city of Chicago. Chicago recently released 6 GB of crime data — every crime reported from 2001 until today. Each report comes with a type: theft, prostitution, stalking, to name a few. The report also notes whether that reported crime led to an arrest. In addition, there's other interesting meta data, including location and date. I used this data to inspect how the city of Chicago handles Criminal Sexual Assault (CSA), which the Chicago police department (CPD) defines as:
+Instead of wrestling with an analysis of the entire United States, I shifted focus to something more tractable, the city of Chicago. Chicago recently released 6 GB of [crime data](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2) — every crime reported from 2001 until today. Each report comes with a type: theft, prostitution, stalking, to name a few. The report also notes whether that reported crime led to an arrest. In addition, there's other interesting meta data, including location and date. I used this data to inspect how the city of Chicago handles Criminal Sexual Assault (CSA), which the Chicago police department (CPD) defines as:
 
 > Any sexual act directed against another person, forcibly and/or against that person's will or not forcibly or against the person's will in instances where the victim is incapable of giving consent [^1].
 
