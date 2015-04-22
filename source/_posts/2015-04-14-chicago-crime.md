@@ -6,6 +6,8 @@ excerpted: true
 comments: true
 published: true
 categories:
+image:
+    thumb: '/images/chicago/thumb.png'
 ---
 
 The term "rape culture" has long been part of the American vocabulary, dating back to [1970](http://en.wikipedia.org/wiki/Rape_culture#cite_note-Smith2004-11). However, in recent years, it has blown up on the web:
