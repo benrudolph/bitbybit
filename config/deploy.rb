@@ -7,6 +7,9 @@ set :scm_verbose, false
 
 # Set your repository URL
 set :repository, 'https://github.com/benrudolph/bitbybit.git'
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 # Set your application name
 set :application, "bitbybit"
