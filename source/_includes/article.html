@@ -39,7 +39,7 @@ the index page or a normal post page.
 <div class="entry-content">
   {{ post.content | excerpt }}
   {% capture excerpted %}{{ post.content | has_excerpt }}{% endcapture %}
-  {% if excerpted == 'true' %}
+  {% if excerpted == 'true' and not post.external_url %}
     <footer>
       <a class="btn" rel="full-article" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>
     </footer>
