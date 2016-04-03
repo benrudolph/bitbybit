@@ -22,7 +22,7 @@ What made this event so exciting was the level of one-up-manship displayed by Ka
 
 ### Breaking down a routine
 
-A gymnastics routine is made up of 10 skills. The goal is to compete your hardest 10 skills with the least amount of execution. There are many ways to get a deduction, including bending your legs, flexing your toes, or worst, falling off the equipment. Falling off is damning since it deducts a full point off your score. Your start value is made up of two scores: one for execution, or "how cleanly you did your routine", and the other is for difficult "how hard was your routine". Those two scores make up your final score.
+A gymnastics routine is made up of 10 skills. The goal is to compete your hardest 10 skills with the least amount of deduction. There are many ways to get a deduction, including bending your legs, flexing your toes, or worse, falling off the equipment. Falling off is damning since it deducts a full point off your score. Your start value is made up of two scores: one for execution, or "how cleanly you did your routine", and the other is for difficult, or "how hard was your routine". Those two scores make up your final score.
 
 An example of a fall:
 <p><iframe src="//giphy.com/embed/5UEcKbDJlFULm" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p>
@@ -48,22 +48,54 @@ If I were to do 10 A value skills and fulfill each category, I would receive a 3
 
 This would make for a total start value of 13.5, which is abysmal for Olympians, but probably impossibly difficult for those never doing gymnastics.
 
-### Kai
+{% include posts/london_gymnastics/start_values.html %}
 
-Let's look at Zou Kai, the 3rd place finisher. He has famously difficult routines, mainly for the way he combines tricks together to accumulate bonus. Here's his full set:
+### Kai - 16.366
+
+Let's look at Zou Kai, the 3rd place finisher. He has famously difficult routines, mainly for the way he combines tricks together to accumulate bonus. Back in 2012, the code of points had much more lenient set of rules for connection bonus. In the graph below, you can so how Kai exploits that to get a very high start value. He gets a full point back in bonus (blue color). For 2016, the rules are much stricter and he would only get a fraction of the bonus he received for this set.
+
+{% include posts/london_gymnastics/kai.html %}
+
+
+ Here's his full set. Notice how his legs separate fairly often. He received a full 1.566 in deductions which is on the higher side for Olympic gymnasts. However, his outrageous start value enables him to easily beat out other gymnasts even with the deductions.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0lvhtEi7LKE" frameborder="0" allowfullscreen></iframe>
 
 Here is his most difficult sequence:
 
-<iframe src="//giphy.com/embed/LS2PWevAs9Wi4" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<p><iframe src="//giphy.com/embed/LS2PWevAs9Wi4" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p>
 
 In this sequence, he does 4 tricks in combination: half tak, layout tkachev, rebalco to L grip, layout yaeger. That may sound like gibberish, but the important take away is that he does four tricks that are valued D, D (release move), E, D (release move) which is very difficult. Everytime he does a D trick to a D release move he gains 0.1 bonus. When he goes E trick to a release move, he gets 0.2 in bonus. In total that sequence gets him 0.4 + 0.4 + 0.5 + 0.4, for the values of the tricks, plus 0.3 in bonus to come to a total of 1.7!
 
-### Hambuchen
+[talk about score]
 
-Unphased, Hambuchen 
+### Hambuchen - 16.400
 
+
+Hambuchen has to hit a killer set to beat Kai. Even though Kai was slightly sloppy, his very high start value puts pressure on Hambuchen to be near perfect to beat him. Hambuchen starts a full 0.4 lower than Kai -- a large amount when 1st and 2nd is often determined by fractions of a tenth. This is Hambuchen's best event and 3rd Olympics -- very uncharacteristic for a gymnast. Hambuchen ends up inching out Kai by less than half of a tenth. For reference, flexing a toe is one tenth, so this indeed a very small margin of victory.
+
+{% include posts/london_gymnastics/hambuchen.html %}
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kMkdCYUpjzc" frameborder="0" allowfullscreen></iframe>
+
+This sequence, while it has fewer skills than Kai, is more difficult:
+
+<p><iframe src="//giphy.com/embed/g8m7OjkVVTypO" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p>
+
+Hambuchen crushes his set, and of course, there is no ? that rivals what that feels like:
+
+<p><iframe src="//giphy.com/embed/stVbWktdBKlWw" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p>
+
+### Zonderland (the Flying Dutchman)- 16.533
+
+Zonderland is one of my personal favorite gymnasts. His nicknames are as incredible as his gymnastics: "The Flying Dutchman" "The Lion of Lemmer" "Epic Zonderland". At this point, there is no one else in the line up who will be able to challenge Hambuchen.
+
+{% include posts/london_gymnastics/zonderland.html %}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pmdvIV-O8hY" frameborder="0" allowfullscreen></iframe>
+
+<p><iframe src="//giphy.com/embed/iaO62IBTBG2Q0" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p>
 
 
 
