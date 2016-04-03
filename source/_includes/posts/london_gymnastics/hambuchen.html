@@ -1,0 +1,142 @@
+<figure class="full-screen" id="hambuchen" style="height: 100px;"></figure>
+<figure class="full-screen" id="hambuchen-score" style="height: 100px;"></figure>
+<script>
+    $(document).ready(function() {
+        var BONUS_COLOR = '#43a2ca'
+        var C_COLOR = '#ffffb2';
+        var D_COLOR = '#fecc5c';
+        var E_COLOR = '#fd8d3c';
+        var F_COLOR = '#f03b20';
+        var G_COLOR = '#bd0026';
+        var data = [
+        {
+            name: "E Score",
+            data: [
+                ["Hambuchen",10],
+            ]
+        },
+        {
+            name: "Element groups",
+            data: [
+                ["Hambuchen", 2.5],
+            ]
+        },
+        {
+            name: "Adler with 1/2",
+            data: [
+                ["Hambuchen", 0.4],
+            ]
+        },
+        {
+            name: "Kolman",
+            data: [
+                ["Hambuchen", 0.6],
+            ]
+        },
+        {
+            name: "Layout Tkachev",
+            data: [
+                ["Hambuchen", 0.4],
+            ]
+        },
+        {
+            name: "Rybalko",
+            data: [
+                ["Hambuchen", 0.4],
+            ]
+        },
+        {
+            name: "D + D Bonus",
+            data: [
+                ["Hambuchen", 0.2],
+            ]
+        },
+        {
+            name: "Jaeger w/ full twist",
+            data: [
+                ["Hambuchen", 0.5],
+            ]
+        },
+        {
+            name: "D + E Bonus",
+            data: [
+                ["Hambuchen", 0.2],
+            ]
+        },
+        {
+            name: "Stalder Rybalko",
+            data: [
+                ["Hambuchen", 0.5],
+            ]
+        },
+        {
+            name: "Full Adler",
+            data: [
+                ["Hambuchen", 0.5],
+            ]
+        },
+        {
+            name: "Yamawaki",
+            data: [
+                ["Hambuchen", 0.4],
+            ]
+        },
+        {
+            name: "D + D Bonus",
+            data: [
+                ["Hambuchen", 0.2],
+            ]
+        },
+        {
+            name: "Quast",
+            data: [
+                ["Hambuchen", 0.3],
+            ]
+        },
+        {
+            name: "Double twisting double back",
+            data: [
+                ["Hambuchen", 0.5],
+            ]
+        },
+        ];
+        new Chartkick.BarChart('hambuchen', data, {
+            adapter: 'google',
+            stacked: true,
+            colors: ['#ddd', '#ccc', D_COLOR, F_COLOR, D_COLOR, D_COLOR, BONUS_COLOR, E_COLOR, BONUS_COLOR, E_COLOR, E_COLOR, D_COLOR, BONUS_COLOR, C_COLOR, E_COLOR],
+            library: {
+                chartArea: {
+                    width: '75%'
+                }
+            }
+        });
+
+
+        var data2 = [
+        {
+            name: "Start score",
+            data: [
+                ["Hambuchen", 17.5],
+            ]
+        },
+        {
+            name: "Actual Score",
+            data: [
+                ["Hambuchen", 16.4],
+            ]
+        },
+        ]
+        new Chartkick.BarChart('hambuchen-score', data2, {
+            adapter: 'google',
+            colors: ['#2b8cbe', '#e34a33'],
+            library: {
+                chartArea: {
+                    width: '75%'
+                }
+            }
+        });
+    });
+</script>
+
+
+

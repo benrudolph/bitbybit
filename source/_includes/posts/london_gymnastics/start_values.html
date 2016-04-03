@@ -1,0 +1,38 @@
+<figure class="full-screen" id="scores" style="height: 300px;"></figure>
+<script>
+    $(document).ready(function() {
+        var data = [
+        {
+            name: "E Score",
+            data: [
+                ["Zonderland",10],
+                ["Hambuchen",10],
+                ['Kai', 10],
+                ['Chenglong', 10],
+                ['Leyva', 10],
+                ['Horton', 10],
+                ['Garibov', 10],
+                ['Jihoon', 10]
+            ]
+        },
+        {
+            name: "D Score",
+            data: [
+                ["Zonderland",7.9],
+                ["Hambuchen",7.5],
+                ['Kai', 7.9],
+                ['Chenglong', 7.7],
+                ['Leyva', 7.2],
+                ['Horton', 6.8],
+                ['Garibov', 7.1],
+                ['Jihoon', 7.1]
+            ]
+        }];
+        new Chartkick.BarChart('scores', data, {
+            adapter: 'google',
+            stacked: true,
+            colors: ["pink", "#999"]
+        });
+    });
+</script>
+

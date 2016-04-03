@@ -1,0 +1,143 @@
+<figure class="full-screen" id="zonderland" style="height: 100px;"></figure>
+<figure class="full-screen" id="zonderland-score" style="height: 100px;"></figure>
+<script>
+    $(document).ready(function() {
+        var BONUS_COLOR = '#43a2ca'
+        var C_COLOR = '#ffffb2';
+        var D_COLOR = '#fecc5c';
+        var E_COLOR = '#fd8d3c';
+        var F_COLOR = '#f03b20';
+        var G_COLOR = '#bd0026';
+        var data = [
+        {
+            name: "E Score",
+            data: [
+                ["Zonderland",10],
+            ]
+        },
+        {
+            name: "Element groups",
+            data: [
+                ["Zonderland", 2.5],
+            ]
+        },
+        {
+            name: "Endo full spin",
+            data: [
+                ["Zonderland", 0.4],
+            ]
+        },
+        {
+            name: "Cassina",
+            data: [
+                ["Zonderland", 0.7],
+            ]
+        },
+        {
+            name: "Kovacs",
+            data: [
+                ["Zonderland", 0.4],
+            ]
+        },
+        {
+            name: "G + D Bonus",
+            data: [
+                ["Zonderland", 0.2],
+            ]
+        },
+        {
+            name: "Kolman",
+            data: [
+                ["Zonderland", 0.6],
+            ]
+        },
+        {
+            name: "D + F Bonus",
+            data: [
+                ["Zonderland", 0.2],
+            ]
+        },
+        {
+            name: "Stalder Rybalko",
+            data: [
+                ["Zonderland", 0.5],
+            ]
+        },
+        {
+            name: "Half Adler",
+            data: [
+                ["Zonderland", 0.4],
+            ]
+        },
+        {
+            name: "Gaylord 2",
+            data: [
+                ["Zonderland", 0.5],
+            ]
+        },
+        {
+            name: "D + E Bonus",
+            data: [
+                ["Zonderland", 0.2],
+            ]
+        },
+        {
+            name: "Full Adler",
+            data: [
+                ["Zonderland", 0.5],
+            ]
+        },
+        {
+            name: "Quast",
+            data: [
+                ["Zonderland", 0.3],
+            ]
+        },
+        {
+            name: "Double twisting double back",
+            data: [
+                ["Zonderland", 0.5],
+            ]
+        },
+        ];
+        new Chartkick.BarChart('zonderland', data, {
+            adapter: 'google',
+            stacked: true,
+            colors: ['#ddd', '#ccc', D_COLOR, G_COLOR, D_COLOR, BONUS_COLOR, F_COLOR, BONUS_COLOR, E_COLOR, D_COLOR, E_COLOR, BONUS_COLOR, E_COLOR, C_COLOR, E_COLOR],
+            library: {
+                chartArea: {
+                    width: '75%'
+                }
+            }
+        });
+
+
+        var data2 = [
+        {
+            name: "Start score",
+            data: [
+                ["Zonderland", 17.9],
+            ]
+        },
+        {
+            name: "Actual Score",
+            data: [
+                ["Zonderland", 16.533],
+            ]
+        },
+        ]
+        new Chartkick.BarChart('zonderland-score', data2, {
+            adapter: 'google',
+            colors: ['#2b8cbe', '#e34a33'],
+            library: {
+                chartArea: {
+                    width: '75%'
+                }
+            }
+        });
+    });
+</script>
+
+
+
+

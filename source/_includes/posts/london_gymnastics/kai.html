@@ -1,0 +1,154 @@
+<figure class="full-screen" id="kai" style="height: 100px;"></figure>
+<figure class="full-screen" id="kai-score" style="height: 100px;"></figure>
+<script>
+    $(document).ready(function() {
+        var BONUS_COLOR = '#43a2ca'
+        var C_COLOR = '#ffffb2';
+        var D_COLOR = '#fecc5c';
+        var E_COLOR = '#fd8d3c';
+        var F_COLOR = '#f03b20';
+        var G_COLOR = '#bd0026';
+        var data = [
+        {
+            name: "E Score",
+            data: [
+                ["Kai",10],
+            ]
+        },
+        {
+            name: "Element groups",
+            data: [
+                ["Kai", 2.5],
+            ]
+        },
+        {
+            name: "Adler with 1/2",
+            data: [
+                ["Kai", 0.4],
+            ]
+        },
+        {
+            name: "Layout Tkachev",
+            data: [
+                ["Kai", 0.4],
+            ]
+        },
+        {
+            name: "D + D Bonus",
+            data: [
+                ["Kai", 0.2],
+            ]
+        },
+        {
+            name: "Rybalko",
+            data: [
+                ["Kai", 0.4],
+            ]
+        },
+        {
+            name: "D + D Bonus",
+            data: [
+                ["Kai", 0.2],
+            ]
+        },
+        {
+            name: "Layout jaeger",
+            data: [
+                ["Kai", 0.4],
+            ]
+        },
+        {
+            name: "D + D Bonus",
+            data: [
+                ["Kai", 0.2],
+            ]
+        },
+        {
+            name: "Stalder Rybalko",
+            data: [
+                ["Kai", 0.5],
+            ]
+        },
+        {
+            name: "Endo full spin",
+            data: [
+                ["Kai", 0.4],
+            ]
+        },
+        {
+            name: "Jaeger w/ full twist",
+            data: [
+                ["Kai", 0.5],
+            ]
+        },
+        {
+            name: "D + F Bonus",
+            data: [
+                ["Kai", 0.2],
+            ]
+        },
+        {
+            name: "Full Adler",
+            data: [
+                ["Kai", 0.5],
+            ]
+        },
+        {
+            name: "Yamawaki",
+            data: [
+                ["Kai", 0.4],
+            ]
+        },
+        {
+            name: "E + D Bonus",
+            data: [
+                ["Kai", 0.2],
+            ]
+        },
+        {
+            name: "Double twisting double back",
+            data: [
+                ["Kai", 0.5],
+            ]
+        },
+
+        ];
+        new Chartkick.BarChart('kai', data, {
+            adapter: 'google',
+            stacked: true,
+            colors: ['#ddd', '#ccc', D_COLOR, D_COLOR, BONUS_COLOR, D_COLOR, BONUS_COLOR, D_COLOR, BONUS_COLOR, E_COLOR, D_COLOR, E_COLOR, BONUS_COLOR, E_COLOR, D_COLOR, BONUS_COLOR, E_COLOR ],
+            library: {
+                chartArea: {
+                    width: '75%'
+                }
+            }
+        });
+
+
+        var data2 = [
+        {
+            name: "Start score",
+            data: [
+                ["Kai", 17.9],
+            ]
+        },
+        {
+            name: "Actual Score",
+            data: [
+                ["Kai", 16.333],
+            ]
+        },
+        ]
+        new Chartkick.BarChart('kai-score', data2, {
+            adapter: 'google',
+            colors: ['#2b8cbe', '#e34a33'],
+            library: {
+                chartArea: {
+                    width: '75%'
+                }
+            }
+        });
+    });
+</script>
+
+
