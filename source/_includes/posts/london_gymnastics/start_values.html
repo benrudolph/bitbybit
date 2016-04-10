@@ -1,37 +1,62 @@
+<h4>Start score (the higher the better)</h3>
 <figure class="full-screen" id="scores" style="height: 300px;"></figure>
+<h4>Deductions accumulated (the lower the better)</h3>
+<figure class="full-screen" id="deductions" style="height: 300px;"></figure>
 <script>
     $(document).ready(function() {
         var data = [
         {
             name: "E Score",
             data: [
-                ["Zonderland",10],
-                ["Hambuchen",10],
-                ['Kai', 10],
+                ["Zonderland (1st)",10],
+                ['Kai (3rd)', 10],
                 ['Chenglong', 10],
+                ["Hambuchen (2nd)",10],
                 ['Leyva', 10],
-                ['Horton', 10],
                 ['Garibov', 10],
-                ['Jihoon', 10]
+                ['Jihoon', 10],
+                ['Horton', 10],
             ]
         },
         {
             name: "D Score",
             data: [
-                ["Zonderland",7.9],
-                ["Hambuchen",7.5],
-                ['Kai', 7.9],
+                ["Zonderland (1st)",7.9],
+                ['Kai (3rd)', 7.9],
                 ['Chenglong', 7.7],
+                ["Hambuchen (2nd)",7.5],
                 ['Leyva', 7.2],
-                ['Horton', 6.8],
                 ['Garibov', 7.1],
-                ['Jihoon', 7.1]
+                ['Jihoon', 7.1],
+                ['Horton', 6.8],
             ]
         }];
         new Chartkick.BarChart('scores', data, {
             adapter: 'google',
             stacked: true,
-            colors: ["pink", "#999"]
+            colors: ["#7fc97f", "#386cb0"]
+        });
+
+        var data2 = [
+        {
+            name: "Deductions",
+            data: [
+                ["Hambuchen (2nd)",10 - 8.9],
+                ["Zonderland (1st)",10 - 8.633],
+                ['Leyva', 10 - 8.633],
+                ['Chenglong', 10 - 8.566],
+                ['Kai (3rd)', 10 - 8.466],
+                ['Garibov', 10 - 8.233],
+                ['Jihoon', 10 - 8.033],
+                ['Horton', 10 - 8.033],
+            ]
+        }
+        ];
+
+        new Chartkick.BarChart('deductions', data2, {
+            adapter: 'google',
+            stacked: true,
+            colors: ["#f03b20"]
         });
     });
 </script>
