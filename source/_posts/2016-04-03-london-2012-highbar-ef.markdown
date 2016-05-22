@@ -9,6 +9,8 @@ It's 2016 and people are about to start gearing up to watch gymnastics, even men
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/U9I9ja_1bkw" frameborder="0" allowfullscreen></iframe>
 
+<!-- more -->
+
 The video features 6 gymnasts who competed in this order:
 
 1. Danell Leyva (USA)
