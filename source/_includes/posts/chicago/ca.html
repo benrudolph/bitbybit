@@ -9,13 +9,13 @@
         fontSize = "16px",
         scale = 29000;
 
-    var greens = d3.scale.quantize()
+    var greens = d3.scaleQuantize()
         .domain([0, 1])
         .range(colorbrewer.Greens[9])
-    var grays = d3.scale.quantize()
+    var grays = d3.scaleQuantize()
         .domain([0, 1])
         .range(colorbrewer.Greys[9])
-    var blues = d3.scale.quantize()
+    var blues = d3.scaleQuantize()
         .domain([0, 1])
         .range(colorbrewer.BuPu[9])
 
@@ -130,12 +130,12 @@
 
       var features = topojson.feature(ca, ca.objects.ca).features;
 
-      var projection = d3.geo.mercator()
+      var projection = d3.geoMercator()
         .scale(scale)
         .center([-87.8, 41.9])
         .translate([width / 2, height / 2]);
 
-      var path = d3.geo.path()
+      var path = d3.geoPath()
         .projection(projection);
 
       var caSelection = svg.selectAll('.ca-blank').data(features);
@@ -148,22 +148,22 @@
       d3.csv('/data/chicago/assault_byca.csv', function(err, data) {
         if (err) return console.error(err);
 
-        var i = d3.scale.linear()
+        var i = d3.scaleLinear()
           .domain([0, d3.max(data, function(d) { return +d.count })])
           .range([0, 1])
-        var normalized = d3.scale.linear()
+        var normalized = d3.scaleLinear()
           .domain([0, d3.max(data, function(d) { return +d.count / +d.total })])
           .range([0, 1])
-        var ratio = d3.scale.linear()
+        var ratio = d3.scaleLinear()
           .domain([0, d3.max(data, function(d) { return +d.arrestRatio })])
           .range([0, 1])
-        var income = d3.scale.log()
+        var income = d3.scaleLog()
           .domain(d3.extent(data, function(d) { return +d.perCapitaIncome }))
           .range([0, 1])
 
         caSelection = assaultNormSvg.selectAll('.ca-assaults-norm').data(features);
-        caSelection.enter().append("path");
-        caSelection.attr('class', function(d) { return 'ca ca-assaults-norm' })
+        caSelection.enter().append("path")
+          .attr('class', function(d) { return 'ca ca-assaults-norm' })
           .attr("d", path)
           .attr("original-title", function(ca) {
             var d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
@@ -185,9 +185,11 @@
           })
 
         caSelection = assaultRatioSvg.selectAll('.ca-assaults-ratio').data(features);
-        caSelection.enter().append("path");
-        caSelection.attr('class', function(d) { return 'ca ca-assaults-ratio' })
-          .attr("d", path)
+        caSelection.enter().append("path")
+          .attr('class', function(d) { return 'ca ca-assaults-ratio' })
+          .attr("d", function(d) { 
+              return path(d);
+           })
           .attr("original-title", function(ca) {
             d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
             if (!d)
@@ -209,8 +211,8 @@
 
 
         caSelection = assaultIncomeSvg.selectAll('.ca-income').data(features);
-        caSelection.enter().append("path");
-        caSelection.attr('class', function(d) { return 'ca ca-income' })
+        caSelection.enter().append("path")
+          .attr('class', function(d) { return 'ca ca-income' })
           .attr("d", path)
           .attr("original-title", function(ca) {
             d = _.find(data, function(d) { return d.ca === ca.properties.AREA_NUMBE })
