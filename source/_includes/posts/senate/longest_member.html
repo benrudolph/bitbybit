@@ -43,47 +43,43 @@
 
     d3.csv('/data/us_sen_members.csv', function(err, members) {
       //members = _.filter(members, function(d) { return d.state === 'WV' });
-      var y = d3.scale.ordinal()
+      var y = d3.scaleBand()
 
-      var x = d3.scale.ordinal()
+      var x = d3.scalePoint()
         .domain(_.chain(members).pluck('congress').uniq().value())
-        .rangePoints([0, width])
+        .range([0, width])
 
-      var fixedX = d3.scale.linear()
+      var fixedX = d3.scaleLinear()
         .domain(d3.extent(_.chain(members).pluck('congress').uniq().value(), function(d) {
           return +d;
         }))
         .range([0, $('.entry-content p ').innerWidth()])
 
-      var xVM = d3.scale.ordinal()
+      var xVM = d3.scalePoint()
         .domain(_.times(13, function(d) { return d + 101 }))
-        .rangePoints([0, width])
+        .range([0, width])
 
-      var yVM = d3.scale.linear()
+      var yVM = d3.scaleLinear()
         .domain([0, 100])
         .range([500, 0]);
 
-      var yAxis = d3.svg.axis()
+      var yAxis = d3.axisLeft()
         .scale(y)
-        .orient('left')
 
-      var yVMAxis = d3.svg.axis()
+      var yVMAxis = d3.axisLeft()
         .scale(yVM)
-        .orient('left')
 
-      var xAxis = d3.svg.axis()
+      var xAxis = d3.axisTop()
         .scale(x)
-        .orient('top')
 
       if (isMobile) {
         xAxis.tickValues(d3.extent(x.domain(), function(d) { return +d }))
       }
 
-      var xVMAxis = d3.svg.axis()
+      var xVMAxis = d3.axisBottom()
         .scale(xVM)
-        .orient('bottom')
 
-      var path = d3.svg.line()
+      var path = d3.line()
         .x(function(d) { return xVM(d.congress); })
         .y(function(d) {
           return yVM(d.value);
@@ -141,8 +137,7 @@
           return name === (d.first_name + ' ' + d.last_name).toLowerCase()
         })
 
-        var svg = d3.select(ele);
-        svg.append('path')
+        var svg = d3.select(ele).append('path')
           .attr('class', 'streak ' + d.party)
           .attr('transform', 'translate(0, 10)')
           .call(renderComet, fixedX(d.end) - fixedX(d.start));
@@ -170,7 +165,7 @@
       function renderStreaks() {
 
         y.domain(_.chain(members).pluck('state').uniq().filter(queryFilter).value().sort())
-        y.rangeBands([0, bandHeight * y.domain().length])
+        y.range([0, bandHeight * y.domain().length])
 
         var cmp = function(a, b) {
           var aStreaks = _.where(data, { state: a });
@@ -209,37 +204,37 @@
           });
 
 
-        var streaks = g.selectAll('.streak').data(filtered);
-        streaks.enter().append('path');
-        streaks.attr('class', function(d) {
-            var classList = 'streak ' + d.party
-            var name = d.first_name.toLowerCase() + ' ' + d.last_name.toLowerCase()
-            if (query && name.indexOf(query.toLowerCase()) !== -1)
-              classList += ' queried'
-            return classList;
-          })
-          .attr('original-title', function(d) {
-            var html = '<h1>' + d.first_name + ' ' + d.last_name + ' (' + d.party + ')' + '</h1>' +
-              '<h2>Streak length: ' + ((d.end - d.start) + 1) + ' sessions </h2>' +
-              '<p>Sessions: ' + d.start + ' - ' + d.end + '</p>';
-
-            return html;
-
-          })
-          .transition()
-          .duration(500)
-          .attr("transform", function(d) {
-              var yTranslate = y(d.state) + y.rangeBand() / 2;
-              var decimal = .25
-              if (d.isTop) {
-                yTranslate -= (decimal * y.rangeBand())
-              } else {
-                yTranslate += (decimal * y.rangeBand())
-              }
-
-              return "translate(" + x(d.start) + ", " + yTranslate + ")"
+        var streaks = g.selectAll('.streak').data(filtered)
+            .enter().append('path')
+            .attr('class', function(d) {
+              var classList = 'streak ' + d.party
+              var name = d.first_name.toLowerCase() + ' ' + d.last_name.toLowerCase()
+              if (query && name.indexOf(query.toLowerCase()) !== -1)
+                classList += ' queried'
+              return classList;
             })
-          .call(renderComet, function(d) { return x(d.end) - x(d.start); })
+            .attr('original-title', function(d) {
+              var html = '<h1>' + d.first_name + ' ' + d.last_name + ' (' + d.party + ')' + '</h1>' +
+                '<h2>Streak length: ' + ((d.end - d.start) + 1) + ' sessions </h2>' +
+                '<p>Sessions: ' + d.start + ' - ' + d.end + '</p>';
+
+              return html;
+
+            })
+            .transition()
+            .duration(500)
+            .attr("transform", function(d) {
+                var yTranslate = y(d.state) + y.bandwidth() / 2;
+                var decimal = .25
+                if (d.isTop) {
+                  yTranslate -= (decimal * y.bandwidth())
+                } else {
+                  yTranslate += (decimal * y.bandwidth())
+                }
+
+                return "translate(" + x(d.start) + ", " + yTranslate + ")"
+              })
+            .call(renderComet, function(d) { return x(d.end) - x(d.start); })
         streaks.exit().remove()
 
         var sorted = _.sortBy(data, function(d) { return -streakLength(d) }).slice(0, nTop);
@@ -254,7 +249,7 @@
             .attr('dy', '0em')
             .attr('x', 20)
             .attr('y', function(d) {
-              return y(d) + y.rangeBand() - 2;
+              return y(d) + y.range() - 2;
             })
             .text(function(d) {
               return states[d] + ' joins the USA';
@@ -275,7 +270,7 @@
           .attr('y', function(d) {
               var yTranslate = y(d.state);
               if (!d.isTop) {
-                yTranslate += (1 * y.rangeBand() / 2)
+                yTranslate += (1 * y.bandwidth() / 2)
               }
               return yTranslate;
             })
@@ -292,8 +287,8 @@
           .duration(500)
           .attr('x1', function(d) { return 0 })
           .attr('x2', function(d) { return width })
-          .attr('y1', function(d) { return y(d) + y.rangeBand() })
-          .attr('y2', function(d) { return y(d) + y.rangeBand() });
+          .attr('y1', function(d) { return y(d) + y.bandwidth() })
+          .attr('y2', function(d) { return y(d) + y.bandwidth() });
 
         separators.exit().remove()
 
