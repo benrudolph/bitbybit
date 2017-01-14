@@ -204,8 +204,9 @@
           });
 
 
-        var streaks = g.selectAll('.streak').data(filtered)
-            .enter().append('path')
+        var streaks = g.selectAll('.streak').data(filtered);
+        streaks.enter().append('path')
+            .merge(streaks)
             .attr('class', function(d) {
               var classList = 'streak ' + d.party
               var name = d.first_name.toLowerCase() + ' ' + d.last_name.toLowerCase()
@@ -231,6 +232,7 @@
                 } else {
                   yTranslate += (decimal * y.bandwidth())
                 }
+                console.log(yTranslate);
 
                 return "translate(" + x(d.start) + ", " + yTranslate + ")"
               })
