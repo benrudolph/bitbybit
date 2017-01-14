@@ -232,8 +232,6 @@
                 } else {
                   yTranslate += (decimal * y.bandwidth())
                 }
-                console.log(yTranslate);
-
                 return "translate(" + x(d.start) + ", " + yTranslate + ")"
               })
             .call(renderComet, function(d) { return x(d.end) - x(d.start); })
