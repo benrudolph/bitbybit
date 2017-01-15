@@ -1,0 +1,19 @@
+<script>
+$(document).ready(function() {
+    d3.csv('/data/billionaires/billionaires.csv', function(data) {
+        var genderGroups = _.groupBy(data, function(d) { return d.gender; }),
+            femaleNetworth,
+            maleNetworth;
+
+        femaleNetworth = _.reduce(genderGroups.female, function(sum, d) {
+          return sum + +d.networthusbillion
+        }, 0);
+        maleNetworth = _.reduce(genderGroups.male, function(sum, d) {
+          return sum + +d.networthusbillion
+        }, 0);
+
+        console.log(femaleNetworth);
+        console.log(maleNetworth);
+    });
+});
+</script>

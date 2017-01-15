@@ -1,0 +1,24 @@
+<div id="billionaires-female-proportions" class="full-screen">
+  <svg width="600" height="600"></svg>
+</div>
+<script>
+$(document).ready(function() {
+  d3.csv('/data/billionaires/billionaires.csv', function(data) {
+    var allFemaleBillionaires = _.filter(data, function(d) { return d.gender === 'female'; });
+    var svg = d3.select("#billionaires-female-proportions svg"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height")
+
+    var circles = svg.selectAll('.billionaire')
+      .data(allFemaleBillionaires);
+
+    circles.enter().append('circle')
+        .attr('class', 'billionaire')
+        .attr('cx', function(d, i) { return i * 32; })
+        .attr('r', 5)
+        .attr('cy', 0)
+
+  });
+});
+</script>
+

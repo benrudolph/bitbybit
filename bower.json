@@ -1,0 +1,8 @@
+{
+  "name": "BitByBit",
+  "version": "0.0.1",
+  "dependencies": {
+    "d3-tip": "~0.7.1"
+  },
+  "private": true
+}

@@ -1,0 +1,47 @@
+<div id="billionaires-by-industry" class="full-screen"></div>
+<script>
+$(document).ready(function() {
+  d3.csv('/data/billionaires/billionaires.csv', function(data) {
+
+      var genderGroups = _.groupBy(data, function(d) { return d.gender; });
+      var totalIndustryGroups = _.groupBy(data, function(d) { return d.industry; });
+
+      var opts = {
+        adapter: 'google',
+        stacked: true,
+        library: {
+          legend: { position: "none" },
+          bar: {groupWidth: "25"},
+          title: 'Percentage of women billionaires by industry',
+          fontName: 'Lato',
+          vAxis: { title: 'Percentage' },
+          hAxis: { title: 'Industry' },
+        },
+        colors: [Colors.RED, Colors.BLUE]
+      };
+
+      var series = _.map(genderGroups, function(data, gender) {
+        var industryGroups = _.groupBy(data, function(d) { return d.industry; });
+        var seriesData = _.map(industryGroups, function(d, industry) {
+            var name = industry === '0' ? 'Unknown' : industry;
+            return [name.toTitleCase(), d.length / totalIndustryGroups[industry].length];
+        });
+        seriesData = _.sortBy(seriesData, function(d) {
+            if (gender === 'male') {
+              return d[1];
+            }
+            return 1 - d[1];
+        });
+        var datum = {
+          name: gender.toTitleCase(),
+          data: seriesData,
+        };
+        return datum;
+      });
+      console.log(series);
+
+      new Chartkick.ColumnChart("billionaires-by-industry", series, $.extend(true, {}, opts));
+  });
+});
+</script>
+
