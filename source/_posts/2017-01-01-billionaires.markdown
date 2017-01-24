@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The billionaire gender divide"
-date: 2017-01-01 12:39:11 -0500
+date: 2017-01-24 12:39:11 -0500
 comments: true
 categories: 
 ---
