@@ -24,7 +24,7 @@ $(document).ready(function() {
         var industryGroups = _.groupBy(data, function(d) { return d.industry; });
         var seriesData = _.map(industryGroups, function(d, industry) {
             var name = industry === '0' ? 'Unknown' : industry;
-            return [name.toTitleCase(), d.length / totalIndustryGroups[industry].length];
+            return [name.toTitleCase(), (100 * (d.length / totalIndustryGroups[industry].length)).toFixed(2)];
         });
         seriesData = _.sortBy(seriesData, function(d) {
             if (gender === 'male') {

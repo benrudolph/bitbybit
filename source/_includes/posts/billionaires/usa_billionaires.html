@@ -8,6 +8,7 @@ $(function() {
           root,
           svg,
           nodes,
+          tip,
           genderColor,
           pack;
 
@@ -16,6 +17,17 @@ $(function() {
       pack = d3.pack()
           .size([diameter, diameter])
           .padding(1.5);
+
+      tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+        /// industry tooltip
+        if (d.height === 1) {
+          return '<h1>' + d.data.name + '</h1>';
+        }
+        var color = d.data.gender === 'male' ? Colors.BLUE : Colors.RED;
+        return '<h1 style="color: ' + color + '">' + d.data.name + '</h1>' +
+          '<h3>$' + d.value.toFixed(2) + ' billion</h3>' +
+          '<p>' + d.data.age + ' years old</p>';
+      });
 
       root = d3.hierarchy(hierarchyTransform(data))
         .sum(function(d) { return +d.networthusbillion })
@@ -47,9 +59,24 @@ $(function() {
               }
           })
 
+      nodes.call(tip);
       nodes.on('click', function(d) {
           console.log(d);
-      });
+      })
+      .on('mouseover', function(d) {
+          if (!d.children) {
+            tip.show(d);
+          } else if (d.height === 1) {
+            tip.show(d);
+          }
+      })
+      .on('mouseout', function(d) { 
+          if (!d.children) {
+            tip.hide(d)
+          } else if (d.height === 1) {
+            tip.hide(d);
+          }
+      })
 
     });
 
