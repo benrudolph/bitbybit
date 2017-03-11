@@ -82,17 +82,17 @@ $(function() {
 
 
       // JOIN new data with old elements.
-      var layer = g.selectAll(".layer")
-        .data(stackData, function(d) { return d.year; });
+      var layer = g.selectAll(".area")
+        .data(stackData, function(d, i) {
+            return d.key;
+        });
 
       // UPDATE old elements present in new data.
       layer
-        .selectAll('.area')
         .transition(t)
           .attr("d", area)
       // ENTER new elements present in new data.
-      layer.enter().append("g")
-        .attr("class", "layer")
+      layer.enter()
         .append('path')
         .attr('class', 'area')
       .transition(t)
@@ -102,12 +102,13 @@ $(function() {
       layer.exit()
           .remove()
 
-      d3.selectAll('.layer')
+      d3.selectAll('.area')
         .call(tip)
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
 
       d3.select('.axis--y')
+        .transition(t)
           .call(yAxis);
 
     }
