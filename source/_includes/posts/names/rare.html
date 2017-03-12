@@ -1,4 +1,4 @@
-<input type="text" id="query-rare" placeholder="Type a name"/>
+<input type="text" id="query-rare" placeholder="Filter names"/>
 <div id="names-rare" class="full-screen">
   <svg id="name-rare-graph" width="800" height="800"></svg>
 </div>
@@ -30,8 +30,20 @@ $(function() {
       var names = g.selectAll('.name')
         .data(data, function(d) { return d.name });
 
+      names.exit()
+        .transition(t)
+          .delay(function(d, i) { return i; })
+          .attr("x", function(d, i) {
+            return x(nColumns - 1);
+          })
+          .attr('y', function(d, i) {
+            return y(nRows - 1);
+          })
+          .remove()
+
       names
         .transition(t)
+          .delay(function(d, i) { return i; })
           .attr("x", function(d, i) {
             return x(Math.floor(i / nRows));
           })
@@ -41,6 +53,8 @@ $(function() {
 
       names.enter()
         .append('text')
+        .transition(t)
+          .delay(function(d, i) { return i; })
         .attr('class', 'name')
         .attr('x', function(d, i) {
           return x(Math.floor(i / nRows));
@@ -49,11 +63,6 @@ $(function() {
           return y(i % nRows);
         })
         .text(function(d) { return d.name });
-
-      names.exit()
-        .transition(t)
-        .attr('fill-opacity', 0)
-        .remove()
 
     }
 
