@@ -8,3 +8,4 @@ categories:
 
 {% include posts/names/surfer.html %}
 {% include posts/names/map.html %}
+{% include posts/names/rare.html %}
