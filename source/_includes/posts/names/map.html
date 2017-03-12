@@ -1,3 +1,4 @@
+<input type="text" id="map-query" placeholder="Type a name"/>
 <div id="names-map" class="full-screen">
   <svg id="name-map-graph" width="1000" height="600"></svg>
 </div>
@@ -8,6 +9,9 @@ $(function() {
         svg = d3.select("#name-map-graph"),
         margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = svg.attr("width") - margin.left - margin.right,
+        startName = 'Benjamin',
+        groups,
+        groupsByState,
         height = svg.attr("height") - margin.top - margin.bottom;
 
     var projection = d3.geoAlbersUsa();
@@ -35,29 +39,39 @@ $(function() {
 
       d3.csv('/data/names/names_by_state.csv', function(data) {
         rawData = data;
-        var groups = _.groupBy(data, function(d) { return d.name });
-        var groupsToState = {}
+        groups = _.groupBy(data, function(d) { return d.name });
+        groupsToState = {}
         _.each(groups, function(states, name) {
           groupsToState[name] = _.groupBy(states, function(d) { return d.state });
         });
 
-        var selectedName = 'Claire';
-        // Update scale for name
-        scale.domain([0, d3.max(groups[selectedName], function(d) { return d.percentage })])
+        var $input = $("#map-query");
+        new Awesomplete($input[0], {
+            list: _.keys(groups),
+        });
 
-        // Update all the colors in the map
-        d3.selectAll('.state')
-          .attr('fill', function(d) {
-            if (!groupsToState[selectedName] ||
-                !groupsToState[selectedName][d.properties.STUSPS]
-              ) {
-              return '#fff'
-            }
-            return color(scale(+groupsToState[selectedName][d.properties.STUSPS][0].percentage));
-          });
+        $input.on('awesomplete-selectcomplete', function(e) {
+          update($(e.currentTarget).val());
+        })
 
-
+        update(startName);
       });
     })
+
+    function update(selectedName) {
+      // Update scale for name
+      scale.domain([0, d3.max(groups[selectedName], function(d) { return d.percentage })])
+
+      // Update all the colors in the map
+      d3.selectAll('.state')
+        .attr('fill', function(d) {
+          if (!groupsToState[selectedName] ||
+              !groupsToState[selectedName][d.properties.STUSPS]
+            ) {
+            return '#fff'
+          }
+          return color(scale(+groupsToState[selectedName][d.properties.STUSPS][0].percentage));
+        });
+    }
 });
 </script>
