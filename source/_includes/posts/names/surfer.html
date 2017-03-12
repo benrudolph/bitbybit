@@ -12,7 +12,7 @@ $(function() {
 
     var x = d3.scaleLinear().range([0, width]),
         y = d3.scaleLinear().domain([0, 1]).range([height, 0]),
-        z = d3.scaleOrdinal(d3.schemeCategory10);
+        z = d3.scaleOrdinal(d3.schemeCategory20c);
 
     var stack = d3.stack();
 
@@ -36,13 +36,13 @@ $(function() {
     x.domain(['1950', '2005'])
     var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    var keys, transformed, totalPercentages;
+    var keys, transformed, totalPercentages, groups;
     d3.csv('/data/names/names_final.csv', function(data) {
       rawData = data;
       totalPercentages = {};
 
       keys = _.uniq(_.map(data, function(d) { return d.name }));
-      var groups = _.groupBy(data, function(d) { return d.year })
+      groups = _.groupBy(data, function(d) { return d.year })
       _.each(groups, function(values, year) {
         totalPercentages[year] = _.reduce(values, function(memo, d) {
           return memo + +d.percentage
@@ -106,6 +106,10 @@ $(function() {
         .call(tip)
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
+        .on('click', function(d) {
+            var data = transform(rawData, keys, d.key, true);
+            update(data);
+        });
 
       d3.select('.axis--y')
         .transition(t)
@@ -113,16 +117,17 @@ $(function() {
 
     }
 
-    function transform(data, keys, query) {
+    function transform(data, keys, query, exact) {
       var transform = {};
       var zeros = _.map(keys, function() { return 0 })
-      var groups = _.groupBy(data, function(d) { return d.year })
       _.each(groups, function(values, key) {
           transform[key] = _.object(keys, zeros);
           transform[key].year = key;
           values = _.filter(values, function(d) {
-            if (query) {
+            if (query && !exact) {
               return d.name.toLowerCase().startsWith(query.toLowerCase());
+            } else if (query && exact) {
+              return d.name.toLowerCase() === query.toLowerCase();
             }
             return true;
           });
