@@ -36,7 +36,7 @@ $(function() {
     x.domain(['1950', '2005'])
     var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    var keys, transformed, totalPercentages, groups;
+    var keys, transformed, totalPercentages, groups, selectedName;
     d3.csv('/data/names/names_final.csv', function(data) {
       rawData = data;
       totalPercentages = {};
@@ -107,7 +107,14 @@ $(function() {
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         .on('click', function(d) {
-            var data = transform(rawData, keys, d.key, true);
+            var data;
+            if (d.key === selectedName) {
+              // Erase selection
+              selectedName = null;
+            } else {
+              selectedName = d.key;
+            }
+            data = transform(rawData, keys, selectedName, true);
             update(data);
         });
 
