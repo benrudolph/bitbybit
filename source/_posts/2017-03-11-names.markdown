@@ -9,7 +9,11 @@ categories: data
 > There are only two hard things in Computer Science: cache invalidation and naming things
 >  - Phil Karlton
 
-Naming things is hard. So is naming humans. In fact we don't even attempt to give humans descriptive names. Else I would go by ProgrammerGymnastMale Rudolph. Names do drift in and out of popularity, and it's interesting to look at the naming trends in the United States. Below is a graph of the top 1000 most popular names during a given year. It's not terribly useful unfiltered, but one immediate thing that is noticable is that the share of the top 1000 names decreases over time.
+Naming things is hard. So is naming humans. In fact we don't even attempt to give humans descriptive names. Else I would go by ProgrammerGymnastMale Rudolph. Names do drift in and out of popularity, and it's interesting to look at the naming trends in the United States. 
+
+<!-- more -->
+
+Below is a graph of the top 1000 most popular names during a given year. It's not terribly useful unfiltered, but one immediate thing that is noticable is that the share of the top 1000 names decreases over time.
 
 {% include posts/names/surfer.html %}
 
