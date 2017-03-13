@@ -1,12 +1,46 @@
 ---
 layout: post
-title: "Names"
+title: "Naming humans"
 date: 2017-03-11 16:18:58 +0200
 comments: true
-categories: 
+categories: data
 ---
 
+> There are only two hard things in Computer Science: cache invalidation and naming things
+>  - Phil Karlton
+
+Naming things is hard. So is naming humans. In fact we don't even attempt to give humans descriptive names. Else I would go by ProgrammerGymnastMale Rudolph. Names do drift in and out of popularity, and it's interesting to look at the naming trends in the United States. Below is a graph of the top 1000 most popular names during a given year. It's not terribly useful unfiltered, but one immediate thing that is noticable is that the share of the top 1000 names decreases over time.
+
 {% include posts/names/surfer.html %}
+
+It doesn't take long to realize how your own life fits into this model. In fact, my mother, Jill, and father, Jeffrey, both have popular baby names for the 50s and 60s, while I have a popular name for those born in the 80s and 90s.
+
+| Jill (born 1957) | Jeffrey (born 1956) | Benjamin (born 1990) |
+|------|---|---|
+| ![Jill](/images/names/jill.png) |![Jeffrey](/images/names/jeff.png) | ![Benjamin](/images/names/ben.png) |
+
+At times we even joke that all my mother's friends are named Sheryl. Turns out, Sheryl was popular back in the day and dropped off the map later in the century.
+
+Sheryl
+
+![Sheryl](/images/names/sheryl.png =500x)
+
+While it's interesting to look at how the naming patterns have changed over time, it's also interesting to look at patterns across state borders. The map below shows the popularity of a name in a given state for the year 2015. The darker the color, the more popular the name.
+
 {% include posts/names/map.html %}
+
+Below are some interesting distributions. Jesus, a common Mexican name, is more prevalent where there exists a larger Mexican heritage. Leo appeals to the northerners, while Tucker is your middle of America name.
+
+| Leo | Tucker | Jesus |
+|------|---|---|
+| ![Leo](/images/names/leo.png) |![Tucker](/images/names/tucker.png) | ![Jesus](/images/names/jesus.png) |
+
+As I mentioned above, there is a trend where the top 1000 names are constituting a smaller and smaller portion of the population. That means people are opting for more creative and unique names. What then, are some of the rarer names that one would find in the United States? Below is a table with the a random selection of the 300 rarest names in the dataset for the year 2015.
+
 {% include posts/names/rare.html %}
+
+The list includes a favorite of mine, Kingdavid. Must be a strong child.
+
+Sometimes when naming something, it doesn't help to look at any resource. No graphs, no images. If you just need a godforsaken name, use the button below and a random name will be chosen from a list of 10,000 names. Happy naming!
+
 {% include posts/names/random.html %}
