@@ -1,5 +1,8 @@
 <input type="text" id="map-query" placeholder="Type a name"/>
 <div id="names-map" class="full-screen">
+  <div style="min-height: 20px">
+    <span id="name-map-info"></span>
+  </div>
   <svg id="name-map-graph" width="1000" height="600"></svg>
 </div>
 <script>
@@ -10,6 +13,7 @@ $(function() {
         margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = svg.attr("width") - margin.left - margin.right,
         startName = 'Benjamin',
+        $info = $('#name-map-info'),
         groups,
         groupsByState,
         height = svg.attr("height") - margin.top - margin.bottom;
@@ -48,6 +52,7 @@ $(function() {
         var $input = $("#map-query");
         new Awesomplete($input[0], {
             list: _.keys(groups),
+            minChars: 1,
         });
 
         $input.on('awesomplete-selectcomplete', function(e) {

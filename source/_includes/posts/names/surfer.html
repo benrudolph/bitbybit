@@ -1,4 +1,4 @@
-<input type="text" id="query" placeholder="Type a name"/>
+<input type="text" id="query" placeholder="Filter names"/>
 <div id="names-main" class="full-screen">
   <div style="min-height: 20px">
     <span id="name-info"></span>
@@ -51,8 +51,8 @@ $(function() {
           return ySpark(d[1] - d[0]);
         });
 
-    x.domain(['1950', '2005'])
-    xSpark.domain(['1950', '2005'])
+    x.domain(['1950', '2015'])
+    xSpark.domain(['1950', '2015'])
     var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     var sparkG = sparkLineSvg.append('g');
