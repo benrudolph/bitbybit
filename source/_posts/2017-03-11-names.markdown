@@ -42,7 +42,7 @@ Below are some interesting distributions. Jesus, a common Mexican name, is more 
 |------|---|---|
 | ![Leo](/images/names/leo.png) |![Tucker](/images/names/tucker.png) | ![Jesus](/images/names/jesus.png) |
 
-As I mentioned above, there is a trend where the top 1000 names are constituting a smaller and smaller portion of the population. That means people are opting for more creative and unique names. What then, are some of the rarer names that one would find in the United States? Below is a table with the a random selection of the 300 rarest names in the dataset for the year 2015.
+As I mentioned above, there is a trend where the top 1000 names are constituting a smaller and smaller portion of the population. That means people are opting for more creative and unique names. What then, are some of the rarer names that one would find in the United States? Below is a table with a random selection of the 300 rarest names in the dataset for the year 2015.
 
 {% include posts/names/rare.html %}
 
