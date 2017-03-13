@@ -1,0 +1,19 @@
+
+<input id="names-random-btn" class="button" value="Show me another!" type="button"/>
+<h1 id="names-random" class="full-screen"></h1>
+
+<script>
+  var names;
+  d3.csv('/data/names/names_all.csv', function(data) {
+      names = data;
+      update();
+  });
+
+  function update() {
+      var index = Math.floor(Math.random() * names.length)
+      var d = names[index];
+      $('#names-random').text(d.name);
+  }
+
+  $('#names-random-btn').on('click', update);
+</script>
