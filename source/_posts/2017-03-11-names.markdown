@@ -4,6 +4,9 @@ title: "Naming humans"
 date: 2017-03-11 16:18:58 +0200
 comments: true
 categories: data
+published: true
+image:
+    thumb: 'http://bitbybit.benrudolph.com/images/names/b.png'
 ---
 
 > There are only two hard things in Computer Science: cache invalidation and naming things
