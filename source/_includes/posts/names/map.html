@@ -9,12 +9,21 @@
 $(function() {
     var mapData,
         rawData,
+        selectedName,
         svg = d3.select("#name-map-graph"),
         margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = svg.attr("width") - margin.left - margin.right,
-        startName = 'Benjamin',
         $info = $('#name-map-info'),
         groups,
+        tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+          if (!groupsToState[selectedName][d.properties.STUSPS].length) {
+            return
+          }
+          var birthsPer100Thousand = groupsToState[selectedName][d.properties.STUSPS][0].percentage * 100000
+          return '<p style="font-weight: 300">' +
+            birthsPer100Thousand.toFixed(0) + ' babies named ' + selectedName + ' per 100,000 births' +
+            '</p>';
+        }),
         groupsByState,
         height = svg.attr("height") - margin.top - margin.bottom;
 
@@ -41,6 +50,10 @@ $(function() {
         .attr('stroke', '#ccc')
         .attr('d', path);
 
+      d3.selectAll('.state').call(tip)
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
+
       d3.csv('/data/names/names_by_state.csv', function(data) {
         rawData = data;
         groups = _.groupBy(data, function(d) { return d.name });
@@ -50,8 +63,10 @@ $(function() {
         });
 
         var $input = $("#map-query");
+        var names = _.keys(groups);
+        var startName = names[Math.floor(Math.random() * names.length)];
         new Awesomplete($input[0], {
-            list: _.keys(groups),
+            list: names,
             minChars: 1,
         });
 
@@ -63,7 +78,8 @@ $(function() {
       });
     })
 
-    function update(selectedName) {
+    function update(name) {
+      selectedName = name
       var births = _.reduce(groups[selectedName], function(memo, d) { return memo + +d.count; }, 0)
       $info.html('<b>' + d3.format(',')(births) + '</b> babies born in 2015 with the name <b>' + selectedName + '</b>');
 
@@ -71,7 +87,7 @@ $(function() {
       scale.domain([0, d3.max(groups[selectedName], function(d) { return d.percentage })])
 
       // Update all the colors in the map
-      d3.selectAll('.state')
+      var states = d3.selectAll('.state')
         .attr('fill', function(d) {
           if (!groupsToState[selectedName] ||
               !groupsToState[selectedName][d.properties.STUSPS]
