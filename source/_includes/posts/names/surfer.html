@@ -77,11 +77,26 @@ $(function() {
       g.append("g")
           .attr("class", "axis axis--x")
           .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
+          .call(d3.axisBottom(x).tickFormat(function(d) { return d }))
+
+      g.append('text')
+          .text('Year')
+          .attr('x', width / 2)
+          .attr('y', y(0) + margin.bottom - 2)
+          .attr('font-size', '12px')
 
       g.append("g")
           .attr("class", "axis axis--y")
           .call(yAxis);
+
+      g.append('text')
+          .text('% of births')
+          .attr('x', -margin.left)
+          .attr('y', height / 2)
+          .attr('transform', 'rotate(-90, ' + -margin.left + ',' + height / 2 + ')')
+          .attr('font-size', '12px')
+          .attr('text-anchor', 'middle')
+          .attr('dy', '1em')
 
       update(transformed)
 
@@ -208,7 +223,7 @@ $(function() {
           });
 
           _.each(values, function(v) {
-              transform[key][v.name] = (+v.percentage / totalPercentages[key]);
+              transform[key][v.name] = +v.percentage;
           });
       });
       return _.values(transform);
