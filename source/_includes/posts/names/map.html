@@ -16,15 +16,15 @@ $(function() {
         $info = $('#name-map-info'),
         groups,
         tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+          var title = '<h3>' + d.properties.NAME + '</h3>'
           if (!groupsToState[selectedName] ||
               !groupsToState[selectedName][d.properties.STUSPS]) {
-            return '<p style="font-weight: 300">There are not too many babies born here named ' + selectedName + '!</p>';
+            return title + '<p style="font-weight: 300">There are not too many babies born here named ' + selectedName + '!</p>';
           }
           var birthsPer100Thousand = groupsToState[selectedName][d.properties.STUSPS][0].percentage * 100000
           var body = '<p style="font-weight: 300">' +
             birthsPer100Thousand.toFixed(0) + ' babies named ' + selectedName + ' per 100,000 births' +
             '</p>';
-          var title = '<h3>' + d.properties.NAME + '</h3>'
           return title + body
         }),
         groupsByState,

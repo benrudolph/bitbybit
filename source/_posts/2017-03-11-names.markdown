@@ -36,11 +36,11 @@ While it's interesting to look at how the naming patterns have changed over time
 
 {% include posts/names/map.html %}
 
-Below are some interesting distributions. Jesus, a common Mexican name, is more prevalent where there exists a larger Mexican heritage. Leo appeals to the northerners, while Tucker is your middle of America name.
+Below are some interesting distributions. Jesus, a common Mexican name, is more prevalent where there exists a larger Mexican heritage. On the other hand, Chaim, a predominantly Jewish name, is more common in New York and New Jersey -- areas that have a higher percentage of Jews. While Leo seems to appeal to your northerners.
 
-| Leo | Tucker | Jesus |
+| Leo | Chaim | Jesus |
 |------|---|---|
-| ![Leo](/images/names/leo.png) |![Tucker](/images/names/tucker.png) | ![Jesus](/images/names/jesus.png) |
+| ![Leo](/images/names/leo.png) |![Chaim](/images/names/chaim.png) | ![Jesus](/images/names/jesus.png) |
 
 As I mentioned above, there is a trend where the top 1000 names are constituting a smaller and smaller portion of the population. That means people are opting for more creative and unique names. What then, are some of the rarer names that one would find in the United States? Below is a table with a random selection of the 300 rarest names in the dataset for the year 2015.
 
