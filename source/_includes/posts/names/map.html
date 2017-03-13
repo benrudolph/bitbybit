@@ -64,6 +64,9 @@ $(function() {
     })
 
     function update(selectedName) {
+      var births = _.reduce(groups[selectedName], function(memo, d) { return memo + +d.count; }, 0)
+      $info.html('<b>' + d3.format(',')(births) + '</b> babies born in 2015 with the name <b>' + selectedName + '</b>');
+
       // Update scale for name
       scale.domain([0, d3.max(groups[selectedName], function(d) { return d.percentage })])
 
