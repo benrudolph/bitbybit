@@ -229,10 +229,12 @@ $(function() {
       return _.values(transform);
     }
 
-    $('#query').on('keyup', function(e) {
+    var onQuery = function(e) {
         var value = $(e.currentTarget).val();
         var data = transform(rawData, keys, value);
         update(data);
-    });
+    }
+
+    $('#query').on('keyup', _.debounce(onQuery, 300));
 });
 </script>
