@@ -10,7 +10,8 @@ image:
 ---
 
 > There are only two hard things in Computer Science: cache invalidation and naming things
->  - Phil Karlton
+>  
+> – Phil Karlton
 
 Naming things is hard. So is naming humans. In fact we don’t even attempt to give humans descriptive names. Else I would go by ProgrammerGymnastMale Rudolph. Instead parents choose names based on myriad socio-historical and personal factors.
 
