@@ -7,7 +7,7 @@ comments: true
 published: true
 image:
   thumb: /images/thumbs/veterans.png
-categories:
+categories: data
 ---
 
 Brett Favre, the man who started in [275 games straight](http://www.nytimes.com/newsgraphics/2013/09/28/eli-manning-milestone/), shaped and influenced the way people reflect on football. Even Bears fans like me acknowledge the superhuman strength and endurance Favre displayed in his years with the NFL. Furthermore, Favre will have a lasting impact on youths who aspire to be quarterbacks. But what about the Senators who have served the United States of America for years on end. Sponsoring bill after bill and pushing for the rights and liberties of the American people. Who were the Senators that served the most amount of time, leaving an impact on American politics for years to come?

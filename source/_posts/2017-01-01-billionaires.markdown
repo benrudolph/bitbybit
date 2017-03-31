@@ -3,7 +3,7 @@ layout: post
 title: "The billionaire gender divide"
 date: 2017-01-24 12:39:11 -0500
 comments: true
-categories: 
+categories: data
 ---
 
 The Institute for Women's Policy Research states that women in 2015 now make 80 cents for every dollar that men do[^1]. As disheartening as that is, this is an improvement from 1981 where women made 60 cents for every dollar that men do[^2]. However another facet of pay inequity between the genders comes at the top 0.01%, the billionaires, and these differences show fewer signs of improvement.

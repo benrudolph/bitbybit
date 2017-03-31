@@ -3,7 +3,7 @@ layout: post
 title: "Men's Gymnastics"
 date: 2016-05-22 12:02:53 -0400
 comments: true
-categories: 
+categories: random
 ---
 It's 2016 and people are about to start gearing up to watch gymnastics, even men's, in the Olympics. Gymnastics is a confusing sport, especially to those not familiar to all the tricks and flying around. However, it can also be one of the most exciting sports to watch. I decided to highlight this with the 2012 Olympic high bar event finals. This is one of the most thrilling events, and these 8 competitors are the best in the world. I hope those that know nothing about gymnastics will find this somewhat informative, and those that do know a lot about gymnastics find this fun! Here's the full event for reference:
 

@@ -5,7 +5,7 @@ date: 2015-04-14 23:59:36 +0200
 excerpted: true
 comments: true
 published: true
-categories:
+categories: data
 image:
     thumb: 'http://bitbybit.benrudolph.com/images/chicago/thumb.png'
 ---

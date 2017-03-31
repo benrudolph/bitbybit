@@ -4,7 +4,7 @@ title: "The next language to learn"
 date: 2014-10-06 23:59:36 +0200
 excerpted: true
 comments: true
-categories:
+categories: data
 ---
 
 Geneva is a fascinating place. Especially for an expatriate. I had the luxury and opportunity to transplant myself from the United States to Geneva to work for the United Nations Refugee Agency. The wonderful part about living in Geneva as an expat is the extreme multiculturalism. People from all over the world voyage to Geneva to be part of the humanitarian and international club.
