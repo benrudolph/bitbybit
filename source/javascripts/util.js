@@ -1,7 +1,9 @@
 var Colors = {
     BLACK: '#2d3833',
     RED: '#e41a1c',
-    BLUE: '#377eb8'
+    BLUE: '#377eb8',
+    PINK: '#ffb3d6',
+    GREEN: '#afd880',
 };
 
 var Formats = {

@@ -1,0 +1,139 @@
+<style>
+  .county--hover {
+    fill-opacity: 1;
+  }
+</style>
+<div id="life-main" class="full-screen">
+  <svg id="life-graph" width="800" height="800"></svg>
+</div>
+<script>
+$(function() {
+    var svg = d3.select("#life-graph"),
+        margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = svg.attr("width") - margin.left - margin.right,
+        height = svg.attr("height") - margin.top - margin.bottom;
+
+    var voronoi = d3.voronoi()
+        .x(function(d) { return x(d.q1LifeExpectancy); })
+        .y(function(d) { return y(d.q4LifeExpectancy); })
+        .extent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]]);
+
+    var x = d3.scaleLinear().range([0, width]).domain([70, 95]);
+    var y = d3.scaleLinear().range([height, 0]).domain([70, 95]);
+    var r = d3.scaleSqrt().range([3, 15])
+
+    var g = svg.append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var voronoiGroup = g.append("g")
+      .attr("class", "voronoi");
+
+    d3.csv('/data/life/life_expectancy.csv', function(data) {
+      var transformed = transform(data);
+
+      r.domain(d3.extent(transformed, function(d) { return d.count }))
+      update(transformed);
+
+      voronoiGroup.selectAll("path")
+          .data(voronoi.polygons(transformed))
+          .enter().append("path")
+          .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
+          .style('fill-opacity', 0)
+          .style('stroke-width', '0px')
+          .on('mouseover', function(d) {
+             d3.select(d.data.county + '-' + d.data.gender)
+               .classed('county--hover', true)
+          })
+          .on('mouseout', function(d) {
+             d3.select(d.data.county + '-' + d.data.gender)
+               .classed('county--hover', false)
+          });
+
+      g.append("g")
+          .attr("class", "axis axis--x")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x).tickFormat(function(d) { return d }))
+
+      g.append('text')
+          .text('Year')
+          .attr('x', width / 2)
+          .attr('y', y(0) + margin.bottom - 2)
+          .attr('font-size', '12px')
+
+      g.append("g")
+          .attr("class", "axis axis--y")
+          .call(d3.axisLeft(y).tickFormat(function(d) { return d }));
+
+      g.append('text')
+          .text('% of births')
+          .attr('x', -margin.left)
+          .attr('y', height / 2)
+          .attr('transform', 'rotate(-90, ' + -margin.left + ',' + height / 2 + ')')
+          .attr('font-size', '12px')
+          .attr('text-anchor', 'middle')
+          .attr('dy', '1em')
+
+      g.append('line')
+        .attr('x1', function(d) { return x(x.domain()[0]); })
+        .attr('y1', function(d) { return y(y.domain()[0]); })
+        .attr('x2', function(d) { return x(x.domain()[1]); })
+        .attr('y2', function(d) { return y(y.domain()[1]); })
+        .attr('stroke', function(d) { return Colors.BLACK; });
+
+
+    });
+
+    var update = function(data) {
+      var layer = g.selectAll('.le-circle')
+        .data(data, function(d) { return d.county_name; });
+
+      layer.enter()
+        .append('circle')
+        .style('fill-opacity', 0.6)
+        .style('stroke', function(d) { return '#eee'; })
+        .style('stroke-width', function(d) { return '0.2px'; })
+        .style('fill', function(d) { return d.gender === 'F' ? Colors.PINK : Colors.GREEN; })
+        .attr('class', function(d) {
+          return [
+            'le-circle',
+            d.county,
+            d.county + '-' + d.gender,
+          ].join(' ');
+        })
+        .attr('cx', function(d) {
+          return x(d.q1LifeExpectancy);
+        })
+        .attr('cy', function(d) {
+          return y(d.q4LifeExpectancy);
+        })
+        .attr('r', function(d) {
+          return r(d.count);
+        });
+    }
+
+    var transform = function(data) {
+      var transformed = []
+
+      _.each(data, function(d) {
+        transformed.push({
+          q1LifeExpectancy: +d.le_raceadj_q1_F,
+          q4LifeExpectancy: +d.le_raceadj_q4_F,
+          gender: 'F',
+          count: +d.count_q1_F + +d.count_q4_F,
+          county: d.county_name,
+          state: d.statename,
+        });
+        transformed.push({
+          q1LifeExpectancy: +d.le_raceadj_q1_M,
+          q4LifeExpectancy: +d.le_raceadj_q4_M,
+          count: +d.count_q1_M + +d.count_q4_M,
+          gender: 'M',
+          county: d.county_name,
+          state: d.statename,
+        });
+      });
+      return transformed;
+    }
+});
+</script>
+
