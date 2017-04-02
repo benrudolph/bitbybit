@@ -1,18 +1,15 @@
-<style>
-  .county--hover {
-    fill-opacity: 1;
-  }
-</style>
 <div id="life-main" class="full-screen">
   <svg id="life-graph" width="800" height="800"></svg>
 </div>
 <script>
 $(function() {
     var svg = d3.select("#life-graph"),
+        maxDiff,
         margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = svg.attr("width") - margin.left - margin.right,
         height = svg.attr("height") - margin.top - margin.bottom;
 
+    var restingOpacity = 0.3
     var voronoi = d3.voronoi()
         .x(function(d) { return x(d.q1LifeExpectancy); })
         .y(function(d) { return y(d.q4LifeExpectancy); })
@@ -21,6 +18,7 @@ $(function() {
     var x = d3.scaleLinear().range([0, width]).domain([70, 95]);
     var y = d3.scaleLinear().range([height, 0]).domain([70, 95]);
     var r = d3.scaleSqrt().range([3, 15])
+    var color = d3.interpolateRdYlGn;
 
     var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -30,6 +28,7 @@ $(function() {
 
     d3.csv('/data/life/life_expectancy.csv', function(data) {
       var transformed = transform(data);
+      maxDiff = d3.max(transformed, function(d) { return Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy); })
 
       r.domain(d3.extent(transformed, function(d) { return d.count }))
       update(transformed);
@@ -39,14 +38,19 @@ $(function() {
           .enter().append("path")
           .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
           .style('fill-opacity', 0)
-          .style('stroke-width', '0px')
           .on('mouseover', function(d) {
-             d3.select(d.data.county + '-' + d.data.gender)
-               .classed('county--hover', true)
+             d3.select('.' + getClassName(d.data))
+                .style('fill-opacity', 1)
+                .style('stroke', Colors.BLACK)
+                .raise()
+             drawDistanceLine(d.data);
+
           })
           .on('mouseout', function(d) {
-             d3.select(d.data.county + '-' + d.data.gender)
-               .classed('county--hover', false)
+             d3.select('.' + getClassName(d.data))
+                .style('fill-opacity', restingOpacity)
+                .style('stroke', '#eee')
+              d3.select('.le-distance-line').remove()
           });
 
       g.append("g")
@@ -78,7 +82,7 @@ $(function() {
         .attr('y1', function(d) { return y(y.domain()[0]); })
         .attr('x2', function(d) { return x(x.domain()[1]); })
         .attr('y2', function(d) { return y(y.domain()[1]); })
-        .attr('stroke', function(d) { return Colors.BLACK; });
+        .attr('stroke', function(d) { return color(1); });
 
 
     });
@@ -89,15 +93,19 @@ $(function() {
 
       layer.enter()
         .append('circle')
-        .style('fill-opacity', 0.6)
+        .style('pointer-events', 'none')
+        .style('fill-opacity', restingOpacity)
         .style('stroke', function(d) { return '#eee'; })
         .style('stroke-width', function(d) { return '0.2px'; })
-        .style('fill', function(d) { return d.gender === 'F' ? Colors.PINK : Colors.GREEN; })
+        .style('fill', function(d) {
+            var value = Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy) / maxDiff;
+            return color(1 - value);
+        })
         .attr('class', function(d) {
           return [
             'le-circle',
             d.county,
-            d.county + '-' + d.gender,
+            getClassName(d),
           ].join(' ');
         })
         .attr('cx', function(d) {
@@ -109,6 +117,23 @@ $(function() {
         .attr('r', function(d) {
           return r(d.count);
         });
+    }
+
+    var getClassName = function(d) {
+      return (d.county + '-' + d.gender + '-' + d.state).replace(' ', '_').replace("'", '_');
+    }
+
+    var drawDistanceLine = function(d) {
+      var position = d.q1LifeExpectancy;
+
+      g.append('line')
+        .attr('class', 'le-distance-line')
+        .attr('x1', x(d.q1LifeExpectancy))
+        .attr('y1', y(d.q4LifeExpectancy))
+        .attr('x2', x(position))
+        .attr('y2', y(position))
+        .style('stroke', Colors.BLACK)
+        .style('stroke-dasharray', '5, 5')
     }
 
     var transform = function(data) {
