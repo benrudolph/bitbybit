@@ -1,3 +1,9 @@
+<span>Color by&nbsp;</span>
+<select id="color-by">
+  <option value="equality" selected="selected">Life expectancy equality</option>
+  <option value="gender">Gender</option>
+  <option value="election">2016 election results</option>
+</select>
 <div id="life-main" class="full-screen">
   <div style="height: 20px;" id="distance-info"></div>
   <svg id="life-graph" width="800" height="800"></svg>
@@ -6,7 +12,11 @@
 $(function() {
     var svg = d3.select("#life-graph"),
         maxDiff,
-        margin = {top: 20, right: 20, bottom: 30, left: 50},
+        render,
+        transformed,
+        votesByCounty,
+        colorBy = 'equality'
+        margin = {top: 20, right: 20, bottom: 60, left: 60},
         width = svg.attr("width") - margin.left - margin.right,
         height = svg.attr("height") - margin.top - margin.bottom;
 
@@ -19,7 +29,24 @@ $(function() {
     var x = d3.scaleLinear().range([0, width]).domain([70, 95]);
     var y = d3.scaleLinear().range([height, 0]).domain([70, 95]);
     var r = d3.scaleSqrt().range([3, 15])
-    var color = d3.interpolateRdYlGn;
+    var colors ={
+      election: function(d) {
+          if (votesByCounty[d.fips]) {
+            return d3.interpolateRdBu(
+              +votesByCounty[d.fips][0].Hillary_Clinton / +votesByCounty[d.fips][0].total_votes
+            );
+          }
+          return '#eee';
+      },
+      equality: function(d) {
+        var value = Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy) / maxDiff;
+        return d3.interpolateRdYlGn(1 - value);
+      },
+      gender: function(d) {
+        return d.gender === 'F' ? Colors.PINK : Colors.GREEN;
+      },
+    };
+
 
     var g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -27,8 +54,9 @@ $(function() {
     var voronoiGroup = g.append("g")
       .attr("class", "voronoi");
 
-    d3.csv('/data/life/life_expectancy.csv', function(data) {
-      var transformed = transform(data);
+    render = function(err, data, electionData) {
+      transformed = transform(data);
+      votesByCounty = _.groupBy(electionData, 'fips');
       maxDiff = d3.max(transformed, function(d) { return Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy); })
 
       r.domain(d3.extent(transformed, function(d) { return d.count }))
@@ -63,42 +91,55 @@ $(function() {
       g.append('text')
           .text('Year')
           .attr('x', width / 2)
-          .attr('y', y(0) + margin.bottom - 2)
-          .attr('font-size', '12px')
+          .attr('y', y(y.domain()[0]) + margin.bottom - 20)
+          .attr('font-size', '16px')
+          .attr('text-anchor', 'middle')
+          .attr('dy', '0.8em')
+          .text('Life expectancy for bottom quartile income earners')
 
       g.append("g")
           .attr("class", "axis axis--y")
           .call(d3.axisLeft(y).tickFormat(function(d) { return d }));
 
       g.append('text')
-          .text('% of births')
+          .text('Life expectancy for top quartile income earners')
           .attr('x', -margin.left)
           .attr('y', height / 2)
           .attr('transform', 'rotate(-90, ' + -margin.left + ',' + height / 2 + ')')
-          .attr('font-size', '12px')
+          .attr('font-size', '16px')
           .attr('text-anchor', 'middle')
-          .attr('dy', '1em')
+          .attr('dy', '1.2em')
 
       g.append('line')
         .attr('x1', function(d) { return x(x.domain()[0]); })
         .attr('y1', function(d) { return y(y.domain()[0]); })
         .attr('x2', function(d) { return x(x.domain()[1]); })
         .attr('y2', function(d) { return y(y.domain()[1]); })
-        .attr('stroke', function(d) { return color(1); });
+        .attr('stroke', function(d) { return d3.interpolateRdYlGn(1); });
 
       g.append('text')
         .attr('x', function(d) { return x(x.domain()[1]) - 250; })
         .attr('y', function(d) { return y(y.domain()[1]); })
-        .attr('fill', function(d) { return color(1); })
+        .attr('fill', function(d) { return d3.interpolateRdYlGn(1); })
         .attr('transform', 'rotate(-45, ' + (x(x.domain()[1])) + ',' + y(y.domain()[1]) + ')')
         .style('font-size', '20px')
         .text('Equality in life expectancy')
 
-    });
+    };
 
     var update = function(data) {
       var layer = g.selectAll('.le-circle')
-        .data(data, function(d) { return d.county_name; });
+        .data(data, function(d) { return d.fips + d.gender; });
+
+      var t = d3.transition()
+        .duration(500);
+
+      layer
+        .transition(t)
+          .delay(function(d, i) { return i / 5; })
+          .style('fill', function(d) {
+              return colors[colorBy](d);
+          })
 
       layer.enter()
         .append('circle')
@@ -107,8 +148,7 @@ $(function() {
         .style('stroke', function(d) { return '#eee'; })
         .style('stroke-width', function(d) { return '0.2px'; })
         .style('fill', function(d) {
-            var value = Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy) / maxDiff;
-            return color(1 - value);
+            return colors[colorBy](d);
         })
         .attr('class', function(d) {
           return [
@@ -126,6 +166,9 @@ $(function() {
         .attr('r', function(d) {
           return r(d.count);
         });
+
+        layer.exit()
+            .remove()
     }
 
     var getClassName = function(d) {
@@ -171,6 +214,7 @@ $(function() {
           gender: 'F',
           count: +d.count_q1_F + +d.count_q4_F,
           county: d.county_name,
+          fips: d.cty,
           state: d.statename,
         });
         transformed.push({
@@ -179,11 +223,23 @@ $(function() {
           count: +d.count_q1_M + +d.count_q4_M,
           gender: 'M',
           county: d.county_name,
+          fips: d.cty,
           state: d.statename,
         });
       });
       return transformed;
     }
+
+    d3.queue()
+      .defer(d3.csv, '/data/life/life_expectancy.csv')
+      .defer(d3.csv, '/data/life/2016_election.csv')
+      .await(render);
+
+  $('#color-by').on('change', function(e) {
+    colorBy = $(this).val()
+    update(transformed);
+  })
+
 });
 </script>
 
