@@ -1,4 +1,5 @@
 <div id="life-main" class="full-screen">
+  <div style="height: 20px;" id="distance-info"></div>
   <svg id="life-graph" width="800" height="800"></svg>
 </div>
 <script>
@@ -50,7 +51,8 @@ $(function() {
              d3.select('.' + getClassName(d.data))
                 .style('fill-opacity', restingOpacity)
                 .style('stroke', '#eee')
-              d3.select('.le-distance-line').remove()
+             d3.selectAll('.le-distance').remove()
+             $('#distance-info').text('')
           });
 
       g.append("g")
@@ -84,6 +86,13 @@ $(function() {
         .attr('y2', function(d) { return y(y.domain()[1]); })
         .attr('stroke', function(d) { return color(1); });
 
+      g.append('text')
+        .attr('x', function(d) { return x(x.domain()[1]) - 250; })
+        .attr('y', function(d) { return y(y.domain()[1]); })
+        .attr('fill', function(d) { return color(1); })
+        .attr('transform', 'rotate(-45, ' + (x(x.domain()[1])) + ',' + y(y.domain()[1]) + ')')
+        .style('font-size', '20px')
+        .text('Equality in life expectancy')
 
     });
 
@@ -125,15 +134,31 @@ $(function() {
 
     var drawDistanceLine = function(d) {
       var position = d.q1LifeExpectancy;
+      var text;
 
       g.append('line')
-        .attr('class', 'le-distance-line')
+        .attr('class', 'le-distance le-distance-line')
         .attr('x1', x(d.q1LifeExpectancy))
         .attr('y1', y(d.q4LifeExpectancy))
         .attr('x2', x(position))
         .attr('y2', y(position))
         .style('stroke', Colors.BLACK)
         .style('stroke-dasharray', '5, 5')
+
+      if (d.q4LifeExpectancy > d.q1LifeExpectancy) {
+        text = (
+            'Top quartile income earners in <b>' + d.county + ', ' + d.state + '</b> live on average <b>' +
+            (d.q4LifeExpectancy - d.q1LifeExpectancy).toFixed(2) +
+            ' years</b> longer than bottom quartile income earners'
+        )
+      } else {
+        text = (
+            'Bottom quartile income earners in <b>' + d.county + ', ' + d.state + '</b> live on average <b>' +
+            (d.q1LifeExpectancy - d.q4LifeExpectancy).toFixed(2) +
+            ' years</b> longer than top quartile income earners'
+        )
+      }
+      $('#distance-info').html(text)
     }
 
     var transform = function(data) {
