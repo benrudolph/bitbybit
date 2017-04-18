@@ -6,4 +6,6 @@ comments: true
 categories: data
 ---
 
+<!-- more -->
+
 {% include posts/life/all.html %}

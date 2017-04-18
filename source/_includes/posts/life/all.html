@@ -4,6 +4,22 @@
   <option value="gender">Gender</option>
   <option value="election">2016 election results</option>
 </select>
+
+<ul id="legend" class="no-list">
+  <ul class="legend gender-legend no-list hide">
+    <li><span class="legend-circle" style="background-color: #afd880"></span>Male</li>
+    <li><span class="legend-circle" style="background-color: #ffb3d6"></span>Female</li>
+  </ul>
+  <ul class="legend election-legend no-list hide">
+    <li><span class="legend-circle" style="background-color: rgba(103, 0, 31, 0.7)"></span>More Republican</li>
+    <li><span class="legend-circle" style="background-color: rgba(5, 48, 97, 0.7)"></span>More Democratic</li>
+  </ul>
+  <ul class="legend equality-legend no-list">
+    <li><span class="legend-circle" style="background-color: rgba(165, 0, 38, 0.7)"></span>Less Equal</li>
+    <li><span class="legend-circle" style="background-color: rgba(0, 104, 55, 0.7)"></span>More Equal</li>
+  </ul>
+</ul>
+
 <div id="life-main" class="full-screen">
   <div style="height: 20px;" id="distance-info"></div>
   <svg id="life-graph" width="800" height="800"></svg>
@@ -238,6 +254,8 @@ $(function() {
   $('#color-by').on('change', function(e) {
     colorBy = $(this).val()
     update(transformed);
+    $('.legend').addClass('hide')
+    $('.' + colorBy + '-legend').removeClass('hide')
   })
 
 });
