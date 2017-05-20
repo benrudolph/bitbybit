@@ -1,0 +1,75 @@
+<div id="suicide-main" class="full-screen">
+  <svg id="suicide-graph" width="800" height="800"></svg>
+</div>
+<script>
+$(function() {
+    var svg = d3.select("#suicide-graph"),
+        margin = {top: 20, right: 20, bottom: 60, left: 60},
+        width = svg.attr("width") - margin.left - margin.right,
+        height = svg.attr("height") - margin.top - margin.bottom;
+
+    var x = d3.scaleLinear().range([0, width]).domain([0, 100]);
+
+    var g = svg.append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    var arc = d3.arc()
+        .startAngle(function(d) {
+          return -(Math.PI / 2);
+        })
+        .endAngle(function(d) {
+          return Math.PI / 2;
+        })
+        .innerRadius(function(d) {
+          return 100;
+        })
+        .outerRadius(function(d) {
+          return 102;
+        })
+
+    var render = function() {
+        var arcs = g.selectAll('.suicide')
+          .data([0, 0, 0, 0]);
+
+        arcs.enter()
+          .append('g')
+            .attr('transform', function(d) {
+              return 'translate(0, ' + height / 2 + ')';
+            })
+          .append('path')
+            .attr('class', 'suicide')
+            .attr('fill', 'transparent')
+            .attr('stroke', Colors.BLACK)
+            .attr('d', function(d) {
+              return arcPath(0, 0, x(ageDist()), height, Math.random());
+            });
+    };
+
+    var ageDist = function() {
+      return 100 * Math.random();
+    }
+
+    var arcPath = function(startX, startY, width, maxHeight, steepness) {
+
+      // Starting point
+      var p = 'M' + startX + ' ' + startY;
+
+      // Start first control point at origin
+      p += 'C' + startX + ' ' + startY + ', ';
+
+      // Second control position is centered in the x direction, the height
+      // is determined by how steep we want the arc to be.
+      p += (startX + (width / 2)) + ' ' + -(maxHeight * steepness) + ', ';
+
+      // End point is same as start point except with the addition of the width
+      p += startX + width + ' ' + startY;
+
+      return p;
+    }
+
+    render();
+
+});
+</script>
+
