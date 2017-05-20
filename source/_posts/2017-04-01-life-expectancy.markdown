@@ -6,6 +6,8 @@ comments: true
 categories: data
 ---
 
+Money, in many ways, gives power. However, in a new study, data shows that money also gives us longer life. And in some parts of the US it's a difference of over 10 years.
+
 <!-- more -->
 
 {% include posts/life/all.html %}
