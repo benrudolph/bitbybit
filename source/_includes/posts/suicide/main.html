@@ -32,6 +32,9 @@ $(function() {
         var arcs = g.selectAll('.suicide')
           .data([0, 0, 0, 0]);
 
+        var t = d3.transition()
+          .duration(1000);
+
         arcs.enter()
           .append('g')
             .attr('transform', function(d) {
@@ -43,7 +46,12 @@ $(function() {
             .attr('stroke', Colors.BLACK)
             .attr('d', function(d) {
               return arcPath(0, 0, x(ageDist()), height, Math.random());
-            });
+            })
+            .style('stroke-dasharray', '0% 100%')
+          .merge(arcs)
+            .transition(t)
+            .style('stroke-dasharray', '100% 0%');
+
     };
 
     var ageDist = function() {
