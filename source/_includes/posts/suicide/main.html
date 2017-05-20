@@ -45,17 +45,28 @@ $(function() {
             .attr('fill', 'transparent')
             .attr('stroke', Colors.BLACK)
             .attr('d', function(d) {
-              return arcPath(0, 0, x(ageDist()), height, Math.random());
+              return arcPath(0, 0, x(lifeExpDist()), height, Math.random());
             })
-            .style('stroke-dasharray', '0% 100%')
+            .style('stroke-dasharray', '100%')
+            .style('stroke-dashoffset', '100%')
           .merge(arcs)
             .transition(t)
-            .style('stroke-dasharray', '100% 0%');
+            .delay(function(d, i) {
+              return i;
+            })
+            .style('stroke-dashoffset', function(d) {
+              var age = ageDist();
+              return age + '%';
+            });
 
     };
 
     var ageDist = function() {
       return 100 * Math.random();
+    }
+
+    var lifeExpDist = function() {
+      return (50 * Math.random()) + 50;
     }
 
     var arcPath = function(startX, startY, width, maxHeight, steepness) {
