@@ -11,3 +11,6 @@ Money, in many ways, gives power. However, in a new study, data shows that money
 <!-- more -->
 
 {% include posts/life/all.html %}
+
+In the above graph, the y-axis contains the life expectancy for top quartile earners, while the x-axis is the life expectancy for bottom quartile earners. Each dot represents a county in the United States. The closer a dot is to the diagonal line, the closer that county is to having a life expectancy uneffected by income.
+

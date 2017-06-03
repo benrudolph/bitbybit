@@ -20,6 +20,8 @@
   </ul>
 </ul>
 
+<input type="text" id="search" placeholder="Search a state..." autocomplete="off">
+
 <div id="life-main" class="full-screen">
   <div style="height: 20px;" id="distance-info"></div>
   <svg id="life-graph" width="800" height="800"></svg>
@@ -36,7 +38,7 @@ $(function() {
         width = svg.attr("width") - margin.left - margin.right,
         height = svg.attr("height") - margin.top - margin.bottom;
 
-    var restingOpacity = 0.3
+    var restingOpacity = d3.scaleLinear().range([0.8, 0.3])
     var voronoi = d3.voronoi()
         .x(function(d) { return x(d.q1LifeExpectancy); })
         .y(function(d) { return y(d.q4LifeExpectancy); })
@@ -72,32 +74,13 @@ $(function() {
 
     render = function(err, data, electionData) {
       transformed = transform(data);
+      restingOpacity.domain([0, transformed.length])
       votesByCounty = _.groupBy(electionData, 'fips');
       maxDiff = d3.max(transformed, function(d) { return Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy); })
 
       r.domain(d3.extent(transformed, function(d) { return d.count }))
       update(transformed);
 
-      voronoiGroup.selectAll("path")
-          .data(voronoi.polygons(transformed))
-          .enter().append("path")
-          .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
-          .style('fill-opacity', 0)
-          .on('mouseover', function(d) {
-             d3.select('.' + getClassName(d.data))
-                .style('fill-opacity', 1)
-                .style('stroke', Colors.BLACK)
-                .raise()
-             drawDistanceLine(d.data);
-
-          })
-          .on('mouseout', function(d) {
-             d3.select('.' + getClassName(d.data))
-                .style('fill-opacity', restingOpacity)
-                .style('stroke', '#eee')
-             d3.selectAll('.le-distance').remove()
-             $('#distance-info').text('')
-          });
 
       g.append("g")
           .attr("class", "axis axis--x")
@@ -144,6 +127,7 @@ $(function() {
     };
 
     var update = function(data) {
+      var count = data.length;
       var layer = g.selectAll('.le-circle')
         .data(data, function(d) { return d.fips + d.gender; });
 
@@ -160,7 +144,6 @@ $(function() {
       layer.enter()
         .append('circle')
         .style('pointer-events', 'none')
-        .style('fill-opacity', restingOpacity)
         .style('stroke', function(d) { return '#eee'; })
         .style('stroke-width', function(d) { return '0.2px'; })
         .style('fill', function(d) {
@@ -181,9 +164,39 @@ $(function() {
         })
         .attr('r', function(d) {
           return r(d.count);
-        });
+        })
+        .merge(layer)
+          .style('fill-opacity', restingOpacity(count))
+
 
         layer.exit()
+            .remove()
+
+        var voronoiPath = voronoiGroup.selectAll(".voronoi")
+          .data(voronoi.polygons(data))
+
+        voronoiPath.enter().append("path")
+          .attr("class", "voronoi")
+          .style('fill-opacity', 0)
+          .on('mouseover', function(d) {
+             d3.select('.' + getClassName(d.data))
+                .style('fill-opacity', 1)
+                .style('stroke', Colors.BLACK)
+                .raise()
+             drawDistanceLine(d.data);
+
+          })
+          .on('mouseout', function(d) {
+             d3.select('.' + getClassName(d.data))
+                .style('fill-opacity', restingOpacity(count))
+                .style('stroke', '#eee')
+             d3.selectAll('.le-distance').remove()
+             $('#distance-info').text('')
+          })
+          .merge(voronoiPath)
+            .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
+
+        voronoiPath.exit()
             .remove()
     }
 
@@ -257,6 +270,17 @@ $(function() {
     $('.legend').addClass('hide')
     $('.' + colorBy + '-legend').removeClass('hide')
   })
+
+  $('#search').on('keyup', function(e) {
+    var query = $(e.currentTarget).val();
+    var filtered = _.filter(
+      transformed,
+      function(d) {
+        return d.state.toLowerCase().startsWith(query.toLowerCase()); 
+      }
+    );
+    update(filtered);
+  });
 
 });
 </script>
