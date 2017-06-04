@@ -6,7 +6,7 @@ comments: true
 categories: data
 ---
 
-As the old adage goes, money is power. In fact when typing "Money is" into Google, I also see that *Money is the root of all evil*, *Money is the motive*, and yes, *Money island*. However, in a new study, data shows that money may also be longer life. And in some parts of the United States, it's a difference of over 10 years.
+As the old adage goes, money is power. In fact, when typing "Money is" into Google, I also see that *Money is the root of all evil*, *Money is the motive*, and yes, *Money island*. However, in a new study, data shows that money may also be longer life. And in some parts of the United States, it's a difference of over 10 years. This study highlights the differences in life expectancy between people earning wages in the top income bracket vs those earning wages in the bottom income bracket[^1].
 
 <!-- more -->
 
@@ -31,4 +31,7 @@ More striking is the difference between men and women. Female top quartile earne
 The above graph highlights Hawaii as the state where income makes the least amount of impact on life expectancy, while Washington DC and Wyoming have the greatest inequality.
 
 This dataset is fascinating because it could serve as a proxy measure of how well the United States is implementing its social and public services. One can imagine that a country that provides proper healthcare, education, and living conditions to all its citizens would see a smaller difference in life expectancy between top and bottom income earners.
+
+[^1]: The Association Between Income and Life Expectancy in the United States, 2001-2014 http://www.equality-of-opportunity.org/data/
+
 
