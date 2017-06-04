@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Life Expectancy"
+title: "The impact of income on life expectancy"
 date: 2017-06-04 00:00:00 -0000
 comments: true
 categories: data
