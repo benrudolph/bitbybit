@@ -80,11 +80,9 @@ $(function() {
 
       var byState = _.groupBy(transformed, 'state')
       var byStateMean = _.map(byState, function(d) {
-        //console.log(d[0].state);
         var mean = d3.mean(_.map(d, function(d) {
           return d.q4LifeExpectancy - d.q1LifeExpectancy
         }))
-        //console.log(mean)
         return { state: d[0].state, mean: mean };
       })
       byStateMean.sort(function(a,b) { return a.mean - b.mean; })
