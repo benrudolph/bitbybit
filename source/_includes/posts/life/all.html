@@ -78,6 +78,33 @@ $(function() {
       votesByCounty = _.groupBy(electionData, 'fips');
       maxDiff = d3.max(transformed, function(d) { return Math.abs(d.q1LifeExpectancy - d.q4LifeExpectancy); })
 
+      var byState = _.groupBy(transformed, 'state')
+      var byStateMean = _.map(byState, function(d) {
+        //console.log(d[0].state);
+        var mean = d3.mean(_.map(d, function(d) {
+          return d.q4LifeExpectancy - d.q1LifeExpectancy
+        }))
+        //console.log(mean)
+        return { state: d[0].state, mean: mean };
+      })
+      byStateMean.sort(function(a,b) { return a.mean - b.mean; })
+      var opts = {
+        adapter: 'google',
+        library: {
+          title: 'Average difference in life expectancy of top and bottom quartile earners.',
+          vAxis: { title: "State" },
+          hAxis: { title: "Years" },
+        },
+        colors: [Colors.GREEN]
+      }
+
+      new Chartkick.BarChart(
+        "life-states",
+        _.map(byStateMean, function(d) { return [d.state, d.mean]; }),
+        opts
+      );
+
+
       r.domain(d3.extent(transformed, function(d) { return d.count }))
       update(transformed);
 
@@ -207,6 +234,7 @@ $(function() {
     var drawDistanceLine = function(d) {
       var position = d.q1LifeExpectancy;
       var text;
+      var gender = d.gender === 'M' ? 'Male' : 'Female';
 
       g.append('line')
         .attr('class', 'le-distance le-distance-line')
@@ -219,13 +247,13 @@ $(function() {
 
       if (d.q4LifeExpectancy > d.q1LifeExpectancy) {
         text = (
-            'Top quartile income earners in <b>' + d.county + ', ' + d.state + '</b> live on average <b>' +
+          '<b>' + gender + '</b> top quartile income earners in <b>' + d.county + ', ' + d.state + '</b> live on average <b>' +
             (d.q4LifeExpectancy - d.q1LifeExpectancy).toFixed(2) +
             ' years</b> longer than bottom quartile income earners'
         )
       } else {
         text = (
-            'Bottom quartile income earners in <b>' + d.county + ', ' + d.state + '</b> live on average <b>' +
+          '<b>' + gender + '</b> bottom quartile income earners in <b>' + d.county + ', ' + d.state + '</b> live on average <b>' +
             (d.q1LifeExpectancy - d.q4LifeExpectancy).toFixed(2) +
             ' years</b> longer than top quartile income earners'
         )
