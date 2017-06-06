@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The impact of income on life expectancy"
+title: "The correlation between income and life expectancy"
 date: 2017-06-04 00:00:00 -0000
 comments: true
 categories: data
@@ -8,7 +8,9 @@ image:
     thumb: 'https://bitbybit.benrudolph.com/images/life/thumb.png'
 ---
 
-As the old adage goes, money is power. In fact, when typing "Money is" into Google, I also see that *Money is the root of all evil*, *Money is the motive*, and yes, *Money island*. In a new study, data shows that money may also be longer life. And in some parts of the United States, it's a difference of over 10 years. This study highlights the differences in life expectancy between people earning wages in the top income bracket vs those earning wages in the bottom income bracket over the years 2001 to 2014[^1].
+As the old adage goes, money is power. In fact, when typing "Money is" into Google, I also see that *Money is the root of all evil*, *Money is the motive*, and yes, *Money island*. In a new study, data shows that money may also be longer life. And in some parts of the United States, it's a difference of over 10 years. This study highlights the differences in life expectancy between people earning wages in the top income bracket vs those earning wages in the bottom income bracket over the years 2001 to 2014[^1]. 
+
+<small>The below dives into the correlation of income with life expectancy. This dataset does not show causation.</small>
 
 <!-- more -->
 
