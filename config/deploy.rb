@@ -1,36 +1,38 @@
-ssh_options[:forward_agent] = true
-require "bundler/capistrano"
+# config valid only for current version of Capistrano
+lock "3.9.0"
 
-set :keep_releases, 5
-set :scm, :git
-set :scm_verbose, false
+set :application, "bitbybit"
+set :repo_url, 'git@github.com:benrudolph/bitbybit.git'
+set :branch, "master"
+
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.2.0'
+
+set :keep_releases, 3
 
 # Set your repository URL
-set :repository, 'https://github.com/benrudolph/bitbybit.git'
 set :default_environment, {
   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
+set :bundle_bins, fetch(:bundle_bins, []).push('jekyll')
 
-# Set your application name
-set :application, "bitbybit"
-set :deploy_via, :remote_cache
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails jekyll}
+set :rbenv_roles, :all # default value
+
 
 # Set your machine user
 set :user, 'deploy'
 
-set :deploy_to, "/var/www/#{application}"
-set :use_sudo, false
-
-# Set your host, you can use the server IPs here if you don't have one yet
-role :app, 'personal', :primary => true
-
-default_run_options[:pty] = true
-
-namespace :octopress do
-  task :generate, :roles => :app do
-    run "cd #{release_path} && bundle exec rake generate"
+set :format, :pretty
+namespace :deploy do
+  task :update_jekyll do
+    on roles(:app) do
+      within "#{deploy_to}/current" do
+        execute :jekyll, "build"
+      end
+    end
   end
 end
 
-after 'deploy:update_code', 'deploy:cleanup'
-after 'bundle:install', 'octopress:generate'
+after "deploy:symlink:release", "deploy:update_jekyll"
