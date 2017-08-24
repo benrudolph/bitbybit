@@ -1,8 +1,10 @@
 source "https://rubygems.org"
 
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '~> 3.9'
   gem 'RedCloth', '~> 4.2.9'
+  gem 'capistrano-bundler', '~> 1.2'
+  gem 'capistrano-rbenv', '~> 2.0'
 end
 
 gem 'sinatra', '~> 1.4.2'
