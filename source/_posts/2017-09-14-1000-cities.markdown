@@ -5,13 +5,39 @@ date: 2017-09-14<F3> 14:30:32 -0700
 comments: true
 ---
 
-I recently moved from Cambridge to San Francisco. I knew that San Francisco was more expensive than Cambridge, but I figured it couldn't be that much worse than Cambridge.
+I recently moved from Boston to San Francisco. In the months leading up to the move, I scoured mailing lists and craigslist to find cheap apartments. The prices listed were astronomically high. It was common for me to see apartments listed for around $1000 to share a _room_ in an apartment with 5 to 7 people. Due to [rent control](https://www.sftu.org/rentcontrol/), it is still possible to find affordable rooms, but they are few and far between.
+
+Just how high is rent in San Francisco? America? If you hate paying high rent prices for crappy rooms like me, below might be an indicator for which cities to live in, or which cities _not_ to live in.
+
 {% include posts/cities/search.html %}
 
 {% include posts/cities/line.html %}
 
-Great. San Francisco is outrageously expensive. Salaries are higher in SF though (graph); it's possible that that could make up for some of the difference.
+It's surprising to see just how much higher San Francisco rent prices are in comparison to the rest of America. Making matters worse, in 2017, the top 3 highest rent cities are San Francisco, San Jose, and Oakland. There's little respite for sacrificing location for a longer commute. The top 5 as of January 2017 are:
 
-Do these high rent price though translate to space. Where can you go to get the most bang for your buck?
+1. San Francisco, CA
+2. San Jose, CA
+3. Oakland, CA
+4. Los Angeles, CA
+5. Anaheim, CA
+
+West coast, best coast?
+
+Looking at median rent prices alone has major caveats. One could look at median rent prices in Delhi and be overjoyed by the fact that the rent is cheap. However, it is plausible that people just make less money in Delhi on average. Despite the bleak picture above, Californians could be making more money than the rest of the country. And, in fact, there are [multiple](https://www.forbes.com/sites/jacquelynsmith/2013/11/27/the-u-s-cities-where-people-earn-the-biggest-and-smallest-paychecks/#369770d43b0d) [sources](http://www.businessinsider.com/best-places-to-live-in-america-for-a-high-salary-2016-3/#2-san-francisco-california-19) that indicate that Californians do indeed make more money on average than the rest of America.
+
+Another interesting piece is examining the price per square foot. Rent prices could be astronomically high in San Francisco, but maybe the rooms are huge (spoiler, they're not). The graph below shows how the price per square foot has changed over time.
 
 {% include posts/cities/persquarefoot.html %}
+
+This graph paints a slightly different picture. San Francisco, again, tops the charts for price per square foot. However, some new players from other states enter the mix. The top 5 as of January 2017 are:
+
+1. San Francisco, CA
+2. Boston, MA
+3. Jersey City, NJ
+4. Honolulu, HI
+5. Oakland, CA
+
+Does your city have crazy high rent? Try searching for it. Let's all move to Detroit, MI where the median rent is $750, almost 1/6 the median of San Francisco.
+
+{% include posts/cities/by_month.html %}
+

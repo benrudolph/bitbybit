@@ -1,5 +1,6 @@
+<small>Median Rent Prices for the top 100 most populous cities</small>
 <div id="cities-line" class="full-width cities" style="text-align: center">
-  <svg width="1000" height="600"></svg>
+  <svg></svg>
 </div>
 <small>Datasource: <a href="https://www.kaggle.com/zillow/rent-index">https://www.kaggle.com/zillow/rent-index</a></small>
 <script>
@@ -13,8 +14,12 @@ $(function() {
       filter,
       monthParse = d3.timeParse("%B_%Y");
 
-  var svg = d3.select("#cities-line svg"),
-      margin = {top: 20, right: 30, bottom: 30, left: 40},
+  var docWidth = Math.min($(document).width() - 150, 1000)
+  var svg = d3.select("#cities-line svg");
+  svg.attr('width', docWidth)
+  svg.attr('height', (3 / 5) * docWidth)
+
+  var margin = {top: 20, right: 60, bottom: 30, left: 40},
       width = svg.attr("width") - margin.left - margin.right,
       height = svg.attr("height") - margin.top - margin.bottom,
       g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
