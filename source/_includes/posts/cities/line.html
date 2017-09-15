@@ -1,0 +1,159 @@
+<div id="cities-line" class="full-width cities" style="text-align: center">
+  <svg width="1000" height="600"></svg>
+</div>
+<small>Datasource: <a href="https://www.kaggle.com/zillow/rent-index">https://www.kaggle.com/zillow/rent-index</a></small>
+<script>
+$(function() {
+  var months,
+      monthKeys,
+      cityG,
+      voronoiGroup,
+      focus,
+      lineData,
+      filter,
+      monthParse = d3.timeParse("%B_%Y");
+
+  var svg = d3.select("#cities-line svg"),
+      margin = {top: 20, right: 30, bottom: 30, left: 40},
+      width = svg.attr("width") - margin.left - margin.right,
+      height = svg.attr("height") - margin.top - margin.bottom,
+      g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var x = d3.scaleTime()
+      .range([0, width]);
+
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+
+  var voronoi = d3.voronoi()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.value); })
+      .extent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]]);
+
+  var line = d3.line()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.value); });
+
+  d3.tsv("/data/cities/price_small.csv", type, function(error, data) {
+    if (error) throw error;
+    lineData = data;
+
+    x.domain(d3.extent(months));
+    y.domain([0, d3.max(data, function(c) { return d3.max(c.values, function(d) { return d.value; }); })]).nice();
+
+    g.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    g.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(y).ticks(10))
+      .append("text")
+        .attr("x", 4)
+        .attr("y", 0.5)
+        .attr("dy", "0.32em")
+        .style("text-anchor", "start")
+        .style("fill", "#000")
+        .style("font-weight", "bold")
+        .text("Median rent price ($)");
+
+    cityG = g.append("g")
+        .attr("class", "cities")
+
+    focus = g.append("g")
+        .attr("transform", "translate(-100,-100)")
+        .attr("class", "focus");
+
+    focus.append("circle")
+        .attr("r", 3.5);
+
+    focus.append("text")
+        .attr("y", -10);
+
+    voronoiGroup = g.append("g")
+        .attr("class", "voronoi");
+
+    update(data)
+  });
+
+  function update(data) {
+    var t = d3.transition()
+      .duration(100);
+
+    var cities = cityG.selectAll("path")
+      .data(data, function(d) { return d.city })
+
+    cities
+      .transition(t)
+      .attr("d", function(d) { d.line = this; return line(d.values); })
+      .attr('class', function(d) { return 'state--' + d.state + (isFiltered(d) ? ' filtered' : '') })
+      .attr('stroke-opacity', function(d) {
+        return isFiltered(d) ? 0.05 : 1
+      });
+
+    cities.enter().append("path")
+      .attr("d", function(d) { d.line = this; return line(d.values); })
+      .attr('class', function(d) { return 'state--' + d.state + (isFiltered(d) ? ' filtered' : '') })
+      .attr('stroke-opacity', function(d) {
+        return isFiltered(d) ? 0.05 : 1
+      });
+
+    cities.exit()
+      .transition(t)
+      .remove()
+
+    cityG.selectAll('.filtered').lower()
+
+    var filteredData = data.filter(function(d) { return !isFiltered(d) })
+    var v = voronoiGroup.selectAll("path")
+      .data(voronoi.polygons(d3.merge(filteredData.map(function(d) { return d.values; }))))
+
+    v
+      .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
+
+    v.enter().append("path")
+      .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
+
+    v.exit().remove()
+
+  }
+
+  function mouseover(d) {
+    d3.select(d.data.city.line).classed("city--hover", true);
+    d.data.city.line.parentNode.appendChild(d.data.city.line);
+    focus.attr("transform", "translate(" + x(d.data.date) + "," + y(d.data.value) + ")");
+    focus.select("text").text(d.data.city.city + ', ' + d.data.state + ' | $' + d.data.value);
+  }
+
+  function mouseout(d) {
+    d3.select(d.data.city.line).classed("city--hover", false);
+    focus.attr("transform", "translate(-100,-100)");
+  }
+
+  function type(d, i, columns) {
+    if (!months) monthKeys = columns.slice(6), months = monthKeys.map(monthParse);
+    var c = {city: d.City, values: null, state: d.State};
+    c.values = monthKeys.map(function(k, i) { return {city: c, state: d.State, date: months[i], value: +d[k]}; });
+    c.values = c.values.filter(function(k) { return k.value })
+    return c;
+  }
+
+  function isFiltered(d) {
+    if (!filter) {
+      return false;
+    }
+    return !d.city.toLowerCase().startsWith(filter)
+  }
+
+  $('#search').on('keyup', function(e) {
+    filter = $(e.currentTarget).val();
+    if (filter) {
+      filter = filter.toLowerCase()
+    }
+    update(lineData)
+  })
+});
+</script>

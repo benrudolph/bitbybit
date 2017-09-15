@@ -1,0 +1,17 @@
+---
+layout: post
+title: "A tale of rent prices in America"
+date: 2017-09-14<F3> 14:30:32 -0700
+comments: true
+---
+
+I recently moved from Cambridge to San Francisco. I knew that San Francisco was more expensive than Cambridge, but I figured it couldn't be that much worse than Cambridge.
+{% include posts/cities/search.html %}
+
+{% include posts/cities/line.html %}
+
+Great. San Francisco is outrageously expensive. Salaries are higher in SF though (graph); it's possible that that could make up for some of the difference.
+
+Do these high rent price though translate to space. Where can you go to get the most bang for your buck?
+
+{% include posts/cities/persquarefoot.html %}
