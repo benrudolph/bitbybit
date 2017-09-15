@@ -42,5 +42,3 @@ This graph paints a slightly different picture. San Francisco, again, tops the c
 5. Oakland, CA
 
 Does your city have crazy high rent? Try searching for it. Let's all move to Detroit, MI where the median rent is $750, almost 1/6 the median of San Francisco.
-
-{% include posts/cities/counties.html %}
