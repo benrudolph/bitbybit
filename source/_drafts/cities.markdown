@@ -3,9 +3,14 @@ layout: post
 title: "A tale of rent prices in America"
 date: 2017-09-14<F3> 14:30:32 -0700
 comments: true
+published: false
+categories: [rent, data]
+author: Ben Rudolph
 ---
 
 I recently moved from Boston to San Francisco. In the months leading up to the move, I scoured mailing lists and craigslist to find cheap apartments. The prices listed were astronomically high. It was common for me to see apartments listed for around $1000 to share a _room_ in an apartment with 5 to 7 people. Due to [rent control](https://www.sftu.org/rentcontrol/), it is still possible to find affordable rooms, but they are few and far between.
+
+<!-- more -->
 
 Just how high is rent in San Francisco? America? If you hate paying high rent prices for crappy rooms like me, below might be an indicator for which cities to live in, or which cities _not_ to live in.
 
