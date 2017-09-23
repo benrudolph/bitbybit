@@ -2,7 +2,7 @@
 lock "3.9.0"
 
 set :application, "bitbybit"
-set :repo_url, 'git@github.com:benrudolph/bitbybit.git'
+set :repo_url, 'https://github.com/benrudolph/bitbybit.git'
 set :branch, "master"
 
 set :rbenv_type, :user # or :system, depends on your rbenv setup
