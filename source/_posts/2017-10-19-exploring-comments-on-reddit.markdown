@@ -4,12 +4,14 @@ title: "Exploring Comments on Reddit"
 date: 2017-10-19 00:26:04 -0700
 comments: true
 categories: reddit data thingsonreddit
+image:
+   feature: https://i.imgur.com/67ocsGT.jpg
 ---
 Extracting meaning from unstructured data is a difficult thing to do. Sometimes, if you’re lucky, there are telling characteristics about the data that provide an interesting angle into the text. One angle is web addresses. Web addresses are semi-structured data that can be extracted to give some proxy of meaning to a body of text.
 
 <!-- more -->
 
-I took this approach to find trends and meaning in Reddit comments. The corpus of all Reddit comments from January 2015 to June 2017 live on Google BigQuery datasets. I extracted all links that contained amazon.com in them and then ensured they were a product by scraping the Amazon page. What I found was fun and very interesting. Based on this premise, I built a site called [ThingsOnReddit](https://thingsonreddit.com/) which organizes products by subreddit. The diversity of people on Reddit leads to all sorts of products being mentioned.
+I took this approach to find trends and meaning in Reddit comments. The corpus of all Reddit comments from January 2015 to June 2017 live on Google BigQuery datasets. I extracted all links that contained amazon.com in them and then ensured they were a product by scraping the Amazon page. What I found was fun and interesting. Based on this premise, I built a site called [ThingsOnReddit](https://thingsonreddit.com/) which organizes products by subreddit. The diversity of people on Reddit leads to all sorts of products being mentioned.
 So, what were the interesting things found on Reddit? The graph below shows which subreddits link to the most products.
 
 <div class="fullscreen">
@@ -17,7 +19,7 @@ So, what were the interesting things found on Reddit? The graph below shows whic
 </div>
 
 
-Not being an avid user of Reddit, I really didn’t know which subreddits would post the most amazon products. Another way to slice the data is to graph the number of items posted over time.
+The top subreddits are popular subreddits or subreddits you would expect to have a large number of products posted to them (for example, femalefashionadvice). Another way to slice the data is to graph the number of items posted over time.
 
 <div class="fullscreen">
 <img alt="Subreddits with the most product links" src="https://cdn-images-1.medium.com/max/2000/1*gxWyFK3RhOMP4tnjKT2TyQ.png" />
@@ -45,7 +47,7 @@ Passion Lubes had been linked to in many subreddits but not many times within on
 
 Some of the products in subreddits provide an interesting insight into a culture. An example is /r/AsianBeauty. The subreddit mainly links to skin and Sun care products.
 
-![AsianBeauty Trends](https://i.imgur.com/xsqozy6.png)
+![AsianBeauty Trends](https://i.imgur.com/TeCVwlo.png)
 
 Here you can see that almost 80% of all products posted on AsianBeauty are Beauty & Personal Care. And here are the top products mentioned:
 
@@ -55,6 +57,15 @@ Here you can see that almost 80% of all products posted on AsianBeauty are Beaut
 
 There are also a few subreddits that are genuinely useful for finding great products. If you’re looking for the [best knives on Reddit](https://thingsonreddit.com/things/r/knifeclub?order_by=n_references_in_subreddit), then /r/knifeclub is a great subreddit to browse. Or maybe you need [a quality watch](https://thingsonreddit.com/things/r/Watches?order_by=n_references_in_subreddit), then /r/Watches might be a good bet.
 
-The surprisingly high quality of Reddit comments is another fascinating aspect. While most comments are just witty one-liners, there are many comments that read more like essays, giving very in-depth product reviews. The longest one is over 10,000 characters. Here’s [one Herculean post](https://thingsonreddit.com/comments/a4b8dba8e9d2a0e125bd5c420755eaf84d12d826e7575f8e4bd0fa005052f24b) reviewing dozens of boots.
+The quality of comments is another fascinating aspect. While most comments are just witty one-liners, there are many comments that read more like essays, giving very in-depth product reviews. The longest one is over 10,000 characters. Here’s [one Herculean post](https://thingsonreddit.com/comments/a4b8dba8e9d2a0e125bd5c420755eaf84d12d826e7575f8e4bd0fa005052f24b) reviewing dozens of boots.
 
-This excavation of Reddit's comments showed a unique perspective into Reddit communities and sheds light on the quality of content being shared on Reddit.
+There are certain subreddits that lend themselves better to product recommendations. You wouldn't expect to find great products in /r/gifs even if a lot of products are posted. A proxy indicator for the quality of products being posted could be the length of a comment. Comments that are long, tend to be more detailed responses, often times with reviews. The below graph shows the subreddits with the highest median comment length for subreddits having over 50 products posted.
+
+
+<div class="fullscreen">
+<img alt="Subreddits with the most product links" src="https://i.imgur.com/fDAIk5d.png" />
+</div>
+
+WarCollege takes the top spot. WarCollege is a military history subreddit, and like AskHistorians, it has many high quality comments with great book recommendations. The latterdaysaints subreddit was a surprising number two. Most of the products posted were books.
+
+Diving into Reddit comments gives a surprising amount of insight into the different communities on Reddit. While text analysis is difficult and pulling out Amazon links is certainly not the best way to analyze text, it does provide a different lens to looking at all the unstructured content.
