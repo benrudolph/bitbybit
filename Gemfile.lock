@@ -42,7 +42,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     ffi (1.12.2)
-    haml (4.0.7)
+    haml (5.0.0)
+      temple (>= 0.8.0)
       tilt
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -123,6 +124,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stringex (1.4.0)
+    temple (0.8.2)
     tilt (2.0.10)
     toml (0.1.2)
       parslet (~> 1.5.0)
@@ -137,7 +139,7 @@ DEPENDENCIES
   capistrano-bundler (~> 1.2)
   capistrano-rbenv (~> 2.0)
   compass (~> 1.0.1)
-  haml (~> 4.0)
+  haml (~> 5.0)
   jekyll (~> 2.0)
   jekyll-sitemap
   octopress-date-format (~> 2.0)
