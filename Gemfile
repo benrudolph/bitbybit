@@ -8,7 +8,7 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.0'
 end
 
-gem 'sinatra', '~> 1.4.2'
+gem 'sinatra', '~> 2.2.3'
 gem 'rake', '~> 10.0'
 gem 'jekyll', '~> 2.0'
 gem 'octopress-hooks', '~> 2.2'
